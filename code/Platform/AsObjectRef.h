@@ -1,0 +1,71 @@
+#ifndef AsObjectRef_h__
+#define AsObjectRef_h__
+
+#include "AsBc.h"
+
+class AsObject;
+
+typedef unsigned short GcTime;
+
+class AsObjectRefBase
+{
+public:
+    AsObjectRefBase();
+    AsObjectRefBase(const AsObjectRefBase& other);
+    AsObjectRefBase(AsObject* obj);
+    explicit AsObjectRefBase(bool isStatic);
+    virtual ~AsObjectRefBase();
+
+public:
+    inline AsObjectRefBase& operator= (const AsObjectRefBase& other) { set(other.m_object); return *this; }    
+
+    inline bool operator== (const AsObjectRefBase& other) const { return m_object == other.m_object; }
+    inline bool operator!= (const AsObjectRefBase& other) const { return m_object != other.m_object; }
+
+public:
+    AsObject* m_object;
+    void set(AsObject* obj);
+
+private:
+    bool m_static;     
+
+    AsObjectRefBase* m_prev;
+    AsObjectRefBase* m_next;
+
+    static AsObjectRefBase* m_refHead;
+    static AsObjectRefBase* m_refHeadStatic;
+    
+    void reg();
+    void unreg();
+
+    void addToList(AsObjectRefBase **listHead);
+    void removeFromList(AsObjectRefBase **listHead);
+    
+private:
+    static const GcTime kAsGcGlobalTimeMax = 32767;
+    static GcTime m_gcGlobalTime;
+    static void gc();
+    static void mark(AsObjectRefBase *refHead);
+    static void sweep(AsObjectRefBase *refHead);
+
+public:
+    inline static GcTime gcGlobalTime() { return m_gcGlobalTime; }
+};
+
+template <class T>
+class AsObjectRef : public AsObjectRefBase
+{
+public:
+    AsObjectRef() : AsObjectRefBase() {}
+    AsObjectRef(const AsObjectRefBase& other) : AsObjectRefBase(other) {}
+    AsObjectRef(T* obj) : AsObjectRefBase(obj) {}
+    explicit AsObjectRef(bool isStatic) : AsObjectRefBase(isStatic) {}
+
+public:
+    inline T* operator->() const { ASSERT(m_object); return (T*)m_object; }
+    inline T* operator*() const { ASSERT(m_object); return (T*)m_object; }
+    inline AsObjectRefBase& operator=(const AsObjectRefBase& other) { set(other.m_object); return *this; }
+    
+};
+
+#endif // AsObjectRef_h__

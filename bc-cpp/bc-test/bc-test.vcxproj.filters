@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="tut">
+      <UniqueIdentifier>{87cf81ba-36ad-4086-a960-31f9c48093c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="tut\tut">
+      <UniqueIdentifier>{54d5678a-361c-461c-ba8d-454510ec6d0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform">
+      <UniqueIdentifier>{948aeba6-8940-4013-9558-47483fcb52fd}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="tut\tut\tut.hpp">
+      <Filter>tut\tut</Filter>
+    </ClInclude>
+    <ClInclude Include="tut\tut\tut_assert.hpp">
+      <Filter>tut\tut</Filter>
+    </ClInclude>
+    <ClInclude Include="tut\tut\tut_console_reporter.hpp">
+      <Filter>tut\tut</Filter>
+    </ClInclude>
+    <ClInclude Include="tut\tut\tut_cppunit_reporter.hpp">
+      <Filter>tut\tut</Filter>
+    </ClInclude>
+    <ClInclude Include="tut\tut\tut_exception.hpp">
+      <Filter>tut\tut</Filter>
+    </ClInclude>
+    <ClInclude Include="tut\tut\tut_posix.hpp">
+      <Filter>tut\tut</Filter>
+    </ClInclude>
+    <ClInclude Include="tut\tut\tut_reporter.hpp">
+      <Filter>tut\tut</Filter>
+    </ClInclude>
+    <ClInclude Include="tut\tut\tut_restartable.hpp">
+      <Filter>tut\tut</Filter>
+    </ClInclude>
+    <ClInclude Include="tut\tut\tut_result.hpp">
+      <Filter>tut\tut</Filter>
+    </ClInclude>
+    <ClInclude Include="tut\tut\tut_runner.hpp">
+      <Filter>tut\tut</Filter>
+    </ClInclude>
+    <ClInclude Include="tut\tut\tut_xml_reporter.hpp">
+      <Filter>tut\tut</Filter>
+    </ClInclude>
+    <ClInclude Include="tut\tut.h">
+      <Filter>tut</Filter>
+    </ClInclude>
+    <ClInclude Include="tut\tut_reporter.h">
+      <Filter>tut</Filter>
+    </ClInclude>
+    <ClInclude Include="tut\tut_restartable.h">
+      <Filter>tut</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\Platform\AsArray.h">
+      <Filter>Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\Platform\AsBc.h">
+      <Filter>Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\Platform\AsDebug.h">
+      <Filter>Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\Platform\AsObject.h">
+      <Filter>Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\Platform\AsObjectRef.h">
+      <Filter>Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\Platform\AsString.h">
+      <Filter>Platform</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="test_AsString.cpp" />
+    <ClCompile Include="..\..\code\Platform\AsArray.cpp">
+      <Filter>Platform</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\Platform\AsDebug.cpp">
+      <Filter>Platform</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\Platform\AsObject.cpp">
+      <Filter>Platform</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\Platform\AsObjectRef.cpp">
+      <Filter>Platform</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\Platform\AsString.cpp">
+      <Filter>Platform</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

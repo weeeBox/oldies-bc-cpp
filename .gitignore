@@ -1,0 +1,11 @@
+*.opensdf
+*.sdf
+*.suo
+*.ipch
+*.user
+
+/code/Api
+/code/Converted
+/bc-cpp/Debug
+/bc-cpp/bc-cpp/Debug
+/bc-cpp/bc-test/Debug
