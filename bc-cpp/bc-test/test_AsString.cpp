@@ -220,6 +220,25 @@ namespace tut
         ensure(succeed);
     }
 
+    template<>
+    template<>
+    void AsString_object::test<14>()
+    {
+        set_test_name("replace test");
+
+        AsString_ref str1 = ASL("This is string");
+
+        bool succeed = true;
+        succeed = succeed && str1->replace(ASL(" is "), ASL("-")) == ASL("This-string");
+        succeed = succeed && str1->replace(ASL(" is "), ASL(" is a long ")) == ASL("This is a long string");
+        succeed = succeed && str1->replace(ASL(" is string"), ASL("")) == ASL("This");
+        succeed = succeed && str1->replace(ASL("This is "), ASL("")) == ASL("string");
+        succeed = succeed && str1->replace(ASL("This is string"), ASL("")) == ASL("");
+        succeed = succeed && str1->replace(ASL("This is string!"), ASL("")) == ASL("This is string");
+        succeed = succeed && str1->replace(ASL("is string!"), ASL("")) == ASL("This is string");
+        ensure(succeed);
+    }
+
     /*template<>
     template<>
     void AsString_object::test<2>()

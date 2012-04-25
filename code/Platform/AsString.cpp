@@ -84,13 +84,36 @@ int AsString::length()
  
 AsString_ref AsString::replace(const AsString_ref& p, const AsString_ref& repl)
 {
-    const achar* ptr = wide_find(m_buffer, p->m_buffer);    
-    if (!ptr)
+    const achar* pStart = wide_find(m_buffer, p->m_buffer);    
+    if (!pStart)
     {
         return AsString_ref(this);
     }
 
-    size_t newLen = length() - p->length() + repl->length();
+    int diff = repl->length() - p->length();    
+    size_t newLen = length() + diff;
+
+    achar* newBuf = (achar*)malloc(newLen * sizeof(achar));
+    achar* from = m_buffer;
+    achar* to = newBuf;
+
+    size_t lenA = pStart - m_buffer;
+    size_t lenB = length() - (lenA + p->length());
+
+    memcpy(to, from, lenA * sizeof(achar));
+    from += lenA;
+    to += lenA;    
+
+    memcpy(to, repl->m_buffer, repl->length() * sizeof(achar));
+    from += p->length();
+    to += repl->length();    
+
+    memcpy(to, from, lenB * sizeof(achar));
+
+    AsString_ref str = AsString_ref(new AsString(newBuf, newLen));
+    free(newBuf);
+
+    return str;
 }
  
 AsString_ref AsString::slice(uint start, uint end)
