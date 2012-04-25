@@ -180,6 +180,46 @@ namespace tut
         ensure(succeed);
     }
 
+    template<>
+    template<>
+    void AsString_object::test<11>()
+    {
+        set_test_name("split test");
+
+        bool succeed = false;        
+        ensure(succeed);
+    }
+
+    template<>
+    template<>
+    void AsString_object::test<12>()
+    {
+        set_test_name("substr test");
+
+        AsString_ref str1 = ASL("This is string");
+
+        bool succeed = true;        
+        succeed = succeed && str1->substr(5) == ASL("is string");
+        succeed = succeed && str1->substr(5, 2) == ASL("is");
+        succeed = succeed && str1->substr(5, 0) == ASL("");
+        ensure(succeed);
+    }
+
+    template<>
+    template<>
+    void AsString_object::test<13>()
+    {
+        set_test_name("substring test");
+
+        AsString_ref str1 = ASL("This is string");        
+
+        bool succeed = true;
+        succeed = succeed && str1->substring(5) == ASL("is string");
+        succeed = succeed && str1->substring(5, 7) == ASL("is");
+        succeed = succeed && str1->substring(7, 5) == ASL("is");
+        ensure(succeed);
+    }
+
     /*template<>
     template<>
     void AsString_object::test<2>()

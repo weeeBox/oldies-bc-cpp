@@ -50,7 +50,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>D:\dev\cpp\bc-cpp\bc-cpp\bc-test\tut;D:\dev\cpp\bc-cpp\bc-cpp\bc-test\tut\tut;D:\dev\cpp\bc-cpp\code\Platform;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\tut\tut;$(ProjectDir)\tut;$(ProjectDir)\..\..\code\Platform;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -75,6 +75,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\code\Platform\AsArray.cpp" />
+    <ClCompile Include="..\..\code\Platform\AsDebug.cpp" />
+    <ClCompile Include="..\..\code\Platform\AsObject.cpp" />
+    <ClCompile Include="..\..\code\Platform\AsObjectRef.cpp" />
+    <ClCompile Include="..\..\code\Platform\AsString.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="test_AsString.cpp" />
+  </ItemGroup>
+  <ItemGroup>
     <ClInclude Include="..\..\code\Platform\AsArray.h" />
     <ClInclude Include="..\..\code\Platform\AsBc.h" />
     <ClInclude Include="..\..\code\Platform\AsDebug.h" />
@@ -95,15 +104,6 @@
     <ClInclude Include="tut\tut\tut_xml_reporter.hpp" />
     <ClInclude Include="tut\tut_reporter.h" />
     <ClInclude Include="tut\tut_restartable.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\code\Platform\AsArray.cpp" />
-    <ClCompile Include="..\..\code\Platform\AsDebug.cpp" />
-    <ClCompile Include="..\..\code\Platform\AsObject.cpp" />
-    <ClCompile Include="..\..\code\Platform\AsObjectRef.cpp" />
-    <ClCompile Include="..\..\code\Platform\AsString.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="test_AsString.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

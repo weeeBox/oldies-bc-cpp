@@ -1,14 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <ClCompile Include="..\..\code\Platform\AsArray.cpp">
+      <Filter>Platform</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\Platform\AsDebug.cpp">
+      <Filter>Platform</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\Platform\AsObject.cpp">
+      <Filter>Platform</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\Platform\AsObjectRef.cpp">
+      <Filter>Platform</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\Platform\AsString.cpp">
+      <Filter>Platform</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="test_AsString.cpp" />
+  </ItemGroup>
+  <ItemGroup>
     <Filter Include="tut">
-      <UniqueIdentifier>{87cf81ba-36ad-4086-a960-31f9c48093c1}</UniqueIdentifier>
+      <UniqueIdentifier>{c07d303f-9c93-4435-b817-d600705591cd}</UniqueIdentifier>
     </Filter>
     <Filter Include="tut\tut">
-      <UniqueIdentifier>{54d5678a-361c-461c-ba8d-454510ec6d0c}</UniqueIdentifier>
+      <UniqueIdentifier>{e147d9bc-f9d8-4759-8d8c-f699f54d0104}</UniqueIdentifier>
     </Filter>
     <Filter Include="Platform">
-      <UniqueIdentifier>{948aeba6-8940-4013-9558-47483fcb52fd}</UniqueIdentifier>
+      <UniqueIdentifier>{82c4de89-a5f8-477b-9802-396a48020537}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -72,24 +91,5 @@
     <ClInclude Include="..\..\code\Platform\AsString.h">
       <Filter>Platform</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="test_AsString.cpp" />
-    <ClCompile Include="..\..\code\Platform\AsArray.cpp">
-      <Filter>Platform</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\code\Platform\AsDebug.cpp">
-      <Filter>Platform</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\code\Platform\AsObject.cpp">
-      <Filter>Platform</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\code\Platform\AsObjectRef.cpp">
-      <Filter>Platform</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\code\Platform\AsString.cpp">
-      <Filter>Platform</Filter>
-    </ClCompile>
   </ItemGroup>
 </Project>

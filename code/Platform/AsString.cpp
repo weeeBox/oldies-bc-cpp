@@ -72,19 +72,9 @@ int AsString::indexOf(const AsString_ref& s, uint startIndex)
     return ptr ? (ptr - m_buffer) : -1;
 }
  
-int AsString::indexOf(const AsString_ref& s)
-{
-    return indexOf(s, 0);
-}
- 
 int AsString::lastIndexOf(const AsString_ref& s, uint i)
 {    
     return -1;
-}
- 
-int AsString::lastIndexOf(const AsString_ref& s)
-{
-	return lastIndexOf(s, INDEX_MAX);
 }
  
 int AsString::length()
@@ -112,14 +102,12 @@ AsString_ref AsString::slice(uint start, uint end)
     ASSERT(end >= 0 && end <= length());
 
     int count = end - start;
-    ASSERT(count >= 0);
+    if (count > 0)
+    {
+        return AsString_ref(new AsString(m_buffer + start, count));
+    }
 
-    return AsString_ref(new AsString(m_buffer + start, count));
-}
- 
-AsString_ref AsString::slice(uint start)
-{
-	return slice(start, INDEX_MAX);
+    return AsString_ref(new AsString(ASL(""), 1));
 }
  
 AsArray_ref AsString::split(const AsString_ref& delim)
@@ -130,24 +118,31 @@ AsArray_ref AsString::split(const AsString_ref& delim)
  
 AsString_ref AsString::substr(uint start, uint len)
 {
-    IMPLEMENT_ME;
-    return AS_NULL;
-}
- 
-AsString_ref AsString::substr(uint start)
-{
-	return substr(start, INDEX_MAX);
+    if (len == INDEX_MAX)
+        len = length() - start;
+
+    ASSERT(start >= 0 && start < length());
+    ASSERT(len >= 0 && len <= length());
+
+    return AsString_ref(new AsString(m_buffer + start, len));
 }
  
 AsString_ref AsString::substring(uint start, uint end)
 {
-    IMPLEMENT_ME;
-    return AS_NULL;
-}
- 
-AsString_ref AsString::substring(uint start)
-{
-	return substring(start, INDEX_MAX);
+    if (end == INDEX_MAX)
+        end = length();
+
+    ASSERT(start >= 0 && start < length());
+    ASSERT(end >= 0 && end <= length());
+
+    int count = end - start;
+    if (count < 0)
+    {
+        count = -count;
+        start = end;
+    }
+
+    return AsString_ref(new AsString(m_buffer + start, count));
 }
  
 AsString_ref AsString::toLocaleLowerCase()

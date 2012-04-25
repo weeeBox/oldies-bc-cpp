@@ -25,19 +25,14 @@ public:
 	
 public:
 	AsString_ref charAt(uint i);
-	int indexOf(const AsString_ref& s, uint i);
-	int indexOf(const AsString_ref& s);
-	int lastIndexOf(const AsString_ref& s, uint i);
-	int lastIndexOf(const AsString_ref& s);
+	int indexOf(const AsString_ref& s, uint i = 0);	
+	int lastIndexOf(const AsString_ref& s, uint i = INDEX_MAX);	
 	int length();
 	AsString_ref replace(const AsString_ref& p, const AsString_ref& repl);
-	AsString_ref slice(uint start, uint end);
-	AsString_ref slice(uint start);
+	AsString_ref slice(uint start, uint end = INDEX_MAX);	
 	AsArray_ref split(const AsString_ref& delim);
-	AsString_ref substr(uint start, uint len);
-	AsString_ref substr(uint start);
-	AsString_ref substring(uint start, uint end);
-	AsString_ref substring(uint start);
+	AsString_ref substr(uint start, uint len = INDEX_MAX);	
+	AsString_ref substring(uint start, uint end = INDEX_MAX);	
 	AsString_ref toLocaleLowerCase();
 	AsString_ref toLocaleUpperCase();
 	AsString_ref toLowerCase();
