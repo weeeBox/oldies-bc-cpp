@@ -10,6 +10,12 @@ static size_t wide_len(const achar* str)
     return p - str;
 }
 
+static void wide_copy(achar* dst, const char* src)
+{
+    while (*dst++ = *src++)
+        ;
+}
+
 static const achar* wide_find(const achar* from, const achar* what)
 {
     while (*from)
@@ -53,7 +59,7 @@ static bool wide_equals(const wchar_t* str1, const wchar_t* str2)
     return false;
 }
 
-AsString_ref AsString::charAt(uint index)
+AsString_ref AsString::charAt(int index)
 {
     if (index >= 0 && index < length())
     {
@@ -64,7 +70,7 @@ AsString_ref AsString::charAt(uint index)
     return AsString_ref(new AsString(ASL(""), 1));
 }
  
-int AsString::indexOf(const AsString_ref& s, uint startIndex)
+int AsString::indexOf(const AsString_ref& s, int startIndex)
 {
     ASSERT(startIndex >= 0 && startIndex < length());
     const achar* ptr = wide_find(m_buffer + startIndex, s->m_buffer);
@@ -72,8 +78,9 @@ int AsString::indexOf(const AsString_ref& s, uint startIndex)
     return ptr ? (ptr - m_buffer) : -1;
 }
  
-int AsString::lastIndexOf(const AsString_ref& s, uint i)
+int AsString::lastIndexOf(const AsString_ref& s, int i)
 {    
+    IMPLEMENT_ME;
     return -1;
 }
  
@@ -116,7 +123,7 @@ AsString_ref AsString::replace(const AsString_ref& p, const AsString_ref& repl)
     return str;
 }
  
-AsString_ref AsString::slice(uint start, uint end)
+AsString_ref AsString::slice(int start, int end)
 {
     if (end == INDEX_MAX)
         end = length();
@@ -139,7 +146,7 @@ AsArray_ref AsString::split(const AsString_ref& delim)
     return AS_NULL;
 }
  
-AsString_ref AsString::substr(uint start, uint len)
+AsString_ref AsString::substr(int start, int len)
 {
     if (len == INDEX_MAX)
         len = length() - start;
@@ -150,7 +157,7 @@ AsString_ref AsString::substr(uint start, uint len)
     return AsString_ref(new AsString(m_buffer + start, len));
 }
  
-AsString_ref AsString::substring(uint start, uint end)
+AsString_ref AsString::substring(int start, int end)
 {
     if (end == INDEX_MAX)
         end = length();
@@ -198,9 +205,8 @@ AsString_ref AsString::toUpperCase()
 }
  
 AsString_ref AsString::valueOf()
-{
-    IMPLEMENT_ME;
-    return AS_NULL;
+{    
+    return AsString_ref(this);
 }
 
 bool AsString::isEqualToString(const AsString& other) const
@@ -215,13 +221,16 @@ AsString::AsString() :
 {    
 }
 
-AsString::AsString(const achar* str) : 
+AsString::AsString(const char* str, size_t len) :
   m_size(0),
   m_capacity(0),
   m_buffer(0)
 {
-    init(wide_len(str));
-    memcpy(m_buffer, str, length() * sizeof(achar));
+    if (len == -1)
+        len = strlen(str);
+
+    init(len);    
+    wide_copy(m_buffer, str);
 }
 
 AsString::AsString(const achar* str, size_t len) :
@@ -229,6 +238,9 @@ AsString::AsString(const achar* str, size_t len) :
   m_capacity(0),
   m_buffer(0)
 {
+    if (len == -1)
+        len = wide_len(str);
+
     init(len);
     memcpy(m_buffer, str, len * sizeof(achar));
 }
@@ -279,6 +291,21 @@ void AsString::append(const achar* str, size_t len)
     }    
 
     memcpy(m_buffer + length(), str, len * sizeof(achar));
+    m_buffer[m_size = newLen] = '\0';    
+}
+
+void AsString::append(const char* str, size_t len)
+{
+    if (len == -1)
+        len = strlen(str);
+
+    size_t newLen = length() + len;
+    if (newLen + 1 > m_capacity)
+    {
+        resize(newLen + 1);
+    }    
+        
+    wide_copy(m_buffer + length(), str);
     m_buffer[m_size = newLen] = '\0';    
 }
 

@@ -243,9 +243,43 @@ namespace tut
     template<>
     void AsString_object::test<15>()
     {
-        set_test_name("concat test");
+        set_test_name("concat test 1");
 
         AsString_ref str1 = ASL("This");
+        AsString_ref str2 = str1;
+
+        bool succeed = true;
+        succeed = succeed && (str1 += ASL(" is ")) == ASL("This is ");
+        succeed = succeed && (str1 += ASL("string")) == ASL("This is string");
+        succeed = succeed && str2 == ASL("This");
+        ensure(succeed);
+    }
+
+    template<>
+    template<>
+    void AsString_object::test<16>()
+    {
+        set_test_name("concat test 2");
+
+        AsString_ref str1 = ASL("This");
+
+        AsString_ref str2 = str1;
+
+        bool succeed = true;
+        succeed = succeed && (str1 += ASL(" is ")) == ASL("This is ");
+        succeed = succeed && (str1 += ASL("string")) == ASL("This is string");
+        succeed = succeed && str2 == ASL("This");
+        ensure(succeed);
+    }
+
+    template<>
+    template<>
+    void AsString_object::test<17>()
+    {
+        set_test_name("concat test 3");
+
+        AsString_ref str1 = ASL("This");
+
         AsString_ref str2 = str1;
 
         bool succeed = true;

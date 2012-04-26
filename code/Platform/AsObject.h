@@ -75,6 +75,8 @@ public: \
 
 AS_CLASS(AsObject);
 
+class AsString_ref;
+
 class AsObject
 {
 /*private:
@@ -84,9 +86,11 @@ public:
 	virtual BOOL hasOwnProperty(const AsString_ref& name);
 	virtual AsObject_ref getOwnProperty(const AsString_ref& name);
 	virtual void setOwnProperty(const AsString_ref& name, const AsObject_ref& _value);
-	virtual void deleteOwnProperty(const AsString_ref& name);
-	virtual AsString_ref toString();
+	virtual void deleteOwnProperty(const AsString_ref& name);	
 */
+
+public:
+    virtual AsString_ref toString();
 
 public:
     AsObject();

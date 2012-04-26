@@ -1,4 +1,5 @@
 #include "AsObject.h"
+#include "AsString.h"
 
 AsObject_ref AsObject::__as_null(true);
 
@@ -11,6 +12,11 @@ AsObject::AsObject() :
 AsObject::~AsObject()
 {
     ASSERT(m_refCount == 0);
+}
+
+AsString_ref AsObject::toString()
+{
+    return AsString_ref(_as_typename());
 }
 
 void AsObject::retain()
