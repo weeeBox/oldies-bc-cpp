@@ -289,6 +289,31 @@ namespace tut
         ensure(succeed);
     }
 
+    template<>
+    template<>
+    void AsString_object::test<18>()
+    {
+        set_test_name("concat test 4");
+
+        AsString_ref str = ASL("str");
+
+        AsObject_ref obj = AS_NEW(AsObject, ());
+
+        bool succeed = true;
+        succeed = succeed && (10 + str) == ASL("10str");
+        succeed = succeed && (str + 10) == ASL("str10");
+        succeed = succeed && (3.14f + str) == ASL("3.14str");
+        succeed = succeed && (str + 3.14f) == ASL("str3.14");
+        succeed = succeed && (-3.14f + str) == ASL("-3.14str");
+        succeed = succeed && (str + -3.14f) == ASL("str-3.14");
+        succeed = succeed && (false + str) == ASL("falsestr");
+        succeed = succeed && (str + true) == ASL("strtrue");
+        succeed = succeed && (str + obj) == ASL("strAsObject");
+        succeed = succeed && (obj + str) == ASL("AsObjectstr");
+        
+        ensure(succeed);
+    }
+
     /*template<>
     template<>
     void AsString_object::test<2>()

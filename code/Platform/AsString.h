@@ -134,7 +134,7 @@ public:
 
     inline AsString_ref& operator+= (float val) 
     {
-        sprintf(tempBuf, "%f", val);
+        sprintf(tempBuf, "%g", val);
 
         AsString* oldStr = (AsString*)m_object;
         AsString* newStr = new AsString(*oldStr);       
@@ -205,7 +205,7 @@ inline AsString_ref operator+ (const AsString_ref& a, float val)
 
 inline AsString_ref operator+ (float val, const AsString_ref& a)
 {
-    sprintf(tempBuf, "%f", val);
+    sprintf(tempBuf, "%g", val);
 
     AsString_ref str(new AsString(tempBuf));
     str += a;

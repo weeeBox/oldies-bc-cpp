@@ -97,7 +97,7 @@ public:
     virtual ~AsObject();
 
 public:
-    inline static AsObject_ref _as_alloc() { return AsObject_ref(new AsObject()); }
+    inline static AsObject_ref _as_create_AsObject() { return AsObject_ref(new AsObject()); }
     inline static const char* _as_typename() { return "AsObject"; }
 
 protected: 
