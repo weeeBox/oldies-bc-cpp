@@ -323,6 +323,3 @@ void AsString::append(const AsString& other)
 {
     append(other.m_buffer, other.length());
 }
- 
-AS_STATIC_INIT_BEGIN(AsString,AsObject)
-AS_STATIC_INIT_END

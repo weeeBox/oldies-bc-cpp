@@ -24,7 +24,7 @@ private:
     static const uint INDEX_MAX = 0x7fffffff;
 
 public:
-    AS_OBJ(AsString, AsObject);
+    AS_TYPENAME(AsString, AsObject);
 
 public:
     AsString_ref charAt(int i);
