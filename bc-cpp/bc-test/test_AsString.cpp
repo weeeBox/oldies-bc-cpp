@@ -149,27 +149,6 @@ namespace tut
     template<>
     void AsString_object::test<9>()
     {
-        set_test_name("replace test");
-
-        AsString_ref str1 = ASL("This is string");        
-
-        bool succeed = false;
-        /*succeed = succeed && str1->indexOf(ASL(" is ")) == 4;
-        succeed = succeed && str1->indexOf(ASL(" iz ")) == -1;
-        succeed = succeed && str1->indexOf(ASL(" string")) == 7;
-        succeed = succeed && str1->indexOf(ASL("This ")) == 0;
-        succeed = succeed && str1->indexOf(ASL("This "), 1) == -1;
-        succeed = succeed && str1->indexOf(ASL("is"), 2) == 2;
-        succeed = succeed && str1->indexOf(ASL("is"), 3) == 5;
-        succeed = succeed && str1->indexOf(ASL("stra"), 3) == -1;*/
-
-        ensure(succeed);
-    }
-
-    template<>
-    template<>
-    void AsString_object::test<10>()
-    {
         set_test_name("slice test");
 
         AsString_ref str1 = ASL("This is string");        
@@ -182,7 +161,7 @@ namespace tut
 
     template<>
     template<>
-    void AsString_object::test<11>()
+    void AsString_object::test<10>()
     {
         set_test_name("split test");
 
@@ -192,7 +171,7 @@ namespace tut
 
     template<>
     template<>
-    void AsString_object::test<12>()
+    void AsString_object::test<11>()
     {
         set_test_name("substr test");
 
@@ -207,7 +186,7 @@ namespace tut
 
     template<>
     template<>
-    void AsString_object::test<13>()
+    void AsString_object::test<12>()
     {
         set_test_name("substring test");
 
@@ -222,7 +201,7 @@ namespace tut
 
     template<>
     template<>
-    void AsString_object::test<14>()
+    void AsString_object::test<13>()
     {
         set_test_name("replace test");
 
@@ -241,7 +220,7 @@ namespace tut
 
     template<>
     template<>
-    void AsString_object::test<15>()
+    void AsString_object::test<14>()
     {
         set_test_name("concat test 1");
 
@@ -257,7 +236,7 @@ namespace tut
 
     template<>
     template<>
-    void AsString_object::test<16>()
+    void AsString_object::test<15>()
     {
         set_test_name("concat test 2");
 
@@ -274,7 +253,7 @@ namespace tut
 
     template<>
     template<>
-    void AsString_object::test<17>()
+    void AsString_object::test<16>()
     {
         set_test_name("concat test 3");
 
@@ -291,7 +270,7 @@ namespace tut
 
     template<>
     template<>
-    void AsString_object::test<18>()
+    void AsString_object::test<17>()
     {
         set_test_name("concat test 4");
 

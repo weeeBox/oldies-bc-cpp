@@ -275,7 +275,17 @@ void AsString::init(size_t sz, size_t cap)
 void AsString::resize(size_t cap)
 {
     ASSERT(m_buffer);
-    realloc(m_buffer, cap * sizeof(achar));
+    if (m_capacity < cap)
+    {
+        achar* newBuffer = (achar*)malloc(cap * sizeof(achar));
+        memcpy(newBuffer, m_buffer, m_size * sizeof(achar));
+        free(m_buffer);
+        m_buffer = newBuffer;
+    }
+    else
+    {
+        realloc(m_buffer, cap * sizeof(achar));
+    }    
     m_capacity = cap;
 }
 
