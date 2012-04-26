@@ -77,7 +77,7 @@ int AsString::lastIndexOf(const AsString_ref& s, uint i)
     return -1;
 }
  
-int AsString::length()
+int AsString::length() const
 {
     return m_size;
 }
@@ -233,6 +233,15 @@ AsString::AsString(const achar* str, size_t len) :
     memcpy(m_buffer, str, len * sizeof(achar));
 }
 
+AsString::AsString(const AsString& other) :
+  m_size(0),
+  m_capacity(0),
+  m_buffer(0)
+{
+    init(other.length());
+    memcpy(m_buffer, other.m_buffer, other.length() * sizeof(achar));
+}
+
 AsString::~AsString()
 {
     free(m_buffer);
@@ -251,26 +260,31 @@ void AsString::init(size_t sz, size_t cap)
     }    
 }
 
-void AsString::reserve(size_t cap)
+void AsString::resize(size_t cap)
 {
-    if (cap > m_capacity)
-    {        
-        ASSERT(m_buffer);
-        realloc(m_buffer, cap);
-        m_capacity = cap;
-    }
+    ASSERT(m_buffer);
+    realloc(m_buffer, cap * sizeof(achar));
+    m_capacity = cap;
 }
 
 void AsString::append(const achar* str, size_t len)
 {
-    /*size_t newsize = length() + len;
-    if (newsize > capacity())
+    if (len == -1)
+        len = wide_len(str);
+
+    size_t newLen = length() + len;
+    if (newLen + 1 > m_capacity)
     {
-        reserve (newsize + capacity());
-    }
-    memmove(m_buffer + rep_->capacity, str, len);
-    setLength(newsize);    */
-    IMPLEMENT_ME;
+        resize(newLen + 1);
+    }    
+
+    memcpy(m_buffer + length(), str, len * sizeof(achar));
+    m_buffer[m_size = newLen] = '\0';    
+}
+
+void AsString::append(const AsString& other)
+{
+    append(other.m_buffer, other.length());
 }
  
 AS_STATIC_INIT_BEGIN(AsString,AsObject)

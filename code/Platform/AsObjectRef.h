@@ -22,7 +22,7 @@ public:
     inline bool operator== (const AsObjectRefBase& other) const { return m_object == other.m_object; }
     inline bool operator!= (const AsObjectRefBase& other) const { return m_object != other.m_object; }
 
-public:
+protected:
     AsObject* m_object;
     void set(AsObject* obj);
 
