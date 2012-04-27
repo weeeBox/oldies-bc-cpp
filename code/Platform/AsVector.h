@@ -43,23 +43,8 @@ public:
     Ref splice(int startIndex, int deleteCount, const AsObject_ref& item) { IMPLEMENT_ME; return AS_NULL; }
     Ref splice(int startIndex, int deleteCount) { IMPLEMENT_ME; return AS_NULL; }
 
-public:
-    AsVector(size_t capacity = DEFAULT_CAPACITY) : 
-      m_data(0), 
-      m_size(0), 
-      m_capacity(capacity)      
-    {
-        m_data = (T*)malloc(m_capacity * sizeof(T));
-    }
-
-    void expand(int capacity)
-    {        
-        T* data = (T*)malloc(capacity * sizeof(T));
-        memcpy(data, m_data, m_size * sizeof(T));
-        free(m_data);
-        m_data = data;
-        m_capacity = capacity;
-    }
+protected:
+    AsVector(size_t capacity = DEFAULT_CAPACITY);
 
 public:
     static inline Ref _as_create(size_t size, ...) 
@@ -80,15 +65,9 @@ private:
     size_t m_capacity;
 
     static const int DEFAULT_CAPACITY = 16;    
-
-    void init(size_t size, va_list args)
-    {
-        ASSERT(size <= m_capacity);
-        for (size_t i = 0; i < size; ++i)
-        {
-            m_data[i] = va_arg(args, T);
-        }
-    }
+    
+    void init(size_t size, va_list args);
+    void expand(int capacity);
 
 public:
     class Iterator
@@ -102,8 +81,41 @@ public:
         inline BOOL hasNext() const { return m_index < m_vector->getLength(); }
         inline const T& next() const { ASSERT(hasNext()); return m_vector->m_data[m_index++]; }
     };
+
+    inline Iterator iterator() const { return Iterator(this); }
 };
  
+template <class T>
+AsVector<T>::AsVector(size_t capacity) : 
+  m_data(0), 
+  m_size(0), 
+  m_capacity(capacity)      
+{
+    m_data = (T*)malloc(m_capacity * sizeof(T));
+}
+
+template <class T>
+void AsVector<T>::init(size_t size, va_list args)
+{
+    ASSERT(size <= m_capacity);
+    m_size = size;
+
+    for (size_t i = 0; i < size; ++i)
+    {
+        m_data[i] = va_arg(args, T);
+    }
+}
+
+template <class T>
+void AsVector<T>::expand(int capacity)
+{        
+    T* data = (T*)malloc(capacity * sizeof(T));
+    memcpy(data, m_data, m_size * sizeof(T));
+    free(m_data);
+    m_data = data;
+    m_capacity = capacity;
+}
+
 template <class T>
 int AsVector<T>::indexOf(const T& searchElement, int fromIndex)
 {
@@ -165,9 +177,6 @@ int AsVector<T>::push(const AsObject_ref& arg)
     IMPLEMENT_ME;
     return -1;
 }
-
-// template <class T>
-// AsVector_ref sort(const AsFunction_ref& compareFunction);
 
 template <class T>
 AsString_ref AsVector<T>::toString()
