@@ -123,7 +123,10 @@ namespace tut
         succeed = succeed && str4->retainCount() == 2;
         succeed = succeed && str5->retainCount() == 2;
 
-
+        for (int i = 0; i < vector->length(); ++i)
+        {
+            succeed = succeed && *arr[i] == vector[i];
+        }
 
         ensure(succeed);
     }
