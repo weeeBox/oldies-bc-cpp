@@ -78,7 +78,8 @@ protected:
 
 protected:
     void expand(int capacity);
-    void addElement(const T& element);    
+    void addElement(const T& element);
+    virtual void freeElement(int index);
 
 public:
     class Iterator
@@ -104,11 +105,10 @@ public:
 
 protected:
     _as_AsRefVector(size_t capacity = DEFAULT_CAPACITY) : AsVector(capacity) {}
-
-public:
-    static inline Ref _as_create(size_t size) { return Ref(new _as_AsRefVector(size)); }    
     void freeElement(int index);
 
+public:
+    static inline Ref _as_create(size_t size) { return Ref(new _as_AsRefVector(size)); }
     ~_as_AsRefVector();
 };
  
@@ -133,8 +133,16 @@ void AsVector<T>::expand(int capacity)
 {        
     ASSERT(capacity > 0);
 
-    T* data = (T*)malloc(capacity * sizeof(T));
-    memcpy(data, m_data, m_size * sizeof(T));
+    size_t newSize = capacity * sizeof(T);
+    T* data = (T*)malloc(newSize);
+    memset(data, 0, newSize);
+    // memcpy(data, m_data, newSize); - we can't use memcpy because it makes some pointers invalid
+    for (int i = 0; i < length(); ++i)
+    {
+        data[i] = m_data[i];
+        freeElement(i);
+    }    
+
     free(m_data);
     m_data = data;
     m_capacity = capacity;
@@ -145,6 +153,13 @@ void AsVector<T>::addElement(const T& element)
 {
     ASSERT(m_size < m_capacity);
     m_data[m_size++] = element;
+}
+
+template <class T>
+void AsVector<T>::freeElement(int index)
+{
+    ASSERT(index >= 0 && index < length());
+    // nothing
 }
 
 template <class T>
