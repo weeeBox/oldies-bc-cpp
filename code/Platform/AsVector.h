@@ -23,12 +23,19 @@ public:
             ASSERT(index >= 0 && index < _object()->length());
             return _object()->m_data[index];
         }
+
+        inline Ref& operator<< (const T& element)
+        {
+            _object()->add(element);
+            return *this;
+        }
     };
 
 public:
     int indexOf(const T& searchElement, int fromIndex);
     int indexOf(const T& searchElement);    
     inline int length() const { return m_size; }
+    inline int capacity() const { return m_capacity; }
     void length(int newLenght);	
     AsString_ref _join(const AsString_ref& sep);
     AsString_ref _join();
@@ -53,17 +60,10 @@ protected:
     AsVector(size_t capacity = DEFAULT_CAPACITY);
 
 public:
-    static inline Ref _as_create(size_t size, ...) 
-    { 
-        va_list args;
-        va_start(args, size);
+    ~AsVector();
 
-        Ref _ref(new AsVector(size)); 
-        _ref->init(size, args); 
-
-        va_end(args);
-        return _ref; 
-    }    
+public:
+    static inline Ref _as_create(size_t size) { return Ref(new AsVector(size)); }    
 
 private:
     T* m_data;
@@ -71,9 +71,9 @@ private:
     size_t m_capacity;
 
     static const int DEFAULT_CAPACITY = 16;    
-    
-    void init(size_t size, va_list args);
+        
     void expand(int capacity);
+    void add(const T& element);
 
 public:
     class Iterator
@@ -104,18 +104,13 @@ AsVector<T>::AsVector(size_t capacity) :
   m_capacity(capacity)      
 {
     m_data = (T*)malloc(m_capacity * sizeof(T));
+    memset(m_data, 0, m_capacity * sizeof(T));
 }
 
 template <class T>
-void AsVector<T>::init(size_t size, va_list args)
+AsVector<T>::~AsVector()
 {
-    ASSERT(size <= m_capacity);
-    m_size = size;
-
-    for (size_t i = 0; i < size; ++i)
-    {
-        m_data[i] = va_arg(args, T);
-    }
+    free(m_data);
 }
 
 template <class T>
@@ -126,6 +121,13 @@ void AsVector<T>::expand(int capacity)
     free(m_data);
     m_data = data;
     m_capacity = capacity;
+}
+
+template <class T>
+void AsVector<T>::add(const T& element)
+{
+    ASSERT(m_size < m_capacity);
+    m_data[m_size++] = element;
 }
 
 template <class T>
