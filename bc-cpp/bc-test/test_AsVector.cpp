@@ -26,7 +26,29 @@ namespace tut
     {
         set_test_name("Length test 1");
         
-        AsVector<int>::Ref vector = AS_NEW_VECTOR(int, (5, 1, 2, 3, 4, 5));
-        ensure(vector->length() == 5);
+        const int size = 5;
+        AsVector<int>::Ref vector = AS_NEW_VECTOR(int, (size, 1, 2, 3, 4, 5));       
+
+        ensure(vector->length() == size);
+    }
+
+    template<>
+    template<>
+    void AsVector_object::test<2>()
+    {
+        set_test_name("Integral objects test 1");
+        
+        const int size = 5;
+        int arr[size] = {1, 2, 3, 4, 5};
+
+        AsVector<int>::Ref vector = AS_NEW_VECTOR(int, (size, 1, 2, 3, 4, 5));
+        bool succeed = vector->length() == size;
+
+        for (int i = 0; i < vector->length(); ++i)
+        {
+            succeed = succeed && arr[i] == vector[i];
+        }
+
+        ensure(succeed);
     }
 }

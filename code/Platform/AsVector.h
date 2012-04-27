@@ -17,6 +17,13 @@ public:
         Ref(const AsObjectRefBase& other) : AsObjectRef(other) {}        
         Ref(AsVector* obj) : AsObjectRef(obj) {}
         explicit Ref(bool isStatic) : AsObjectRef(isStatic) {}
+
+        inline T& operator[] (int index) 
+        {             
+            AsVector* vector = (AsVector*)m_object;
+            ASSERT(index >= 0 && index < vector->length());
+            return vector->m_data[index];
+        }
     };
 
 public:
@@ -57,7 +64,7 @@ public:
 
         va_end(args);
         return _ref; 
-    }
+    }    
 
 private:
     T* m_data;
