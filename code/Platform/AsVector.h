@@ -40,8 +40,7 @@ public:
     static inline Ref _as_create(size_t capacity) { return Ref(new AsVector(capacity)); }
 
 public:
-    int indexOf(const T& searchElement, int fromIndex);
-    int indexOf(const T& searchElement);    
+    int indexOf(const T& searchElement, int fromIndex = 0);    
     inline int length() const { return m_size; }
     inline int capacity() const { return m_capacity; }
     void length(int newLenght);	
@@ -149,14 +148,15 @@ void AsVector<T>::addElement(const T& element)
 template <class T>
 int AsVector<T>::indexOf(const T& searchElement, int fromIndex)
 {
-    IMPLEMENT_ME;
-    return -1;
-}
+    ASSERT(fromIndex >= 0 && fromIndex < length());
+    for (int i = fromIndex; i < length(); ++i)
+    {
+        if (m_data[i] == searchElement)
+        {
+            return i;
+        }
+    }
 
-template <class T>
-int AsVector<T>::indexOf(const T& searchElement)
-{
-    IMPLEMENT_ME;
     return -1;
 }
 
