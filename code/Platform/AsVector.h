@@ -26,7 +26,7 @@ public:
 
         inline Ref& operator<< (const T& element)
         {
-            _object()->add(element);
+            _object()->addElement(element);
             return *this;
         }
     };
@@ -71,9 +71,11 @@ private:
     size_t m_capacity;
 
     static const int DEFAULT_CAPACITY = 16;    
-        
-    void expand(int capacity);
-    void add(const T& element);
+
+protected:
+    virtual void expand(int capacity);
+    virtual void addElement(const T& element);
+    virtual void freeElement(int index);
 
 public:
     class Iterator
@@ -110,7 +112,14 @@ AsVector<T>::AsVector(size_t capacity) :
 template <class T>
 AsVector<T>::~AsVector()
 {
-    free(m_data);
+    if (m_data)
+    {
+        for (int i = 0; i < length(); ++i)
+        {
+            freeElement(i);
+        }
+        free(m_data);
+    }    
 }
 
 template <class T>
@@ -124,10 +133,16 @@ void AsVector<T>::expand(int capacity)
 }
 
 template <class T>
-void AsVector<T>::add(const T& element)
+void AsVector<T>::addElement(const T& element)
 {
     ASSERT(m_size < m_capacity);
     m_data[m_size++] = element;
+}
+
+template <class T>
+void AsVector<T>::freeElement(int index)
+{
+    // nothing by default
 }
 
 template <class T>
