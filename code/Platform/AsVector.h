@@ -218,8 +218,15 @@ AsString_ref AsVector<T>::_join()
 template <class T>
 T AsVector<T>::pop()
 {
-    IMPLEMENT_ME;
-    return AS_NULL;
+    ASSERT(m_size > 0);
+
+    int index = m_size - 1;
+    T element = m_data[index];
+    freeElement(index);
+
+    m_size--;
+
+    return element;
 }
 
 template <class T>

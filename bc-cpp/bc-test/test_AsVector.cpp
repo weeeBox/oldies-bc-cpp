@@ -420,4 +420,124 @@ namespace tut
 
         ensure(succeed);
     }
+
+    template<>
+    template<>
+    void AsVector_object::test<13>()
+    {
+        set_test_name("pop test 1");
+
+        AsString_ref str1 = ASL("1");
+        AsString_ref str2 = ASL("2");
+        AsString_ref str3 = ASL("3");
+        AsString_ref str4 = ASL("4");
+        AsString_ref str5 = ASL("5");        
+
+        AsVector<AsString_ref>::Ref vector = AS_NEW_VECTOR(AsString_ref, 3) << str1 << str2 << str3;
+        bool succeed = vector->length() == 3;        
+
+        succeed = succeed && str1->retainCount() == 2;
+        succeed = succeed && str2->retainCount() == 2;
+        succeed = succeed && str3->retainCount() == 2;
+        succeed = succeed && str4->retainCount() == 1;
+        succeed = succeed && str5->retainCount() == 1;
+
+        vector->push(str4);
+        vector->push(str5);
+
+        succeed = succeed && str1->retainCount() == 2;
+        succeed = succeed && str2->retainCount() == 2;
+        succeed = succeed && str3->retainCount() == 2;
+        succeed = succeed && str4->retainCount() == 2;
+        succeed = succeed && str5->retainCount() == 2;
+
+        succeed = succeed && vector->length() == 5;        
+        succeed = succeed && vector[0] == str1;
+        succeed = succeed && vector[1] == str2;
+        succeed = succeed && vector[2] == str3;
+        succeed = succeed && vector[3] == str4;
+        succeed = succeed && vector[4] == str5;        
+
+        AsString_ref popStr = vector->pop();
+        succeed = succeed && vector->length() == 4;
+        succeed = succeed && popStr == str5;
+        popStr = AS_NULL;
+        succeed = succeed && str5->retainCount() == 1;
+        
+        popStr = vector->pop();
+        succeed = succeed && vector->length() == 3;
+        succeed = succeed && popStr == str4;
+        popStr = AS_NULL;
+        succeed = succeed && str4->retainCount() == 1;
+
+        vector = AS_NULL;
+
+        succeed = succeed && str1->retainCount() == 1;
+        succeed = succeed && str2->retainCount() == 1;
+        succeed = succeed && str3->retainCount() == 1;
+        succeed = succeed && str4->retainCount() == 1;
+        succeed = succeed && str5->retainCount() == 1;
+
+        ensure(succeed);
+    }
+
+    template<>
+    template<>
+    void AsVector_object::test<14>()
+    {
+        set_test_name("pop test 2");
+
+        AsString_ref str1 = ASL("1");
+        AsString_ref str2 = ASL("2");
+        AsString_ref str3 = ASL("3");
+        AsString_ref str4 = ASL("4");
+        AsString_ref str5 = ASL("5");
+        
+
+        AsVector<AsString_ref>::Ref vector = AS_NEW_VECTOR(AsString_ref, 0);
+        bool succeed = vector->length() == 0;
+
+        vector->push(str1);
+        vector->push(str2);
+        vector->push(str3);
+        vector->push(str4);
+        vector->push(str5);
+
+        succeed = succeed && str1->retainCount() == 2;
+        succeed = succeed && str2->retainCount() == 2;
+        succeed = succeed && str3->retainCount() == 2;
+        succeed = succeed && str4->retainCount() == 2;
+        succeed = succeed && str5->retainCount() == 2;
+
+        vector->pop();
+        vector->pop();        
+
+        succeed = succeed && vector->length() == 3;
+        succeed = succeed && str1->retainCount() == 2;
+        succeed = succeed && str2->retainCount() == 2;
+        succeed = succeed && str3->retainCount() == 2;
+        succeed = succeed && str4->retainCount() == 1;
+        succeed = succeed && str5->retainCount() == 1;
+
+        vector->push(str1);
+        vector->push(str1);
+        vector->push(str2);
+
+        succeed = succeed && vector->length() == 6;
+        succeed = succeed && str1->retainCount() == 4;
+        succeed = succeed && str2->retainCount() == 3;
+        succeed = succeed && str3->retainCount() == 2;
+        succeed = succeed && str4->retainCount() == 1;
+        succeed = succeed && str5->retainCount() == 1;
+
+        vector = AS_NULL;
+
+        succeed = succeed && str1->retainCount() == 1;
+        succeed = succeed && str2->retainCount() == 1;
+        succeed = succeed && str3->retainCount() == 1;
+        succeed = succeed && str4->retainCount() == 1;
+        succeed = succeed && str5->retainCount() == 1;
+
+        ensure(succeed);
+    }
 }
