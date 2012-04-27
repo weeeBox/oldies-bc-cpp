@@ -26,10 +26,10 @@ public:
     void length(int newLenght);	
     AsString_ref _join(const AsString_ref& sep);
     AsString_ref _join();
-    int lastIndexOf(const AsObject_ref& searchElement, int fromIndex);
-    int lastIndexOf(const AsObject_ref& searchElement);
-    AsObject_ref pop();
-    int push(const AsObject_ref& arg);
+    int lastIndexOf(const T& searchElement, int fromIndex);
+    int lastIndexOf(const T& searchElement);
+    T pop();
+    int push(const T& arg);
     // AsVector_ref sort(const AsFunction_ref& compareFunction);    
     AsString_ref toString();
     int unshift(const AsObject_ref& arg);
@@ -40,7 +40,7 @@ public:
     Ref slice(int startIndex, int endIndex) { IMPLEMENT_ME; return AS_NULL; }
     Ref slice(int startIndex) { IMPLEMENT_ME; return AS_NULL; }
     Ref slice() { IMPLEMENT_ME; return AS_NULL; }
-    Ref splice(int startIndex, int deleteCount, const AsObject_ref& item) { IMPLEMENT_ME; return AS_NULL; }
+    Ref splice(int startIndex, int deleteCount, const T& item) { IMPLEMENT_ME; return AS_NULL; }
     Ref splice(int startIndex, int deleteCount) { IMPLEMENT_ME; return AS_NULL; }
 
 protected:
@@ -83,6 +83,12 @@ public:
     };
 
     inline Iterator iterator() const { return Iterator(this); }
+};
+
+template <class T>
+class _as_object_ref_vector : public AsVector<T>
+{
+
 };
  
 template <class T>
@@ -151,28 +157,28 @@ AsString_ref AsVector<T>::_join()
 }
 
 template <class T>
-int AsVector<T>::lastIndexOf(const AsObject_ref& searchElement, int fromIndex)
+int AsVector<T>::lastIndexOf(const T& searchElement, int fromIndex)
 {
     IMPLEMENT_ME;
     return -1;
 }
 
 template <class T>
-int AsVector<T>::lastIndexOf(const AsObject_ref& searchElement)
+int AsVector<T>::lastIndexOf(const T& searchElement)
 {
     IMPLEMENT_ME;
     return -1;
 }
 
 template <class T>
-AsObject_ref AsVector<T>::pop()
+T AsVector<T>::pop()
 {
     IMPLEMENT_ME;
     return AS_NULL;
 }
 
 template <class T>
-int AsVector<T>::push(const AsObject_ref& arg)
+int AsVector<T>::push(const T& arg)
 {
     IMPLEMENT_ME;
     return -1;
