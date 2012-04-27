@@ -8,5 +8,6 @@
 #include <stdio.h>
 
 typedef unsigned int uint;
+typedef bool BOOL;
 
 #endif // AsBc_h__

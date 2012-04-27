@@ -132,15 +132,15 @@ namespace tut
 
         AsString_ref str1 = ASL("This is string");        
 
-        bool succeed = false;
-        /*succeed = succeed && str1->indexOf(ASL(" is ")) == 4;
-        succeed = succeed && str1->indexOf(ASL(" iz ")) == -1;
-        succeed = succeed && str1->indexOf(ASL(" string")) == 7;
-        succeed = succeed && str1->indexOf(ASL("This ")) == 0;
-        succeed = succeed && str1->indexOf(ASL("This "), 1) == -1;
-        succeed = succeed && str1->indexOf(ASL("is"), 2) == 2;
-        succeed = succeed && str1->indexOf(ASL("is"), 3) == 5;
-        succeed = succeed && str1->indexOf(ASL("stra"), 3) == -1;*/
+        bool succeed = true;
+        succeed = succeed && str1->lastIndexOf(ASL(" is ")) == 4;
+        succeed = succeed && str1->lastIndexOf(ASL(" iz ")) == -1;
+        succeed = succeed && str1->lastIndexOf(ASL(" string")) == 7;
+        succeed = succeed && str1->lastIndexOf(ASL("This ")) == 0;
+        succeed = succeed && str1->lastIndexOf(ASL("This "), 1) == -1;
+        succeed = succeed && str1->lastIndexOf(ASL("is"), 2) == 2;
+        succeed = succeed && str1->lastIndexOf(ASL("is"), 3) == 5;
+        succeed = succeed && str1->lastIndexOf(ASL("stra"), 3) == -1;
 
         ensure(succeed);
     }

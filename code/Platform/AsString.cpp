@@ -37,6 +37,28 @@ static const achar* wide_find(const achar* from, const achar* what)
     return 0;
 }
 
+static const achar* wide_find_last(const achar* from, const achar* start, const achar* what)
+{
+    while (from <= start)
+    {
+        const achar* f = from;
+        const achar* w = what;
+
+        while (*w && *f == *w)
+        {
+            w++;
+            f++;
+        }
+
+        if (!*w)
+            return from;
+
+        from--;
+    }
+
+    return 0;
+}
+
 static bool wide_equals(const wchar_t* str1, const wchar_t* str2)
 {
     wchar_t c1 = *str1;
@@ -78,10 +100,14 @@ int AsString::indexOf(const AsString_ref& s, int startIndex)
     return ptr ? (ptr - m_buffer) : -1;
 }
  
-int AsString::lastIndexOf(const AsString_ref& s, int i)
-{    
-    IMPLEMENT_ME;
-    return -1;
+int AsString::lastIndexOf(const AsString_ref& s, int startIndex)
+{   
+    if (startIndex == INDEX_MAX)
+        startIndex = length()-1;
+
+    const achar* ptr = wide_find_last(m_buffer + startIndex, m_buffer, s->m_buffer);
+
+    return ptr ? (ptr - m_buffer) : -1;
 }
  
 int AsString::length() const

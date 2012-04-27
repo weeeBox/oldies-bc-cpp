@@ -1,1145 +1,128 @@
 #include "AsVector.h"
-#include "AsBcClawSprite.h"
-#include "AsVector.h"
-#include "AsObject.h"
-#include "AsString.h"
-#include "AsFunction.h"
-#include "AsObject.h"
-#include "AsString.h"
-#include "AsFunction.h"
- 
- 
+
 AsVector_ref AsVector::concat(const AsObject_ref& obj)
 {
-	throw new AsNotImplementedError();
+	IMPLEMENT_ME;
+    return AS_NULL;
 }
  
 AsVector_ref AsVector::concat()
 {
-	return concat(null);
+	return concat(AS_NULL);
 }
  
 int AsVector::length()
 {
-	throw new AsNotImplementedError();
+	IMPLEMENT_ME;
+    return -1;
 }
  
 void AsVector::length(int newLenght)
 {
-	throw new AsNotImplementedError();
+	IMPLEMENT_ME;
 }
  
 int AsVector::indexOf(const AsObject_ref& searchElement, int fromIndex)
 {
-	throw new AsNotImplementedError();
+	IMPLEMENT_ME;
+    return -1;
 }
  
 int AsVector::indexOf(const AsObject_ref& searchElement)
 {
-	return indexOf((AsObject)(searchElement), 0);
+	IMPLEMENT_ME;
+    return -1;
 }
  
 AsString_ref AsVector::_join(const AsString_ref& sep)
 {
-	throw new AsNotImplementedError();
+	IMPLEMENT_ME;
+    return AS_NULL;
 }
  
 AsString_ref AsVector::_join()
 {
-	return _join(",");
+	IMPLEMENT_ME;
+    return AS_NULL;
 }
  
 int AsVector::lastIndexOf(const AsObject_ref& searchElement, int fromIndex)
 {
-	throw new AsNotImplementedError();
+	IMPLEMENT_ME;
+    return -1;
 }
  
 int AsVector::lastIndexOf(const AsObject_ref& searchElement)
 {
-	return lastIndexOf((AsObject)(searchElement), 0x7fffffff);
+	IMPLEMENT_ME;
+    return -1;
 }
  
 AsObject_ref AsVector::pop()
 {
-	throw new AsNotImplementedError();
+	IMPLEMENT_ME;
+    return AS_NULL;
 }
  
 int AsVector::push(const AsObject_ref& arg)
 {
-	throw new AsNotImplementedError();
+	IMPLEMENT_ME;
+    return -1;
 }
  
 AsVector_ref AsVector::reverse()
 {
-	throw new AsNotImplementedError();
+	IMPLEMENT_ME;
+    return AS_NULL;
 }
  
 AsVector_ref AsVector::slice(int startIndex, int endIndex)
 {
-	throw new AsNotImplementedError();
+	IMPLEMENT_ME;
+    return AS_NULL;
 }
  
 AsVector_ref AsVector::slice(int startIndex)
 {
-	return slice(startIndex, 16777215);
+	IMPLEMENT_ME;
+    return AS_NULL;
 }
  
 AsVector_ref AsVector::slice()
 {
-	return slice(0, 16777215);
+	IMPLEMENT_ME;
+    return AS_NULL;
 }
- 
+
+/*
 AsVector_ref AsVector::sort(const AsFunction_ref& compareFunction)
 {
-	throw new AsNotImplementedError();
+	IMPLEMENT_ME;
 }
+*/
  
 AsVector_ref AsVector::splice(int startIndex, int deleteCount, const AsObject_ref& item)
 {
-	throw new AsNotImplementedError();
+	IMPLEMENT_ME;
+    return AS_NULL;
 }
  
 AsVector_ref AsVector::splice(int startIndex, int deleteCount)
 {
-	return splice(startIndex, deleteCount, null);
+    IMPLEMENT_ME;
+	return AS_NULL;
 }
  
 AsString_ref AsVector::toString()
 {
-	throw new AsNotImplementedError();
+	IMPLEMENT_ME;
+    return AS_NULL;
 }
  
 int AsVector::unshift(const AsObject_ref& arg)
 {
-	throw new AsNotImplementedError();
-}
- 
-AsVector_ref AsVector::__createAsVector(int length, BOOL _fixed)
-{
-	AsVector_ref __reference(new AsVector());
-	__reference->__internalConstructAsVector(length, _fixed);
-	return __reference;
-}
- 
-AsVector_ref AsVector::__createAsVector(int length)
-{
-	AsVector_ref __reference(new AsVector());
-	__reference->__internalConstructAsVector(length);
-	return __reference;
-}
- 
-AsVector_ref AsVector::__createAsVector()
-{
-	AsVector_ref __reference(new AsVector());
-	__reference->__internalConstructAsVector();
-	return __reference;
-}
- 
-void AsVector::__internalConstructAsVector(int length, BOOL _fixed)
-{
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	__internalConstructAsObject();
-	__internalInitialiseAsVector();
-	throw new AsNotImplementedError();
-}
- 
-void AsVector::__internalConstructAsVector(int length)
-{
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__$base$__(length, false);
-}
- 
-void AsVector::__internalConstructAsVector()
-{
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__internalConstructAsObject();
-	__$base$__(0, false);
-}
- 
-void AsVector::__internalInitialiseAsVector()
-{
-}
- 
-StaticInit AsVector::__internalStaticInitializerAsVector(&AsVector::__internalStaticInit);
-BOOL AsVector::__internalStaticInitializedAsVector = false;
- 
-void AsVector::__internalStaticInit()
-{
-	if (!__internalStaticInitializedAsVector)
-	{
-		__internalStaticInitializedAsVector = true;
-		AsObject::__internalStaticInit();
-	}
+	IMPLEMENT_ME;
+    return -1;
 }
  
 AsVector::AsVector()

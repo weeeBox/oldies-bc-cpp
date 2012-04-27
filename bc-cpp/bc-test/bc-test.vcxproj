@@ -80,6 +80,7 @@
     <ClCompile Include="..\..\code\Platform\AsObject.cpp" />
     <ClCompile Include="..\..\code\Platform\AsObjectRef.cpp" />
     <ClCompile Include="..\..\code\Platform\AsString.cpp" />
+    <ClCompile Include="..\..\code\Platform\AsVector.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="test_AsString.cpp" />
   </ItemGroup>
@@ -90,6 +91,7 @@
     <ClInclude Include="..\..\code\Platform\AsObject.h" />
     <ClInclude Include="..\..\code\Platform\AsObjectRef.h" />
     <ClInclude Include="..\..\code\Platform\AsString.h" />
+    <ClInclude Include="..\..\code\Platform\AsVector.h" />
     <ClInclude Include="tut\tut.h" />
     <ClInclude Include="tut\tut\tut.hpp" />
     <ClInclude Include="tut\tut\tut_assert.hpp" />
