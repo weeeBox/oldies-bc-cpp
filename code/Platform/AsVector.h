@@ -7,17 +7,47 @@
 #include "AsString.h"
 
 template <class T> 
-class AsVectorBase : public AsObject
+class AsVector : public AsObject
 {
-private:
-    T* m_data;
-    size_t m_size;
-    size_t m_capacity;
-
-    static const int DEFAULT_SIZE = 16;
+public:
+    class Ref : public AsObjectRef<AsVector>
+    {
+    public:
+        Ref() : AsObjectRef() {}
+        Ref(const AsObjectRefBase& other) : AsObjectRef(other) {}        
+        Ref(AsVector* obj) : AsObjectRef(obj) {}
+        explicit Ref(bool isStatic) : AsObjectRef(isStatic) {}
+    };
 
 public:
-    AsVectorBase(size_t size = DEFAULT_SIZE) : m_data(0), m_size(size), m_capacity(size)
+    int indexOf(const T& searchElement, int fromIndex);
+    int indexOf(const T& searchElement);    
+    inline int length() const { return m_size; }
+    void length(int newLenght);	
+    AsString_ref _join(const AsString_ref& sep);
+    AsString_ref _join();
+    int lastIndexOf(const AsObject_ref& searchElement, int fromIndex);
+    int lastIndexOf(const AsObject_ref& searchElement);
+    AsObject_ref pop();
+    int push(const AsObject_ref& arg);
+    // AsVector_ref sort(const AsFunction_ref& compareFunction);    
+    AsString_ref toString();
+    int unshift(const AsObject_ref& arg);
+
+    Ref concat(const AsObject_ref& obj) { IMPLEMENT_ME; return AS_NULL; }
+    Ref concat() { IMPLEMENT_ME; return AS_NULL; }
+    Ref reverse() { IMPLEMENT_ME; return AS_NULL; }
+    Ref slice(int startIndex, int endIndex) { IMPLEMENT_ME; return AS_NULL; }
+    Ref slice(int startIndex) { IMPLEMENT_ME; return AS_NULL; }
+    Ref slice() { IMPLEMENT_ME; return AS_NULL; }
+    Ref splice(int startIndex, int deleteCount, const AsObject_ref& item) { IMPLEMENT_ME; return AS_NULL; }
+    Ref splice(int startIndex, int deleteCount) { IMPLEMENT_ME; return AS_NULL; }
+
+public:
+    AsVector(size_t capacity = DEFAULT_CAPACITY) : 
+      m_data(0), 
+      m_size(0), 
+      m_capacity(capacity)      
     {
         m_data = (T*)malloc(m_capacity * sizeof(T));
     }
@@ -32,29 +62,12 @@ public:
     }
 
 public:
-    inline int length() const { return m_size; }
-    virtual void length(int newLenght) { IMPLEMENT_ME; }
-
-    int indexOf(const T& searchElement, int fromIndex);
-    int indexOf(const T& searchElement);
-
-public:
-    class Ref : public AsObjectRef<AsVectorBase>
-    {
-    public:
-        Ref() : AsObjectRef() {}
-        Ref(const AsObjectRefBase& other) : AsObjectRef(other) {}        
-        Ref(AsVectorBase* obj) : AsObjectRef(obj) {}
-        explicit Ref(bool isStatic) : AsObjectRef(isStatic) {}
-    };
-
-public:
     static inline Ref _as_create(size_t size, ...) 
     { 
         va_list args;
         va_start(args, size);
 
-        Ref _ref(new AsVectorBase(size)); 
+        Ref _ref(new AsVector(size)); 
         _ref->init(size, args); 
 
         va_end(args);
@@ -62,6 +75,12 @@ public:
     }
 
 private:
+    T* m_data;
+    size_t m_size;
+    size_t m_capacity;
+
+    static const int DEFAULT_CAPACITY = 16;    
+
     void init(size_t size, va_list args)
     {
         ASSERT(size <= m_capacity);
@@ -76,41 +95,92 @@ public:
     {
     private:
         int m_index;
-        AsVectorBase* m_vector;
+        AsVector* m_vector;
     public:
-        Iterator(AsVectorBase* vector) : m_index(0), m_vector(vector) {}
+        Iterator(AsVector* vector) : m_index(0), m_vector(vector) {}
 
         inline BOOL hasNext() const { return m_index < m_vector->getLength(); }
         inline const T& next() const { ASSERT(hasNext()); return m_vector->m_data[m_index++]; }
     };
 };
-
-template<class T>
-class AsVector : public AsVectorBase<T>
-{
-public:
-	AS_OBJ(AsVector, AsObject);
-	
-public:
-	Ref concat(const AsObject_ref& obj);
-	Ref concat();
-	int length();
-	void length(int newLenght);	
-	AsString_ref _join(const AsString_ref& sep);
-	AsString_ref _join();
-	int lastIndexOf(const AsObject_ref& searchElement, int fromIndex);
-	int lastIndexOf(const AsObject_ref& searchElement);
-	AsObject_ref pop();
-	int push(const AsObject_ref& arg);
-	Ref reverse();
-	Ref slice(int startIndex, int endIndex);
-	Ref slice(int startIndex);
-	Ref slice();
-	// AsVector_ref sort(const AsFunction_ref& compareFunction);
-	Ref splice(int startIndex, int deleteCount, const AsObject_ref& item);
-	Ref splice(int startIndex, int deleteCount);
-	AsString_ref toString();
-	int unshift(const AsObject_ref& arg);
-};
  
+template <class T>
+int AsVector<T>::indexOf(const T& searchElement, int fromIndex)
+{
+    IMPLEMENT_ME;
+    return -1;
+}
+
+template <class T>
+int AsVector<T>::indexOf(const T& searchElement)
+{
+    IMPLEMENT_ME;
+    return -1;
+}
+
+template <class T>
+void AsVector<T>::length(int newLenght)
+{
+    IMPLEMENT_ME;    
+}
+
+template <class T>
+AsString_ref AsVector<T>::_join(const AsString_ref& sep)
+{
+    IMPLEMENT_ME;
+    return AS_NULL;
+}
+
+template <class T>
+AsString_ref AsVector<T>::_join()
+{
+    IMPLEMENT_ME;
+    return AS_NULL;
+}
+
+template <class T>
+int AsVector<T>::lastIndexOf(const AsObject_ref& searchElement, int fromIndex)
+{
+    IMPLEMENT_ME;
+    return -1;
+}
+
+template <class T>
+int AsVector<T>::lastIndexOf(const AsObject_ref& searchElement)
+{
+    IMPLEMENT_ME;
+    return -1;
+}
+
+template <class T>
+AsObject_ref AsVector<T>::pop()
+{
+    IMPLEMENT_ME;
+    return AS_NULL;
+}
+
+template <class T>
+int AsVector<T>::push(const AsObject_ref& arg)
+{
+    IMPLEMENT_ME;
+    return -1;
+}
+
+// template <class T>
+// AsVector_ref sort(const AsFunction_ref& compareFunction);
+
+template <class T>
+AsString_ref AsVector<T>::toString()
+{
+    IMPLEMENT_ME;
+    return AS_NULL;
+}
+
+template <class T>
+int AsVector<T>::unshift(const AsObject_ref& arg)
+{
+    IMPLEMENT_ME;
+    return -1;
+}
+
 #endif // AsVector_h__
