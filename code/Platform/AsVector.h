@@ -51,7 +51,7 @@ public:
     int push(const T& arg);
     // AsVector_ref sort(const AsFunction_ref& compareFunction);    
     AsString_ref toString();
-    int unshift(const AsObject_ref& arg);
+    int unshift(const T& arg);
 
     Ref concat(const AsObject_ref& obj) { IMPLEMENT_ME; return AS_NULL; }
     Ref concat() { IMPLEMENT_ME; return AS_NULL; }
@@ -250,10 +250,40 @@ AsString_ref AsVector<T>::toString()
 }
 
 template <class T>
-int AsVector<T>::unshift(const AsObject_ref& arg)
+int AsVector<T>::unshift(const T& arg)
 {
-    IMPLEMENT_ME;
-    return -1;
+    if (length() == capacity())
+    {
+        int newCapacity = capacity() > 0 ? 2 * capacity() : DEFAULT_CAPACITY;        
+        size_t newSize = newCapacity * sizeof(T);
+        T* data = (T*)malloc(newSize);
+        memset(data, 0, newSize);
+        // memcpy(data, m_data, newSize); - we can't use memcpy because it makes some pointers invalid        
+        for (int i = 0; i < length(); ++i)
+        {
+            data[i + 1] = m_data[i];
+            freeElement(i);
+        }
+        data[0] = arg;
+        m_size++;
+
+        free(m_data);
+        m_data = data;
+        m_capacity = newCapacity;
+    }
+    else
+    {
+        ASSERT(length() < capacity());
+        
+        for (int i = length(); i > 0; --i)
+        {
+            m_data[i] = m_data[i - 1];
+        }
+        m_data[0] = arg;
+        m_size++;        
+    }
+
+    return m_size;
 }
 
 template <class T>
