@@ -43,8 +43,8 @@ public:
     int indexOf(const T& searchElement, int fromIndex = 0);
     int lastIndexOf(const T& searchElement, int fromIndex = INDEX_MAX);
     inline int length() const { return m_size; }
-    inline int capacity() const { return m_capacity; }
-    void length(int newLenght);	
+    void length(int newLenght);
+    inline int capacity() const { return m_capacity; }    
     AsString_ref _join(const AsString_ref& sep);
     AsString_ref _join();
     T pop();
@@ -131,6 +131,8 @@ AsVector<T>::~AsVector()
 template <class T>
 void AsVector<T>::expand(int capacity)
 {        
+    ASSERT(capacity > 0);
+
     T* data = (T*)malloc(capacity * sizeof(T));
     memcpy(data, m_data, m_size * sizeof(T));
     free(m_data);
@@ -208,8 +210,14 @@ T AsVector<T>::pop()
 template <class T>
 int AsVector<T>::push(const T& arg)
 {
-    IMPLEMENT_ME;
-    return -1;
+    if (length() == capacity())
+    {
+        int newCapacity = capacity() > 0 ? 2 * capacity() : DEFAULT_CAPACITY;
+        expand(newCapacity);
+    }
+
+    m_data[m_size++] = arg;
+    return m_size;
 }
 
 template <class T>
