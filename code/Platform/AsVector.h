@@ -40,14 +40,13 @@ public:
     static inline Ref _as_create(size_t capacity) { return Ref(new AsVector(capacity)); }
 
 public:
-    int indexOf(const T& searchElement, int fromIndex = 0);    
+    int indexOf(const T& searchElement, int fromIndex = 0);
+    int lastIndexOf(const T& searchElement, int fromIndex = INDEX_MAX);
     inline int length() const { return m_size; }
     inline int capacity() const { return m_capacity; }
     void length(int newLenght);	
     AsString_ref _join(const AsString_ref& sep);
     AsString_ref _join();
-    int lastIndexOf(const T& searchElement, int fromIndex);
-    int lastIndexOf(const T& searchElement);
     T pop();
     int push(const T& arg);
     // AsVector_ref sort(const AsFunction_ref& compareFunction);    
@@ -75,6 +74,7 @@ protected:
     size_t m_capacity;
 
     static const int DEFAULT_CAPACITY = 16;    
+    static const int INDEX_MAX = 0x7fffffff;
 
 protected:
     void expand(int capacity);
@@ -161,6 +161,24 @@ int AsVector<T>::indexOf(const T& searchElement, int fromIndex)
 }
 
 template <class T>
+int AsVector<T>::lastIndexOf(const T& searchElement, int fromIndex)
+{
+    if (fromIndex == INDEX_MAX)
+        fromIndex = length() - 1;
+
+    ASSERT(fromIndex >= 0 && fromIndex < length());
+    for (int i = fromIndex; i >= 0; --i)
+    {
+        if (m_data[i] == searchElement)
+        {
+            return i;
+        }
+    }
+
+    return -1;
+}
+
+template <class T>
 void AsVector<T>::length(int newLenght)
 {
     IMPLEMENT_ME;    
@@ -178,20 +196,6 @@ AsString_ref AsVector<T>::_join()
 {
     IMPLEMENT_ME;
     return AS_NULL;
-}
-
-template <class T>
-int AsVector<T>::lastIndexOf(const T& searchElement, int fromIndex)
-{
-    IMPLEMENT_ME;
-    return -1;
-}
-
-template <class T>
-int AsVector<T>::lastIndexOf(const T& searchElement)
-{
-    IMPLEMENT_ME;
-    return -1;
 }
 
 template <class T>

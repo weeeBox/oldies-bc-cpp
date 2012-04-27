@@ -202,4 +202,62 @@ namespace tut
 
         ensure(succeed);
     }
+
+    template<>
+    template<>
+    void AsVector_object::test<7>()
+    {
+        set_test_name("LastIndexOf test 1");
+
+        const int size = 5;       
+
+        AsVector<int>::Ref vector = AS_NEW_PRIMITIVES_VECTOR(int, size) << 1 << 2 << 3 << 4 << 5;
+        bool succeed = vector->length() == size;
+
+        succeed = succeed && vector->lastIndexOf(1) == 0;
+        succeed = succeed && vector->lastIndexOf(2) == 1;
+        succeed = succeed && vector->lastIndexOf(3) == 2;
+        succeed = succeed && vector->lastIndexOf(4) == 3;
+        succeed = succeed && vector->lastIndexOf(5) == 4;
+
+        succeed = succeed && vector->lastIndexOf(6) == -1;
+
+        succeed = succeed && vector->lastIndexOf(5, 3) == -1;
+        succeed = succeed && vector->lastIndexOf(4, 3) == 3;
+
+        ensure(succeed);
+    }
+
+    template<>
+    template<>
+    void AsVector_object::test<8>()
+    {
+        set_test_name("LastIndexOf test 2");
+
+        const int size = 5;
+        AsString_ref str1 = ASL("1");
+        AsString_ref str2 = ASL("2");
+        AsString_ref str3 = ASL("3");
+        AsString_ref str4 = ASL("4");
+        AsString_ref str5 = ASL("5");
+        AsString_ref str6 = ASL("6");
+        AsString_ref str7 = ASL("5");
+
+        AsVector<AsString_ref>::Ref vector = AS_NEW_VECTOR(AsString_ref, size) << str1 << str2 << str3 << str4 << str5;
+        bool succeed = vector->length() == size;
+
+        succeed = succeed && vector->lastIndexOf(str1) == 0;
+        succeed = succeed && vector->lastIndexOf(str2) == 1;
+        succeed = succeed && vector->lastIndexOf(str3) == 2;
+        succeed = succeed && vector->lastIndexOf(str4) == 3;
+        succeed = succeed && vector->lastIndexOf(str5) == 4;
+
+        succeed = succeed && vector->lastIndexOf(str6) == -1;
+        succeed = succeed && vector->lastIndexOf(str7) == 4;
+
+        succeed = succeed && vector->lastIndexOf(str5, 3) == -1;
+        succeed = succeed && vector->lastIndexOf(str4, 3) == 3;
+
+        ensure(succeed);
+    }
 }
