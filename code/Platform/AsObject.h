@@ -16,7 +16,8 @@
 
 /* new */
 #define AS_NEW(type, initializer) type::_as_create_##type initializer
-#define AS_NEW_VECTOR(type, capacity) AsVector<type>::_as_create(capacity)
+#define AS_NEW_VECTOR(type, capacity) _as_AsRefVector<type>::_as_create(capacity)
+#define AS_NEW_PRIMITIVES_VECTOR(type, capacity) AsVector<type>::_as_create(capacity)
 
 /* constructor */
 #define AS_CONSTRUCTOR_H(type, initializer) \

@@ -27,7 +27,7 @@ namespace tut
         set_test_name("Length test 1");
         
         const int size = 5;
-        AsVector<int>::Ref vector = AS_NEW_VECTOR(int, size) << 1 << 2 << 3 << 4 << 5;
+        AsVector<int>::Ref vector = AS_NEW_PRIMITIVES_VECTOR(int, size) << 1 << 2 << 3 << 4 << 5;
 
         ensure(vector->length() == size);
     }
@@ -41,7 +41,7 @@ namespace tut
         const int size = 5;
         int arr[size] = {1, 2, 3, 4, 5};
 
-        AsVector<int>::Ref vector = AS_NEW_VECTOR(int, size) << 1 << 2 << 3 << 4 << 5;
+        AsVector<int>::Ref vector = AS_NEW_PRIMITIVES_VECTOR(int, size) << 1 << 2 << 3 << 4 << 5;
         bool succeed = vector->length() == size;
 
         for (int i = 0; i < vector->length(); ++i)
@@ -127,6 +127,20 @@ namespace tut
         {
             succeed = succeed && *arr[i] == vector[i];
         }
+
+        succeed = succeed && str1->retainCount() == 2;
+        succeed = succeed && str2->retainCount() == 2;
+        succeed = succeed && str3->retainCount() == 2;
+        succeed = succeed && str4->retainCount() == 2;
+        succeed = succeed && str5->retainCount() == 2;
+
+        vector = AS_NULL;
+
+        succeed = succeed && str1->retainCount() == 1;
+        succeed = succeed && str2->retainCount() == 1;
+        succeed = succeed && str3->retainCount() == 1;
+        succeed = succeed && str4->retainCount() == 1;
+        succeed = succeed && str5->retainCount() == 1;
 
         ensure(succeed);
     }

@@ -10,6 +10,9 @@ template <class T>
 class AsVector : public AsObject
 {
 public:
+    AS_TYPENAME(AsVector, AsObject);
+
+public:
     class Ref : public AsObjectRef<AsVector>
     {
     public:
@@ -32,6 +35,9 @@ public:
             return *this;
         }
     };
+
+public:
+    static inline Ref _as_create(size_t capacity) { return Ref(new AsVector(capacity)); }
 
 public:
     int indexOf(const T& searchElement, int fromIndex);
@@ -59,15 +65,12 @@ public:
     Ref splice(int startIndex, int deleteCount) { IMPLEMENT_ME; return AS_NULL; }
 
 protected:
-    AsVector(size_t capacity = DEFAULT_CAPACITY);
+    AsVector(size_t capacity);
 
 public:
     ~AsVector();
 
-public:
-    static inline Ref _as_create(size_t size) { return Ref(new AsVector(size)); }    
-
-private:
+protected:
     T* m_data;
     size_t m_size;
     size_t m_capacity;
@@ -75,9 +78,8 @@ private:
     static const int DEFAULT_CAPACITY = 16;    
 
 protected:
-    virtual void expand(int capacity);
-    virtual void addElement(const T& element);
-    virtual void freeElement(int index);
+    void expand(int capacity);
+    void addElement(const T& element);    
 
 public:
     class Iterator
@@ -96,9 +98,19 @@ public:
 };
 
 template <class T>
-class _as_object_ref_vector : public AsVector<T>
+class _as_AsRefVector : public AsVector<T>
 {
+public:
+    AS_TYPENAME(AsVector, AsObject);
 
+protected:
+    _as_AsRefVector(size_t capacity = DEFAULT_CAPACITY) : AsVector(capacity) {}
+
+public:
+    static inline Ref _as_create(size_t size) { return Ref(new _as_AsRefVector(size)); }    
+    void freeElement(int index);
+
+    ~_as_AsRefVector();
 };
  
 template <class T>
@@ -113,15 +125,8 @@ AsVector<T>::AsVector(size_t capacity) :
 
 template <class T>
 AsVector<T>::~AsVector()
-{
-    if (m_data)
-    {
-        for (int i = 0; i < length(); ++i)
-        {
-            freeElement(i);
-        }
-        free(m_data);
-    }    
+{    
+    free(m_data);    
 }
 
 template <class T>
@@ -139,12 +144,6 @@ void AsVector<T>::addElement(const T& element)
 {
     ASSERT(m_size < m_capacity);
     m_data[m_size++] = element;
-}
-
-template <class T>
-void AsVector<T>::freeElement(int index)
-{
-    // nothing by default
 }
 
 template <class T>
@@ -221,6 +220,22 @@ int AsVector<T>::unshift(const AsObject_ref& arg)
 {
     IMPLEMENT_ME;
     return -1;
+}
+
+template <class T>
+_as_AsRefVector<T>::~_as_AsRefVector()
+{
+    for (int i = 0; i < length(); ++i)
+    {
+        m_data[i] = AS_NULL;
+    }
+}
+
+template <class T>
+void _as_AsRefVector<T>::freeElement(int index)
+{
+    ASSERT(index >= 0 && index < length());
+    m_data[index] = AS_NULL;
 }
 
 #endif // AsVector_h__
