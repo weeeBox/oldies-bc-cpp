@@ -80,9 +80,9 @@
     <ClCompile Include="..\..\code\Platform\AsObject.cpp" />
     <ClCompile Include="..\..\code\Platform\AsObjectRef.cpp" />
     <ClCompile Include="..\..\code\Platform\AsString.cpp" />
-    <ClCompile Include="..\..\code\Platform\AsVector.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="test_AsString.cpp" />
+    <ClCompile Include="test_AsVector.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\code\Platform\AsArray.h" />

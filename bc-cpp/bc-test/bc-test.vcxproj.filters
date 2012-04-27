@@ -18,9 +18,7 @@
     </ClCompile>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="test_AsString.cpp" />
-    <ClCompile Include="..\..\code\Platform\AsVector.cpp">
-      <Filter>Platform</Filter>
-    </ClCompile>
+    <ClCompile Include="test_AsVector.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="tut">
