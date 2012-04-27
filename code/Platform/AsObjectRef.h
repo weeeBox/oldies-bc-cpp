@@ -17,7 +17,7 @@ public:
     virtual ~AsObjectRefBase();
 
 public:
-    inline AsObjectRefBase& operator= (const AsObjectRefBase& other) { set(other.m_object); return *this; }    
+    inline AsObjectRefBase& operator= (const AsObjectRefBase& other) { set(other.m_object); return *this; }
 
     inline bool operator== (const AsObjectRefBase& other) const { return m_object == other.m_object; }
     inline bool operator!= (const AsObjectRefBase& other) const { return m_object != other.m_object; }
@@ -25,6 +25,7 @@ public:
 protected:
     AsObject* m_object;
     void set(AsObject* obj);
+    void set(const AsObjectRefBase& other);
 
 private:
     bool m_static;     
@@ -64,7 +65,7 @@ public:
 public:
     inline T* operator->() const { ASSERT(m_object); return (T*)m_object; }
     inline T* operator*() const { ASSERT(m_object); return (T*)m_object; }
-    inline AsObjectRefBase& operator=(const AsObjectRefBase& other) { set(other.m_object); return *this; }
+    inline AsObjectRef& operator= (const AsObjectRefBase& other) { set(other.m_object); return *this; }
 
 protected:
     inline T* _object() { return (T*)m_object; }

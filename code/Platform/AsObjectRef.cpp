@@ -59,6 +59,11 @@ void AsObjectRefBase::set(AsObject* obj)
     if (prevObj) prevObj->release();
 }
 
+void AsObjectRefBase::set(const AsObjectRefBase& other)
+{
+    set(other.m_object);
+}
+
 void AsObjectRefBase::reg()
 {
     if (m_static)

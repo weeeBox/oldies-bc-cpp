@@ -123,6 +123,7 @@ private:
 public:
     virtual void _as_gc_mark();
     inline bool _as_gc_mark_needed() const { return m_gcTime != AsObjectRefBase::gcGlobalTime(); }
+    inline int retainCount() const { return m_refCount; }
 
 public:
     static AsObject_ref __as_null;

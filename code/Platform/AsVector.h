@@ -18,6 +18,8 @@ public:
         Ref(AsVector* obj) : AsObjectRef(obj) {}
         explicit Ref(bool isStatic) : AsObjectRef(isStatic) {}
 
+        inline Ref& operator= (const AsObjectRefBase& other) { set(other); return *this; }
+
         inline T& operator[] (int index) 
         {   
             ASSERT(index >= 0 && index < _object()->length());

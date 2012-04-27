@@ -83,6 +83,7 @@ public:
     AsString_ref(const char* str) : AsObjectRef(new AsString(str)) {}
 
 public:
+    inline AsString_ref& operator= (const AsObjectRefBase& other) { set(other); return *this; }
     inline bool operator== (const AsString_ref& other) const { return m_object && other.m_object && (*this)->isEqualToString(**other) || !m_object && !other.m_object; }
     inline bool operator!= (const AsString_ref& other) const { return !(this->operator==(other)); }
 
