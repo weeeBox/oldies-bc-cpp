@@ -51,6 +51,7 @@ public:
     int push(const T& arg);
     // AsVector_ref sort(const AsFunction_ref& compareFunction);    
     AsString_ref toString();
+    T shift();
     int unshift(const T& arg);
 
     Ref concat(const AsObject_ref& obj) { IMPLEMENT_ME; return AS_NULL; }
@@ -247,6 +248,22 @@ AsString_ref AsVector<T>::toString()
 {
     IMPLEMENT_ME;
     return AS_NULL;
+}
+
+template <class T>
+T AsVector<T>::shift()
+{
+    ASSERT(m_size > 0);
+        
+    T element = m_data[0];    
+    for (int i = 1; i < length(); ++i)
+    {
+        m_data[i - 1] = m_data[i];
+    }
+    freeElement(length()-1);
+    m_size--;
+
+    return element;
 }
 
 template <class T>

@@ -637,4 +637,104 @@ namespace tut
 
         ensure(succeed);
     }
+
+    template<>
+    template<>
+    void AsVector_object::test<16>()
+    {
+        set_test_name("shift test");
+
+        AsString_ref str1 = ASL("1");
+        AsString_ref str2 = ASL("2");
+        AsString_ref str3 = ASL("3");
+        AsString_ref str4 = ASL("4");
+        AsString_ref str5 = ASL("5");
+
+        AsVector<AsString_ref>::Ref vector = AS_NEW_VECTOR(AsString_ref, 1);
+        bool succeed = vector->length() == 0;
+
+        vector->unshift(str1);
+        vector->unshift(str2);
+        vector->unshift(str3);        
+        vector->unshift(str4);
+        vector->unshift(str5);
+
+        succeed = succeed && vector->length() == 5;
+        succeed = succeed && vector[0] == str5;
+        succeed = succeed && vector[1] == str4;
+        succeed = succeed && vector[2] == str3;
+        succeed = succeed && vector[3] == str2;
+        succeed = succeed && vector[4] == str1;    
+
+        succeed = succeed && str1->retainCount() == 2;
+        succeed = succeed && str2->retainCount() == 2;
+        succeed = succeed && str3->retainCount() == 2;
+        succeed = succeed && str4->retainCount() == 2;
+        succeed = succeed && str5->retainCount() == 2;
+
+        vector->shift();
+        vector->shift();
+
+        succeed = succeed && vector->length() == 3;
+
+        succeed = succeed && vector[0] == str3;
+        succeed = succeed && vector[1] == str2;
+        succeed = succeed && vector[2] == str1;        
+
+        succeed = succeed && str1->retainCount() == 2;
+        succeed = succeed && str2->retainCount() == 2;
+        succeed = succeed && str3->retainCount() == 2;
+        succeed = succeed && str4->retainCount() == 1;
+        succeed = succeed && str5->retainCount() == 1;
+
+        vector->unshift(str1);
+        vector->unshift(str1);
+        vector->unshift(str2);
+
+        succeed = succeed && vector->length() == 6;
+
+        succeed = succeed && vector[0] == str2;
+        succeed = succeed && vector[1] == str1;
+        succeed = succeed && vector[2] == str1; 
+        succeed = succeed && vector[3] == str3;
+        succeed = succeed && vector[4] == str2;
+        succeed = succeed && vector[5] == str1; 
+
+        succeed = succeed && str1->retainCount() == 4;
+        succeed = succeed && str2->retainCount() == 3;
+        succeed = succeed && str3->retainCount() == 2;
+        succeed = succeed && str4->retainCount() == 1;
+        succeed = succeed && str5->retainCount() == 1;
+
+        vector->shift();
+        vector->shift();
+        vector->shift();
+        vector->push(str4);
+        vector->push(str5);        
+
+        succeed = succeed && vector->length() == 5;
+
+        succeed = succeed && vector[0] == str3;
+        succeed = succeed && vector[1] == str2;
+        succeed = succeed && vector[2] == str1;        
+        succeed = succeed && vector[3] == str4;
+        succeed = succeed && vector[4] == str5;
+        
+
+        succeed = succeed && str1->retainCount() == 2;
+        succeed = succeed && str2->retainCount() == 2;
+        succeed = succeed && str3->retainCount() == 2;
+        succeed = succeed && str4->retainCount() == 2;
+        succeed = succeed && str5->retainCount() == 2;
+
+        vector = AS_NULL;
+
+        succeed = succeed && str1->retainCount() == 1;
+        succeed = succeed && str2->retainCount() == 1;
+        succeed = succeed && str3->retainCount() == 1;
+        succeed = succeed && str4->retainCount() == 1;
+        succeed = succeed && str5->retainCount() == 1;
+
+        ensure(succeed);
+    }
 }
