@@ -65,7 +65,9 @@ public:
     inline T* operator->() const { ASSERT(m_object); return (T*)m_object; }
     inline T* operator*() const { ASSERT(m_object); return (T*)m_object; }
     inline AsObjectRefBase& operator=(const AsObjectRefBase& other) { set(other.m_object); return *this; }
-    
+
+protected:
+    inline T* _object() { return (T*)m_object; }
 };
 
 #endif // AsObjectRef_h__

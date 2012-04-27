@@ -19,10 +19,9 @@ public:
         explicit Ref(bool isStatic) : AsObjectRef(isStatic) {}
 
         inline T& operator[] (int index) 
-        {             
-            AsVector* vector = (AsVector*)m_object;
-            ASSERT(index >= 0 && index < vector->length());
-            return vector->m_data[index];
+        {   
+            ASSERT(index >= 0 && index < _object()->length());
+            return _object()->m_data[index];
         }
     };
 
