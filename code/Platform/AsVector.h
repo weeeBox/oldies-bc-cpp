@@ -39,6 +39,9 @@ public:
 public:
     static inline Ref _as_create(size_t capacity) { return Ref(new AsVector(capacity)); }
 
+protected:
+    virtual Ref _as_create_same(size_t capacity) { return AsVector::_as_create(capacity); }
+
 public:
     int indexOf(const T& searchElement, int fromIndex = 0);
     int lastIndexOf(const T& searchElement, int fromIndex = INDEX_MAX);
@@ -57,11 +60,52 @@ public:
     Ref concat(const AsObject_ref& obj) { IMPLEMENT_ME; return AS_NULL; }
     Ref concat() { IMPLEMENT_ME; return AS_NULL; }
     Ref reverse() { IMPLEMENT_ME; return AS_NULL; }
-    Ref slice(int startIndex, int endIndex) { IMPLEMENT_ME; return AS_NULL; }
-    Ref slice(int startIndex) { IMPLEMENT_ME; return AS_NULL; }
-    Ref slice() { IMPLEMENT_ME; return AS_NULL; }
-    Ref splice(int startIndex, int deleteCount, const T& item) { IMPLEMENT_ME; return AS_NULL; }
-    Ref splice(int startIndex, int deleteCount) { IMPLEMENT_ME; return AS_NULL; }
+
+    Ref slice(int startIndex = 0, int endIndex = INDEX_MAX) 
+    { 
+        if (endIndex == INDEX_MAX)
+            endIndex = length();
+
+        ASSERT(startIndex >= 0 && startIndex < length());
+        ASSERT(endIndex >= 0 && endIndex <= length());
+        ASSERT(startIndex <= endIndex);        
+
+        size_t len = endIndex - startIndex;
+
+        Ref newVector = _as_create_same(len);
+        for (int i = startIndex, j = 0; i < endIndex; ++i, ++j)
+        {
+            newVector->m_data[j] = m_data[i];
+        }
+        newVector->m_size = len;
+
+        return newVector;
+    }    
+    Ref splice(int startIndex, int deleteCount = INDEX_MAX)
+    {
+        ASSERT(startIndex >= 0 && startIndex < length());
+
+        if (deleteCount == INDEX_MAX)
+            deleteCount = length() - startIndex;
+
+        ASSERT(startIndex + deleteCount <= length());
+        int numRemains = length() - (startIndex + deleteCount);
+        if (numRemains > 0)
+        {
+            for (int i = startIndex + deleteCount, j = startIndex; i < length(); ++i, ++j)
+            {
+                m_data[j] = m_data[i];
+                freeElement(i);
+            }
+        }
+        m_size -= deleteCount;
+    }
+
+    Ref splice(int startIndex, int deleteCount, const T& item)
+    {
+        IMPLEMENT_ME;
+        return AS_NULL;
+    }   
 
 protected:
     AsVector(size_t capacity);
@@ -106,6 +150,7 @@ public:
 
 protected:
     _as_AsRefVector(size_t capacity = DEFAULT_CAPACITY) : AsVector(capacity) {}
+    Ref _as_create_same(size_t capacity) { return _as_AsRefVector::_as_create(capacity); }
     void freeElement(int index);
 
 public:

@@ -816,4 +816,152 @@ namespace tut
 
         ensure(succeed);
     }
+
+    template<>
+    template<>
+    void AsVector_object::test<18>()
+    {
+        set_test_name("Slice test 1");
+
+        int int1 = 1;
+        int int2 = 2;
+        int int3 = 3;
+        int int4 = 4;
+        int int5 = 5;
+
+        AsVector<int>::Ref vector = AS_NEW_PRIMITIVES_VECTOR(int, 5) << int1 << int2 << int3 << int4 << int5;
+        bool succeed = vector->length() == 5;
+
+        AsVector<int>::Ref v1 = vector->slice();
+        succeed = succeed && v1->length() == 5;
+        
+        succeed = succeed && v1[0] == int1;
+        succeed = succeed && v1[1] == int2;
+        succeed = succeed && v1[2] == int3;        
+        succeed = succeed && v1[3] == int4;
+        succeed = succeed && v1[4] == int5;               
+
+        v1 = vector->slice(2);
+        succeed = succeed && v1->length() == 3;        
+
+        succeed = succeed && v1[0] == int3;
+        succeed = succeed && v1[1] == int4;
+        succeed = succeed && v1[2] == int5;        
+
+        v1 = vector->slice(1, 3);
+        succeed = succeed && v1->length() == 2;        
+
+        succeed = succeed && v1[0] == int2;
+        succeed = succeed && v1[1] == int3;        
+
+        v1 = vector->slice(1, 1);
+        succeed = succeed && v1->length() == 0;        
+
+        ensure(succeed);
+    }
+
+    template<>
+    template<>
+    void AsVector_object::test<19>()
+    {
+        set_test_name("Slice test 2");
+
+        AsString_ref str1 = ASL("1");
+        AsString_ref str2 = ASL("2");
+        AsString_ref str3 = ASL("3");
+        AsString_ref str4 = ASL("4");
+        AsString_ref str5 = ASL("5");
+
+        AsVector<AsString_ref>::Ref vector = AS_NEW_VECTOR(AsString_ref, 5) << str1 << str2 << str3 << str4 << str5;
+        bool succeed = vector->length() == 5;
+
+        succeed = succeed && str1->retainCount() == 2;
+        succeed = succeed && str2->retainCount() == 2;
+        succeed = succeed && str3->retainCount() == 2;
+        succeed = succeed && str4->retainCount() == 2;
+        succeed = succeed && str5->retainCount() == 2;
+
+        AsVector<AsString_ref>::Ref v1 = vector->slice();
+        succeed = succeed && v1->length() == 5;
+
+        succeed = succeed && str1->retainCount() == 3;
+        succeed = succeed && str2->retainCount() == 3;
+        succeed = succeed && str3->retainCount() == 3;
+        succeed = succeed && str4->retainCount() == 3;
+        succeed = succeed && str5->retainCount() == 3;
+
+        succeed = succeed && v1[0] == str1;
+        succeed = succeed && v1[1] == str2;
+        succeed = succeed && v1[2] == str3;        
+        succeed = succeed && v1[3] == str4;
+        succeed = succeed && v1[4] == str5;
+
+        v1 = AS_NULL;
+
+        succeed = succeed && str1->retainCount() == 2;
+        succeed = succeed && str2->retainCount() == 2;
+        succeed = succeed && str3->retainCount() == 2;
+        succeed = succeed && str4->retainCount() == 2;
+        succeed = succeed && str5->retainCount() == 2;
+
+        v1 = vector->slice(2);
+        succeed = succeed && v1->length() == 3;
+
+        succeed = succeed && str1->retainCount() == 2;
+        succeed = succeed && str2->retainCount() == 2;
+        succeed = succeed && str3->retainCount() == 3;
+        succeed = succeed && str4->retainCount() == 3;
+        succeed = succeed && str5->retainCount() == 3;
+
+        succeed = succeed && v1[0] == str3;
+        succeed = succeed && v1[1] == str4;
+        succeed = succeed && v1[2] == str5;        
+
+        v1 = AS_NULL;
+
+        succeed = succeed && str1->retainCount() == 2;
+        succeed = succeed && str2->retainCount() == 2;
+        succeed = succeed && str3->retainCount() == 2;
+        succeed = succeed && str4->retainCount() == 2;
+        succeed = succeed && str5->retainCount() == 2;
+
+        v1 = vector->slice(1, 3);
+        succeed = succeed && v1->length() == 2;
+
+        succeed = succeed && str1->retainCount() == 2;
+        succeed = succeed && str2->retainCount() == 3;
+        succeed = succeed && str3->retainCount() == 3;
+        succeed = succeed && str4->retainCount() == 2;
+        succeed = succeed && str5->retainCount() == 2;
+
+        succeed = succeed && v1[0] == str2;
+        succeed = succeed && v1[1] == str3;        
+
+        v1 = AS_NULL;
+
+        succeed = succeed && str1->retainCount() == 2;
+        succeed = succeed && str2->retainCount() == 2;
+        succeed = succeed && str3->retainCount() == 2;
+        succeed = succeed && str4->retainCount() == 2;
+        succeed = succeed && str5->retainCount() == 2;
+
+        v1 = vector->slice(1, 1);
+        succeed = succeed && v1->length() == 0;
+
+        succeed = succeed && str1->retainCount() == 2;
+        succeed = succeed && str2->retainCount() == 2;
+        succeed = succeed && str3->retainCount() == 2;
+        succeed = succeed && str4->retainCount() == 2;
+        succeed = succeed && str5->retainCount() == 2;
+        
+        v1 = AS_NULL;
+
+        succeed = succeed && str1->retainCount() == 2;
+        succeed = succeed && str2->retainCount() == 2;
+        succeed = succeed && str3->retainCount() == 2;
+        succeed = succeed && str4->retainCount() == 2;
+        succeed = succeed && str5->retainCount() == 2;
+
+        ensure(succeed);
+    }
 }
