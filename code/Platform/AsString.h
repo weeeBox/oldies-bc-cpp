@@ -87,6 +87,9 @@ public:
     inline bool operator== (const AsString_ref& other) const { return m_object && other.m_object && (*this)->isEqualToString(**other) || !m_object && !other.m_object; }
     inline bool operator!= (const AsString_ref& other) const { return !(this->operator==(other)); }
 
+    inline bool operator== (const AsObjectRefBase& other) const { return other.operator==(*this); }
+    inline bool operator!= (const AsObjectRefBase& other) const { return other.operator!=(*this); }
+
     inline AsString_ref& operator+= (const achar* str)
     {
         AsString* oldStr = (AsString*)m_object;
@@ -159,6 +162,9 @@ public:
         return *this; 
     }
 };
+
+inline bool operator== (const AsObjectRefBase& other, const AsString_ref& str) { return str.operator==(other); }
+inline bool operator!= (const AsObjectRefBase& other, const AsString_ref& str) { return str.operator!=(other); }
 
 inline AsString_ref operator+ (const AsString_ref& a, const AsString_ref& b)
 {

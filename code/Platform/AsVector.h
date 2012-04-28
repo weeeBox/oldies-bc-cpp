@@ -199,7 +199,19 @@ int AsVector<T>::lastIndexOf(const T& searchElement, int fromIndex)
 template <class T>
 void AsVector<T>::length(int newLenght)
 {
-    IMPLEMENT_ME;    
+    ASSERT(newLenght >= 0);
+    if (newLenght > m_size)
+    {
+        expand(newLenght);
+    }
+    else if (newLenght < m_size)
+    {
+        for (int i = newLenght; i < m_size; ++i)
+        {
+            freeElement(i);
+        }
+    }
+    m_size = newLenght;
 }
 
 template <class T>
