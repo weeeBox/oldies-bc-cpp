@@ -115,12 +115,76 @@ public:
 
     Ref splice(int startIndex, int deleteCount, const T& item)
     {
-        IMPLEMENT_ME;
-        return AS_NULL;
+        ASSERT(startIndex >= 0 && startIndex < length());
+        ASSERT(startIndex + deleteCount <= length());
+
+        /* copy deleted elements to a separate vector */
+        Ref result = _as_create_same(deleteCount);
+        for (int i = 0, j = startIndex; i < deleteCount; ++i, ++j)
+        {
+            result->m_data[i] = m_data[j];
+            freeElement(j);
+        }
+        result->m_size = deleteCount;
+
+        /* remove elements */
+        if (deleteCount > 0)
+        {            
+            for (int i = startIndex + deleteCount, j = startIndex + 1; i < length(); ++i, ++j)
+            {
+                m_data[j] = m_data[i];
+                freeElement(i);
+            }
+            m_data[startIndex] = item;
+            m_size -= deleteCount + 1;
+        }
+        else
+        {
+            ASSERT(deleteCount == 0);
+            if (m_size == m_capacity)
+            {
+                size_t newCapacity = m_capacity > 0 ? 2 * m_capacity : DEFAULT_CAPACITY;
+                size_t newSize = newCapacity * sizeof(T);
+                T* data = (T*)malloc(newSize);
+                memset(data, 0, newSize);
+
+                // memcpy(data, m_data, newSize); - we can't use memcpy because it makes some pointers invalid
+                for (int i = 0; i < startIndex; ++i)
+                {
+                    data[i] = m_data[i];
+                    freeElement(i);
+                }
+
+                data[startIndex] = item;
+
+                for (int i = startIndex; i < length(); ++i)
+                {
+                    data[i+1] = m_data[i];
+                    freeElement(i);
+                }
+
+                free(m_data);
+                m_data = data;
+                m_capacity = newCapacity;
+                m_size++;
+            }
+            else
+            {
+                ASSERT(m_size < m_capacity);
+                for (int i = length(); i > startIndex; --i)
+                {
+                    m_data[i] = m_data[i-1];
+                }
+                m_data[startIndex] = item;
+                m_size++;
+            }
+        }        
+
+        return result;
     }   
 
 protected:
-    AsVector(size_t capacity);
+    AsVector(int capacity);
 
 public:
     ~AsVector();
@@ -171,13 +235,16 @@ public:
 };
  
 template <class T>
-AsVector<T>::AsVector(size_t capacity) : 
+AsVector<T>::AsVector(int capacity) : 
   m_data(0), 
   m_size(0), 
   m_capacity(capacity)      
 {
-    m_data = (T*)malloc(m_capacity * sizeof(T));
-    memset(m_data, 0, m_capacity * sizeof(T));
+    if (m_capacity > 0)
+    {
+        m_data = (T*)malloc(m_capacity * sizeof(T));
+        memset(m_data, 0, m_capacity * sizeof(T));
+    }
 }
 
 template <class T>
