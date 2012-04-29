@@ -89,16 +89,28 @@ public:
             deleteCount = length() - startIndex;
 
         ASSERT(startIndex + deleteCount <= length());
+
+        /* copy deleted elements to a separate vector */
+        Ref result = _as_create_same(deleteCount);
+        for (int i = 0, j = startIndex; i < deleteCount; ++i, ++j)
+        {
+            result->m_data[i] = m_data[j];
+            freeElement(j);
+        }
+        result->m_size = deleteCount;
+
+        /* remove elements */
         int numRemains = length() - (startIndex + deleteCount);
         if (numRemains > 0)
         {
             for (int i = startIndex + deleteCount, j = startIndex; i < length(); ++i, ++j)
             {
-                m_data[j] = m_data[i];
-                freeElement(i);
+                m_data[j] = m_data[i];                
             }
         }
-        m_size -= deleteCount;
+        m_size -= deleteCount;        
+
+        return result;
     }
 
     Ref splice(int startIndex, int deleteCount, const T& item)
