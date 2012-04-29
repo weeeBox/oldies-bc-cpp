@@ -99,17 +99,16 @@ public:
         }
         result->m_size = deleteCount;
 
-        /* remove elements */
-        int numRemains = length() - (startIndex + deleteCount);
-        if (numRemains > 0)
+        /* remove elements */        
+        if (deleteCount > 0)
         {
             for (int i = startIndex + deleteCount, j = startIndex; i < length(); ++i, ++j)
             {
                 m_data[j] = m_data[i];
                 freeElement(i);
             }
-        }
-        m_size -= deleteCount;        
+            m_size -= deleteCount;
+        }        
 
         return result;
     }
