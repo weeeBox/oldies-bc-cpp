@@ -1204,6 +1204,24 @@ namespace tut
         succeed = succeed && str4->retainCount() == 2;
         succeed = succeed && str5->retainCount() == 1;
 
+        deleted = vector->splice(2, 1, str5);
+
+        succeed = succeed && vector->length() == 4;
+        succeed = succeed && deleted->length() == 1;
+
+        succeed = succeed && vector[0] == str1;
+        succeed = succeed && vector[1] == str2;
+        succeed = succeed && vector[2] == str5;
+        succeed = succeed && vector[3] == str3;
+
+        succeed = succeed && deleted[0] == str4;
+
+        succeed = succeed && str1->retainCount() == 2;
+        succeed = succeed && str2->retainCount() == 2;
+        succeed = succeed && str3->retainCount() == 2;
+        succeed = succeed && str4->retainCount() == 2;
+        succeed = succeed && str5->retainCount() == 2;
+
         ensure(succeed);
     }
 }

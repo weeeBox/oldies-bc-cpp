@@ -130,13 +130,16 @@ public:
         /* remove elements */
         if (deleteCount > 0)
         {            
-            for (int i = startIndex + deleteCount, j = startIndex + 1; i < length(); ++i, ++j)
-            {
-                m_data[j] = m_data[i];
-                freeElement(i);
+            if (deleteCount > 1)
+            {            
+                for (int i = startIndex + deleteCount, j = startIndex + 1; i < length(); ++i, ++j)
+                {
+                    m_data[j] = m_data[i];
+                    freeElement(i);
+                }
             }
             m_data[startIndex] = item;
-            m_size -= deleteCount + 1;
+            m_size -= deleteCount - 1;
         }
         else
         {
