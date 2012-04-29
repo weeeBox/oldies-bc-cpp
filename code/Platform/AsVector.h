@@ -105,7 +105,8 @@ public:
         {
             for (int i = startIndex + deleteCount, j = startIndex; i < length(); ++i, ++j)
             {
-                m_data[j] = m_data[i];                
+                m_data[j] = m_data[i];
+                freeElement(i);
             }
         }
         m_size -= deleteCount;        
