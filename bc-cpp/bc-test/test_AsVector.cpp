@@ -1086,4 +1086,45 @@ namespace tut
 
         ensure(succeed);
     }
+
+    template<>
+    template<>
+    void AsVector_object::test<23>()
+    {
+        set_test_name("Splice test 4");
+
+        AsString_ref str1 = ASL("1");
+        AsString_ref str2 = ASL("2");
+        AsString_ref str3 = ASL("3");
+        AsString_ref str4 = ASL("4");
+        AsString_ref str5 = ASL("5");
+
+        AsVector<AsString_ref>::Ref vector = AS_NEW_VECTOR(AsString_ref, 5) << str1 << str2 << str3 << str4 << str5;
+        bool succeed = vector->length() == 5;
+
+        succeed = succeed && str1->retainCount() == 2;
+        succeed = succeed && str2->retainCount() == 2;
+        succeed = succeed && str3->retainCount() == 2;
+        succeed = succeed && str4->retainCount() == 2;
+        succeed = succeed && str5->retainCount() == 2;
+
+        AsVector<AsString_ref>::Ref deleted = vector->splice(2);
+        succeed = succeed && vector->length() == 2;
+        succeed = succeed && deleted->length() == 3;
+
+        succeed = succeed && deleted[0] == str3;
+        succeed = succeed && deleted[1] == str4;
+        succeed = succeed && deleted[2] == str5;
+
+        succeed = succeed && vector[0] == str1;        
+        succeed = succeed && vector[1] == str2;
+
+        succeed = succeed && str1->retainCount() == 2;
+        succeed = succeed && str2->retainCount() == 2;
+        succeed = succeed && str3->retainCount() == 2;
+        succeed = succeed && str4->retainCount() == 2;
+        succeed = succeed && str5->retainCount() == 2;        
+
+        ensure(succeed);
+    }
 }
