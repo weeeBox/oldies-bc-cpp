@@ -1376,4 +1376,13 @@ namespace tut
 
         ensure(succeed);
     }    
+
+    template<>
+    template<>
+    void AsVector_object::test<29>()
+    {
+        set_test_name("Sort test");
+
+        ensure(false);
+    }
 }
