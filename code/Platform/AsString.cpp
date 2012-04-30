@@ -81,6 +81,16 @@ static bool wide_equals(const wchar_t* str1, const wchar_t* str2)
     return false;
 }
 
+static int wide_hash(const wchar_t* str)
+{
+    int hash = 0;    
+    while (*str) 
+    {
+        hash = 31 * hash + *str++;
+    }
+    return hash;
+}
+
 AsString_ref AsString::charAt(int index)
 {
     if (index >= 0 && index < length())
@@ -240,17 +250,33 @@ bool AsString::isEqualToString(const AsString& other) const
     return wide_equals(m_buffer, other.m_buffer);
 }
 
+int AsString::hashCode()
+{
+    if (m_hashCode == 0 && m_size > 0)
+    {
+        m_hashCode = wide_hash(m_buffer);
+    }
+    return m_hashCode;
+}
+
+int AsString::hashCode(const achar* str)
+{
+    return wide_hash(str);
+}
+
 AsString::AsString() : 
   m_size(0),
   m_capacity(0),
-  m_buffer(0)
+  m_buffer(0),
+  m_hashCode(0)
 {    
 }
 
 AsString::AsString(const char* str, size_t len) :
   m_size(0),
   m_capacity(0),
-  m_buffer(0)
+  m_buffer(0),
+  m_hashCode(0)
 {
     if (len == -1)
         len = strlen(str);
@@ -262,7 +288,8 @@ AsString::AsString(const char* str, size_t len) :
 AsString::AsString(const achar* str, size_t len) :
   m_size(0),
   m_capacity(0),
-  m_buffer(0)
+  m_buffer(0),
+  m_hashCode(0)
 {
     if (len == -1)
         len = wide_len(str);
@@ -274,7 +301,8 @@ AsString::AsString(const achar* str, size_t len) :
 AsString::AsString(const AsString& other) :
   m_size(0),
   m_capacity(0),
-  m_buffer(0)
+  m_buffer(0),
+  m_hashCode(0)
 {
     init(other.length());
     memcpy(m_buffer, other.m_buffer, other.length() * sizeof(achar));

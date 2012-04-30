@@ -20,8 +20,9 @@ private:
     size_t m_size;
     size_t m_capacity;
     achar *m_buffer;
+    int m_hashCode;
 
-    static const uint INDEX_MAX = 0x7fffffff;
+    static const uint INDEX_MAX = 0x7fffffff;    
 
 public:
     AS_TYPENAME(AsString, AsObject);
@@ -45,6 +46,8 @@ public:
 
     const achar* data() const { return m_buffer; }
     bool isEqualToString(const AsString& other) const;
+    int hashCode();
+    static int hashCode(const achar* str);
 
 public:
     AsString();
