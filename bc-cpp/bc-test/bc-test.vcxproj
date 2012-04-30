@@ -77,10 +77,12 @@
   <ItemGroup>
     <ClCompile Include="..\..\code\Platform\AsArray.cpp" />
     <ClCompile Include="..\..\code\Platform\AsDebug.cpp" />
+    <ClCompile Include="..\..\code\Platform\AsDictionary.cpp" />
     <ClCompile Include="..\..\code\Platform\AsObject.cpp" />
     <ClCompile Include="..\..\code\Platform\AsObjectRef.cpp" />
     <ClCompile Include="..\..\code\Platform\AsString.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="test_AsDictionary.cpp" />
     <ClCompile Include="test_AsString.cpp" />
     <ClCompile Include="test_AsVector.cpp" />
   </ItemGroup>
@@ -88,6 +90,7 @@
     <ClInclude Include="..\..\code\Platform\AsArray.h" />
     <ClInclude Include="..\..\code\Platform\AsBc.h" />
     <ClInclude Include="..\..\code\Platform\AsDebug.h" />
+    <ClInclude Include="..\..\code\Platform\AsDictionary.h" />
     <ClInclude Include="..\..\code\Platform\AsObject.h" />
     <ClInclude Include="..\..\code\Platform\AsObjectRef.h" />
     <ClInclude Include="..\..\code\Platform\AsString.h" />

@@ -93,6 +93,7 @@ public:
 
 public:
     virtual AsString_ref toString();
+    virtual int hashCode();    
 
 public:
     AsObject();

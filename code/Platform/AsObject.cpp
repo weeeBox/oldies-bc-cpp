@@ -19,6 +19,11 @@ AsString_ref AsObject::toString()
     return AsString_ref(_as_typename());
 }
 
+int AsObject::hashCode()
+{
+    return (int)this;
+}
+
 void AsObject::retain()
 {
     ++m_refCount;

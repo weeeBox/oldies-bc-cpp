@@ -19,6 +19,10 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="test_AsString.cpp" />
     <ClCompile Include="test_AsVector.cpp" />
+    <ClCompile Include="..\..\code\Platform\AsDictionary.cpp">
+      <Filter>Platform</Filter>
+    </ClCompile>
+    <ClCompile Include="test_AsDictionary.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="tut">
@@ -93,6 +97,9 @@
       <Filter>Platform</Filter>
     </ClInclude>
     <ClInclude Include="..\..\code\Platform\AsVector.h">
+      <Filter>Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\Platform\AsDictionary.h">
       <Filter>Platform</Filter>
     </ClInclude>
   </ItemGroup>

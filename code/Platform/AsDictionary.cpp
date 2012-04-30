@@ -1,30 +1,66 @@
 #include "AsDictionary.h"
-#include "AsDictionary.h"
- 
- 
-AsDictionary_ref AsDictionary::__createAsDictionary()
+
+inline static int indexFor(int hash, int size)
 {
-	AsDictionary_ref __reference(new AsDictionary());
-	return __reference;
+    return (hash & size - 1);
 }
- 
-void AsDictionary::__internalInitialiseAsDictionary()
+
+AsDictionary::AsDictionary() :    
+    m_size(0)
 {
+    memset(table, 0, sizeof(table));
 }
- 
-StaticInit AsDictionary::__internalStaticInitializerAsDictionary(&AsDictionary::__internalStaticInit);
-BOOL AsDictionary::__internalStaticInitializedAsDictionary = false;
- 
-void AsDictionary::__internalStaticInit()
+
+AsDictionary::~AsDictionary()
 {
-	if (!__internalStaticInitializedAsDictionary)
-	{
-		__internalStaticInitializedAsDictionary = true;
-		AsObject::__internalStaticInit();
-	}
+
 }
- 
-AsDictionary::AsDictionary()
+
+void AsDictionary::_as_put(const AsString_ref& key, const AsObject_ref& value)
 {
+    IMPLEMENT_ME;
 }
- 
+
+void AsDictionary::_as_put(const achar* key, const AsObject_ref& value)
+{
+    IMPLEMENT_ME;
+}
+
+AsObject_ref AsDictionary::_as_get(const AsString_ref& key)
+{
+    IMPLEMENT_ME;
+    return AS_NULL;
+}
+
+AsObject_ref AsDictionary::_as_get(const achar* key)
+{
+    IMPLEMENT_ME;
+    return AS_NULL;
+}
+
+void AsDictionary::remove(const AsString_ref& key)
+{
+    IMPLEMENT_ME;
+}
+
+void AsDictionary::remove(const achar* key)
+{
+    IMPLEMENT_ME;
+}
+
+/*
+void AsDictionary::add(Pair* pair)
+{
+
+}
+
+void AsDictionary::remove(Pair* pair)
+{
+
+}
+
+AsDictionary::Pair* AsDictionary::find(const AsString_ref& key)
+{
+
+}
+*/
