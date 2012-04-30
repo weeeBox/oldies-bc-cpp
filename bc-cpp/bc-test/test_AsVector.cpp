@@ -1328,10 +1328,52 @@ namespace tut
 
         AsVector<AsString_ref>::Ref vector = AS_NEW_VECTOR(AsString_ref, 0);
         bool succeed = vector->length() == 0;
-        
+
         vector->reverse();
         succeed = succeed && vector->length() == 0;
 
         ensure(succeed);
     }
+
+    template<>
+    template<>
+    void AsVector_object::test<28>()
+    {
+        set_test_name("Concat test");
+
+        AsString_ref str1 = ASL("1");
+        AsString_ref str2 = ASL("2");
+        AsString_ref str3 = ASL("3");
+        AsString_ref str4 = ASL("4");
+        AsString_ref str5 = ASL("5");
+
+        AsVector<AsString_ref>::Ref vector = AS_NEW_VECTOR(AsString_ref, 3) << str1 << str2 << str3;
+        bool succeed = vector->length() == 3;
+
+        AsVector<AsString_ref>::Ref v = AS_NEW_VECTOR(AsString_ref, 2) << str4 << str5;
+        succeed = succeed && v->length() == 2;
+
+        succeed = succeed && str1->retainCount() == 2;
+        succeed = succeed && str2->retainCount() == 2;
+        succeed = succeed && str3->retainCount() == 2;
+        succeed = succeed && str4->retainCount() == 2;
+        succeed = succeed && str5->retainCount() == 2;
+
+        AsVector<AsString_ref>::Ref concat = vector->concat(v);
+        succeed = succeed && concat->length() == 5;
+
+        succeed = succeed && str1->retainCount() == 3;
+        succeed = succeed && str2->retainCount() == 3;
+        succeed = succeed && str3->retainCount() == 3;
+        succeed = succeed && str4->retainCount() == 3;
+        succeed = succeed && str5->retainCount() == 3;
+
+        succeed = succeed && concat[0] == str1;
+        succeed = succeed && concat[1] == str2;
+        succeed = succeed && concat[2] == str3;
+        succeed = succeed && concat[3] == str4;
+        succeed = succeed && concat[4] == str5;
+
+        ensure(succeed);
+    }    
 }

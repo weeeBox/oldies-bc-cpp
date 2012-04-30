@@ -40,7 +40,7 @@ public:
     static inline Ref _as_create(size_t capacity) { return Ref(new AsVector(capacity)); }
 
 protected:
-    virtual Ref _as_create_same(size_t capacity) { return AsVector::_as_create(capacity); }
+    virtual Ref _as_create_same(size_t capacity) const { return AsVector::_as_create(capacity); }
 
 public:
     int indexOf(const T& searchElement, int fromIndex = 0);
@@ -57,8 +57,26 @@ public:
     T shift();
     int unshift(const T& arg);
 
-    Ref concat(const AsObject_ref& obj) { IMPLEMENT_ME; return AS_NULL; }
-    Ref concat() { IMPLEMENT_ME; return AS_NULL; }
+    Ref concat(const Ref& other) const
+    {
+        size_t len = m_size + other->length();
+        
+        Ref result = _as_create_same(len);        
+        result->m_size = len;
+
+        for (int i = 0; i < m_size; ++i)
+        {
+            result[i] = m_data[i];
+        }
+
+        for (int i = m_size, j = 0; j < other->length(); ++i, ++j)
+        {
+            result[i] = other->m_data[j];
+        }
+
+        return result;
+    }
+    
     Ref reverse() 
     {
         int toIndex = length() / 2;
@@ -92,6 +110,7 @@ public:
 
         return newVector;
     }    
+
     Ref splice(int startIndex, int deleteCount = INDEX_MAX)
     {
         ASSERT(startIndex >= 0 && startIndex < length());
@@ -157,10 +176,8 @@ public:
             ASSERT(deleteCount == 0);
             if (m_size == m_capacity)
             {
-                size_t newCapacity = m_capacity > 0 ? 2 * m_capacity : DEFAULT_CAPACITY;
-                size_t newSize = newCapacity * sizeof(T);
-                T* data = (T*)malloc(newSize);
-                memset(data, 0, newSize);
+                size_t newCapacity = m_capacity > 0 ? 2 * m_capacity : DEFAULT_CAPACITY;                
+                T* data = allocData(newCapacity);
 
                 // memcpy(data, m_data, newSize); - we can't use memcpy because it makes some pointers invalid
                 for (int i = 0; i < startIndex; ++i)
@@ -177,7 +194,7 @@ public:
                     freeElement(i);
                 }
 
-                free(m_data);
+                freeData(m_data);
                 m_data = data;
                 m_capacity = newCapacity;
                 m_size++;
@@ -211,6 +228,9 @@ protected:
     static const int DEFAULT_CAPACITY = 16;    
     static const int INDEX_MAX = 0x7fffffff;
 
+    T* allocData(int capacity);
+    void freeData(T* data);
+
 protected:
     void expand(int capacity);
     void addElement(const T& element);
@@ -240,7 +260,7 @@ public:
 
 protected:
     _as_AsRefVector(size_t capacity = DEFAULT_CAPACITY) : AsVector(capacity) {}
-    Ref _as_create_same(size_t capacity) { return _as_AsRefVector::_as_create(capacity); }
+    Ref _as_create_same(size_t capacity) const { return _as_AsRefVector::_as_create(capacity); }
     void freeElement(int index);
 
 public:
@@ -256,25 +276,41 @@ AsVector<T>::AsVector(int capacity) :
 {
     if (m_capacity > 0)
     {
-        m_data = (T*)malloc(m_capacity * sizeof(T));
-        memset(m_data, 0, m_capacity * sizeof(T));
+        m_data = allocData(m_capacity);
     }
 }
 
 template <class T>
 AsVector<T>::~AsVector()
 {    
-    free(m_data);    
+    freeData(m_data);    
+}
+
+template <class T>
+T* AsVector<T>::allocData(int capacity)
+{
+    ASSERT(capacity > 0);
+    size_t bytes = capacity * sizeof(T);
+
+    T* data = (T*)malloc(bytes);
+    memset(data, 0, bytes);
+
+    return data;
+}
+
+template <class T>
+void AsVector<T>::freeData(T* data)
+{
+    free(data);
 }
 
 template <class T>
 void AsVector<T>::expand(int capacity)
 {        
-    ASSERT(capacity > 0);
+    ASSERT(capacity > 0);    
 
-    size_t newSize = capacity * sizeof(T);
-    T* data = (T*)malloc(newSize);
-    memset(data, 0, newSize);
+    T* data = allocData(capacity);
+
     // memcpy(data, m_data, newSize); - we can't use memcpy because it makes some pointers invalid
     for (int i = 0; i < length(); ++i)
     {
@@ -282,7 +318,7 @@ void AsVector<T>::expand(int capacity)
         freeElement(i);
     }    
 
-    free(m_data);
+    freeData(m_data);
     m_data = data;
     m_capacity = capacity;
 }
@@ -421,10 +457,9 @@ int AsVector<T>::unshift(const T& arg)
 {
     if (length() == capacity())
     {
-        int newCapacity = capacity() > 0 ? 2 * capacity() : DEFAULT_CAPACITY;        
-        size_t newSize = newCapacity * sizeof(T);
-        T* data = (T*)malloc(newSize);
-        memset(data, 0, newSize);
+        int newCapacity = capacity() > 0 ? 2 * capacity() : DEFAULT_CAPACITY;
+        T* data = allocData(newCapacity);
+
         // memcpy(data, m_data, newSize); - we can't use memcpy because it makes some pointers invalid        
         for (int i = 0; i < length(); ++i)
         {
@@ -434,7 +469,7 @@ int AsVector<T>::unshift(const T& arg)
         data[0] = arg;
         m_size++;
 
-        free(m_data);
+        freeData(m_data);
         m_data = data;
         m_capacity = newCapacity;
     }
