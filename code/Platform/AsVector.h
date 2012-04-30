@@ -37,10 +37,10 @@ public:
     };
 
 public:
-    static inline Ref _as_create(size_t capacity) { return Ref(new AsVector(capacity)); }
+    static inline Ref _as_create(int capacity) { return Ref(new AsVector(capacity)); }
 
 protected:
-    virtual Ref _as_create_same(size_t capacity) const { return AsVector::_as_create(capacity); }
+    virtual Ref _as_create_same(int capacity) const { return AsVector::_as_create(capacity); }
 
 public:
     int indexOf(const T& searchElement, int fromIndex = 0);
@@ -59,7 +59,7 @@ public:
 
     Ref concat(const Ref& other) const
     {
-        size_t len = m_size + other->length();
+        int len = m_size + other->length();
         
         Ref result = _as_create_same(len);        
         result->m_size = len;
@@ -99,7 +99,7 @@ public:
         ASSERT(endIndex >= 0 && endIndex <= length());
         ASSERT(startIndex <= endIndex);        
 
-        size_t len = endIndex - startIndex;
+        int len = endIndex - startIndex;
 
         Ref newVector = _as_create_same(len);
         for (int i = startIndex, j = 0; i < endIndex; ++i, ++j)
@@ -176,7 +176,7 @@ public:
             ASSERT(deleteCount == 0);
             if (m_size == m_capacity)
             {
-                size_t newCapacity = m_capacity > 0 ? 2 * m_capacity : DEFAULT_CAPACITY;                
+                int newCapacity = m_capacity > 0 ? 2 * m_capacity : DEFAULT_CAPACITY;                
                 T* data = allocData(newCapacity);
 
                 // memcpy(data, m_data, newSize); - we can't use memcpy because it makes some pointers invalid
@@ -222,8 +222,8 @@ public:
 
 protected:
     T* m_data;
-    size_t m_size;
-    size_t m_capacity;
+    int m_size;
+    int m_capacity;
 
     static const int DEFAULT_CAPACITY = 16;    
     static const int INDEX_MAX = 0x7fffffff;
@@ -259,12 +259,12 @@ public:
     AS_TYPENAME(AsVector, AsObject);
 
 protected:
-    _as_AsRefVector(size_t capacity = DEFAULT_CAPACITY) : AsVector(capacity) {}
-    Ref _as_create_same(size_t capacity) const { return _as_AsRefVector::_as_create(capacity); }
+    _as_AsRefVector(int capacity = DEFAULT_CAPACITY) : AsVector(capacity) {}
+    Ref _as_create_same(int capacity) const { return _as_AsRefVector::_as_create(capacity); }
     void freeElement(int index);
 
 public:
-    static inline Ref _as_create(size_t size) { return Ref(new _as_AsRefVector(size)); }
+    static inline Ref _as_create(int size) { return Ref(new _as_AsRefVector(size)); }
     ~_as_AsRefVector();
 };
  
@@ -290,7 +290,7 @@ template <class T>
 T* AsVector<T>::allocData(int capacity)
 {
     ASSERT(capacity > 0);
-    size_t bytes = capacity * sizeof(T);
+    int bytes = capacity * sizeof(T);
 
     T* data = (T*)malloc(bytes);
     memset(data, 0, bytes);
