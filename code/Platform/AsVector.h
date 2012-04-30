@@ -59,7 +59,18 @@ public:
 
     Ref concat(const AsObject_ref& obj) { IMPLEMENT_ME; return AS_NULL; }
     Ref concat() { IMPLEMENT_ME; return AS_NULL; }
-    Ref reverse() { IMPLEMENT_ME; return AS_NULL; }
+    Ref reverse() 
+    {
+        int toIndex = length() / 2;
+        for (int i = 0, j = length() - 1; i < toIndex; ++i, --j)
+        {
+            T temp = m_data[i];
+            m_data[i] = m_data[j];
+            m_data[j] = temp;
+        }
+
+        return Ref(this);
+    }
 
     Ref slice(int startIndex = 0, int endIndex = INDEX_MAX) 
     { 
