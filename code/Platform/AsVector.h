@@ -397,9 +397,8 @@ AsString_ref AsVector<T>::_join(const AsString_ref& sep)
 
 template <class T>
 AsString_ref AsVector<T>::_join()
-{
-    IMPLEMENT_ME;
-    return AS_NULL;
+{    
+    return _join(ASL(","));
 }
 
 template <class T>
@@ -431,9 +430,8 @@ int AsVector<T>::push(const T& arg)
 
 template <class T>
 AsString_ref AsVector<T>::toString()
-{
-    IMPLEMENT_ME;
-    return AS_NULL;
+{    
+    return AsObject::toString();
 }
 
 template <class T>
