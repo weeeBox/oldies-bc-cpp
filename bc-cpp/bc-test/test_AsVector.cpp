@@ -1279,7 +1279,7 @@ namespace tut
     template<>
     void AsVector_object::test<26>()
     {
-        set_test_name("Reverse test");
+        set_test_name("Reverse test 1");
 
         AsString_ref str1 = ASL("1");
         AsString_ref str2 = ASL("2");
@@ -1316,6 +1316,21 @@ namespace tut
         succeed = succeed && vector[1] == str2;
         succeed = succeed && vector[2] == str4;
         succeed = succeed && vector[3] == str5;       
+
+        ensure(succeed);
+    }
+
+    template<>
+    template<>
+    void AsVector_object::test<27>()
+    {
+        set_test_name("Reverse test 2");
+
+        AsVector<AsString_ref>::Ref vector = AS_NEW_VECTOR(AsString_ref, 0);
+        bool succeed = vector->length() == 0;
+        
+        vector->reverse();
+        succeed = succeed && vector->length() == 0;
 
         ensure(succeed);
     }
