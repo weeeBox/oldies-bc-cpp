@@ -14,14 +14,14 @@ public:
     AS_TYPENAME(AsDictionary, AsObject);
 
     // we can't use operator[] for setting/getting the elements
-    void _as_put(const AsString_ref& key, const AsObject_ref& value);
     void _as_put(const achar* key, const AsObject_ref& value);
+    inline void _as_put(const AsString_ref& key, const AsObject_ref& value) { _as_put(key->data(), value); }
 
-    AsObject_ref _as_get(const AsString_ref& key);
     AsObject_ref _as_get(const achar* key);
-
-    void remove(const AsString_ref& key);
+    inline AsObject_ref _as_get(const AsString_ref& key) { return _as_get(key->data()); }
+        
     void remove(const achar* key);
+    inline void remove(const AsString_ref& key) { remove(key->data()); }
 
 protected:
     AsDictionary();

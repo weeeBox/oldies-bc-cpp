@@ -16,31 +16,15 @@ AsDictionary::~AsDictionary()
 
 }
 
-void AsDictionary::_as_put(const AsString_ref& key, const AsObject_ref& value)
-{
-    IMPLEMENT_ME;
-}
-
 void AsDictionary::_as_put(const achar* key, const AsObject_ref& value)
 {
     IMPLEMENT_ME;
-}
-
-AsObject_ref AsDictionary::_as_get(const AsString_ref& key)
-{
-    IMPLEMENT_ME;
-    return AS_NULL;
 }
 
 AsObject_ref AsDictionary::_as_get(const achar* key)
 {
     IMPLEMENT_ME;
     return AS_NULL;
-}
-
-void AsDictionary::remove(const AsString_ref& key)
-{
-    IMPLEMENT_ME;
 }
 
 void AsDictionary::remove(const achar* key)

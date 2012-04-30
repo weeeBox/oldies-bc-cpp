@@ -43,6 +43,7 @@ public:
     AsString_ref toUpperCase();
     AsString_ref valueOf();
 
+    const achar* data() const { return m_buffer; }
     bool isEqualToString(const AsString& other) const;
 
 public:
