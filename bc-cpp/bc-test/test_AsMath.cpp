@@ -101,9 +101,22 @@ namespace tut
         ensure(succeed);
     }
 
-    /*        
-    inline static float ceil(float x) { return ::ceil(x); }
-    inline static float cos(float x) { return ::cos(x); }
+    template<>
+    template<>
+    void AsMath_object::test<7>()
+    {
+        set_test_name("cos test");
+
+        bool succeed = true;
+        succeed = succeed && AsMath::cos(0.0f) == 1.0f;
+        succeed = succeed && abs(AsMath::cos(0.5f * AsMath::PI)) < 0.00001f;
+        succeed = succeed && AsMath::cos(AsMath::PI) == -1.0f;
+        succeed = succeed && abs(AsMath::cos(1.5f * AsMath::PI)) < 0.00001f;
+
+        ensure(succeed);
+    }
+
+    /*    
     inline static float exp(float x) { return ::exp(x); }
     inline static float floor(float x) { return ::floor(x); }
     inline static float log(float x) { return ::log(x); }
