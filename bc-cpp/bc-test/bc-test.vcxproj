@@ -83,6 +83,7 @@
     <ClCompile Include="..\..\code\Platform\AsString.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="test_AsDictionary.cpp" />
+    <ClCompile Include="test_AsMath.cpp" />
     <ClCompile Include="test_AsString.cpp" />
     <ClCompile Include="test_AsVector.cpp" />
   </ItemGroup>

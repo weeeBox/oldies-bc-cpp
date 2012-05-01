@@ -23,6 +23,7 @@
       <Filter>Platform</Filter>
     </ClCompile>
     <ClCompile Include="test_AsDictionary.cpp" />
+    <ClCompile Include="test_AsMath.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="tut">
