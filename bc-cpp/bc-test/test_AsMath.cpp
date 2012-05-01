@@ -116,15 +116,123 @@ namespace tut
         ensure(succeed);
     }
 
-    /*    
-    inline static float exp(float x) { return ::exp(x); }
-    inline static float floor(float x) { return ::floor(x); }
-    inline static float log(float x) { return ::log(x); }
-    inline static float max(float x, float y) { return x > y ? x : y; }
-    inline static float min(float x, float y) { return x < y ? x : y; }
-    inline static float pow(float x, float y) { return ::pow(x, y); }
-    inline static float random() { return rand(); }
-    inline static float round(float x) { return (x - int(x) < 0.5f) ? x : (x + 1); }
+    template<>
+    template<>
+    void AsMath_object::test<8>()
+    {
+        set_test_name("exp test");
+
+        bool succeed = true;
+        succeed = succeed && AsMath::exp(0) == 1.0f;
+        succeed = succeed && AsMath::exp(1) == AsMath::E;
+
+        ensure(succeed);
+    }
+
+    template<>
+    template<>
+    void AsMath_object::test<9>()
+    {
+        set_test_name("floor test");
+
+        bool succeed = true;
+        succeed = succeed && AsMath::floor(1.0f) == 1.0f;
+        succeed = succeed && AsMath::floor(1.1f) == 1.0f;
+        succeed = succeed && AsMath::floor(1.5f) == 1.0f;
+
+        succeed = succeed && AsMath::floor(-1.0f) == -1.0f;
+        succeed = succeed && AsMath::floor(-1.1f) == -2.0f;
+        succeed = succeed && AsMath::floor(-1.5f) == -2.0f;
+
+        ensure(succeed);
+    }
+
+    template<>
+    template<>
+    void AsMath_object::test<10>()
+    {
+        set_test_name("log test");
+
+        bool succeed = true;
+        succeed = succeed && abs(AsMath::log(AsMath::E) - 1) < 0.00001f;
+        succeed = succeed && abs(AsMath::log(2) - 0.6931471805599453f) < 0.00001f;
+        succeed = succeed && abs(AsMath::log(10) - 2.302585092994046f) < 0.00001f;        
+
+        ensure(succeed);
+    }
+
+    template<>
+    template<>
+    void AsMath_object::test<11>()
+    {
+        set_test_name("max test");
+
+        bool succeed = true;
+        succeed = succeed && AsMath::max(1, 0) == 1;
+        succeed = succeed && AsMath::max(0, 0) == 0;
+        succeed = succeed && AsMath::max(0, 1) == 1;        
+
+        ensure(succeed);
+    }
+
+    template<>
+    template<>
+    void AsMath_object::test<12>()
+    {
+        set_test_name("min test");
+
+        bool succeed = true;
+        succeed = succeed && AsMath::min(1, 0) == 0;
+        succeed = succeed && AsMath::min(0, 0) == 0;
+        succeed = succeed && AsMath::min(0, 1) == 0;        
+
+        ensure(succeed);
+    }
+
+    template<>
+    template<>
+    void AsMath_object::test<13>()
+    {
+        set_test_name("pow test");
+
+        bool succeed = true; 
+        succeed = succeed && AsMath::pow(2, 2) == 4;
+        succeed = succeed && AsMath::pow(2, -1) == 0.5;        
+
+        ensure(succeed);
+    }
+
+    template<>
+    template<>
+    void AsMath_object::test<14>()
+    {
+        set_test_name("random test");
+
+        bool succeed = true; 
+        succeed = succeed && AsMath::random() >= 0.0f && AsMath::random() <= 1.0f;
+
+        ensure(succeed);
+    }
+
+    template<>
+    template<>
+    void AsMath_object::test<15>()
+    {
+        set_test_name("round test");
+
+        bool succeed = true; 
+        succeed = succeed && AsMath::round(1.1) == 1;
+        succeed = succeed && AsMath::round(1.5) == 2;
+        succeed = succeed && AsMath::round(1.6) == 2;
+
+        succeed = succeed && AsMath::round(-1.1) == -1;
+        succeed = succeed && AsMath::round(-1.5) == -1;
+        succeed = succeed && AsMath::round(-1.6) == -2;
+
+        ensure(succeed);
+    }    
+
+    /*                                    
     inline static float sin(float x) { return ::sin(x); }
     inline static float sqrt(float x) { return ::sqrt(x); }
     inline static float tan(float x) { return ::tan(x); }
