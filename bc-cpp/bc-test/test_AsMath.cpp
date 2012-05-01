@@ -221,20 +221,57 @@ namespace tut
         set_test_name("round test");
 
         bool succeed = true; 
-        succeed = succeed && AsMath::round(1.1) == 1;
-        succeed = succeed && AsMath::round(1.5) == 2;
-        succeed = succeed && AsMath::round(1.6) == 2;
+        succeed = succeed && AsMath::round(1.1f) == 1;
+        succeed = succeed && AsMath::round(1.5f) == 2;
+        succeed = succeed && AsMath::round(1.6f) == 2;
 
-        succeed = succeed && AsMath::round(-1.1) == -1;
-        succeed = succeed && AsMath::round(-1.5) == -1;
-        succeed = succeed && AsMath::round(-1.6) == -2;
+        succeed = succeed && AsMath::round(-1.1f) == -1;
+        succeed = succeed && AsMath::round(-1.5f) == -1;
+        succeed = succeed && AsMath::round(-1.6f) == -2;
 
         ensure(succeed);
     }    
 
-    /*                                    
-    inline static float sin(float x) { return ::sin(x); }
-    inline static float sqrt(float x) { return ::sqrt(x); }
-    inline static float tan(float x) { return ::tan(x); }
-    */
+    template<>
+    template<>
+    void AsMath_object::test<16>()
+    {
+        set_test_name("sin test");
+
+        bool succeed = true;
+        succeed = succeed && AsMath::sin(0.0f) == 0.0f;
+        succeed = succeed && abs(AsMath::sin(0.5f * AsMath::PI) - 1) < 0.00001f;
+        succeed = succeed && abs(AsMath::sin(AsMath::PI)) < 0.00001f;
+        succeed = succeed && abs(AsMath::sin(1.5f * AsMath::PI) + 1) < 0.00001f;
+
+        ensure(succeed);
+    }
+
+    template<>
+    template<>
+    void AsMath_object::test<17>()
+    {
+        set_test_name("sqrt test");
+
+        bool succeed = true;
+        succeed = succeed && AsMath::sqrt(4) == 2;
+        succeed = succeed && AsMath::sqrt(0.25) == 0.5;
+
+        ensure(succeed);
+    }
+
+    template<>
+    template<>
+    void AsMath_object::test<18>()
+    {
+        set_test_name("tan test");
+
+        bool succeed = true;
+        succeed = succeed && abs(AsMath::tan(0)) < 0.00001f;
+        succeed = succeed && abs(AsMath::tan(0.25 * AsMath::PI) - 1.0f) < 0.00001f;
+        succeed = succeed && abs(AsMath::tan(0.75 * AsMath::PI) + 1.0f) < 0.00001f;
+        succeed = succeed && abs(AsMath::tan(AsMath::PI)) < 0.00001f;
+
+        ensure(succeed);
+    }    
 }
