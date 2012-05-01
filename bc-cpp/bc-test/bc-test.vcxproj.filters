@@ -102,5 +102,8 @@
     <ClInclude Include="..\..\code\Platform\AsDictionary.h">
       <Filter>Platform</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\code\Platform\AsMath.h">
+      <Filter>Platform</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -91,6 +91,7 @@
     <ClInclude Include="..\..\code\Platform\AsBc.h" />
     <ClInclude Include="..\..\code\Platform\AsDebug.h" />
     <ClInclude Include="..\..\code\Platform\AsDictionary.h" />
+    <ClInclude Include="..\..\code\Platform\AsMath.h" />
     <ClInclude Include="..\..\code\Platform\AsObject.h" />
     <ClInclude Include="..\..\code\Platform\AsObjectRef.h" />
     <ClInclude Include="..\..\code\Platform\AsString.h" />

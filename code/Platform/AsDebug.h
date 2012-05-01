@@ -1,6 +1,8 @@
 #ifndef AsDebug_h__
 #define AsDebug_h__
- 
+
+#include "AsBc.h"
+
 #define ASSERT(x) if (!(x)) abort()
 #define IMPLEMENT_ME abort();
 
