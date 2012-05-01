@@ -250,6 +250,11 @@ bool AsString::isEqualToString(const AsString& other) const
     return wide_equals(m_buffer, other.m_buffer);
 }
 
+bool AsString::isEqualToString(const AsString_ref& other) const
+{
+    return wide_equals(m_buffer, other->m_buffer);
+}
+
 int AsString::hashCode()
 {
     if (m_hashCode == 0 && m_size > 0)

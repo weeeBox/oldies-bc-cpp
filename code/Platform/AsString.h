@@ -46,6 +46,7 @@ public:
 
     const achar* data() const { return m_buffer; }
     bool isEqualToString(const AsString& other) const;
+    bool isEqualToString(const AsString_ref& other) const;
     int hashCode();
     static int hashCode(const achar* str);
 

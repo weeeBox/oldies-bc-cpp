@@ -13,20 +13,20 @@ class AsDictionary : public AsObject
 public:
     AS_TYPENAME(AsDictionary, AsObject);
 
-    // we can't use operator[] for setting/getting the elements
-    void _as_put(const achar* key, const AsObject_ref& value);
-    inline void _as_put(const AsString_ref& key, const AsObject_ref& value) { _as_put(key->data(), value); }
+public:
+    // we can't use operator[] for setting/getting the elements    
+    void _as_put(const AsString_ref& key, const AsObject_ref& value);
+    void _as_put(const AsString_ref& key, const achar* value);
 
-    AsObject_ref _as_get(const achar* key);
-    inline AsObject_ref _as_get(const AsString_ref& key) { return _as_get(key->data()); }
-        
-    void remove(const achar* key);
-    inline void remove(const AsString_ref& key) { remove(key->data()); }
+    AsObject_ref _as_get(const AsString_ref& key);
+    void remove(const AsString_ref& key);
+    inline int length() { return m_size; }
 
 protected:
     AsDictionary();
 
 public:
+    inline static AsDictionary_ref _as_create_AsDictionary() { return AsDictionary_ref(new AsDictionary()); }
     ~AsDictionary();
 
 private:
@@ -36,6 +36,8 @@ private:
     {
         AsString_ref key;
         AsObject_ref value;
+        
+        Pair() : next(0), prev(0) {}
 
         Pair* next;
         Pair* prev;
@@ -43,13 +45,10 @@ private:
     
     Pair* table[TABLE_SIZE];
     int m_size;
-
-    /*
-    Pair* add(const AsString_ref& key, const AsObject_ref& value);
-    void remove(const AsString_ref& key);
-    Pair* find(const AsString_ref& key);
-    */
     
+    Pair* find(const AsString_ref& key);
+    void add(Pair* pair);
+    void remove(Pair* pair);    
 };
  
 #endif // AsDictionary_h__
