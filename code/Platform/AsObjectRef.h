@@ -52,7 +52,7 @@ private:
 #ifndef AS_NO_DEBUG
     static int m_refsCount;
     static int m_staticRefsCount;
-    static int m_unregRefsCount;
+    static int m_autoRefsCount;
 #endif // AS_NO_DEBUG
     
     void reg();
@@ -72,8 +72,8 @@ public:
 #ifndef AS_NO_DEBUG
     inline static int _as_refsCount() { return m_refsCount; }
     inline static int _as_staticRefsCount() { return m_staticRefsCount; }
-    inline static int _as_unregRefsCount() { return m_unregRefsCount; }
-    inline static int _as_totalRefsCount() { return _as_refsCount() + _as_staticRefsCount() + _as_unregRefsCount(); }
+    inline static int _as_autoRefsCount() { return m_autoRefsCount; }
+    inline static int _as_totalRefsCount() { return _as_refsCount() + _as_staticRefsCount() + _as_autoRefsCount(); }
 #endif // AS_NO_DEBUG
 };
 

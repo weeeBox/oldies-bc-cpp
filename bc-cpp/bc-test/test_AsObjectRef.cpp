@@ -94,19 +94,19 @@ namespace tut
 
         int refsCount = AsObjectRefBase::_as_refsCount();
         int staticRefsCount = AsObjectRefBase::_as_staticRefsCount();
-        int unregRefsCount = AsObjectRefBase::_as_unregRefsCount();
+        int autoRefsCount = AsObjectRefBase::_as_autoRefsCount();
 
         bool succeed = true;
 
         {
             ClassA_ref classA = AS_NEW(ClassA, ());
             succeed = succeed && (AsObjectRefBase::_as_refsCount() - refsCount) == 1;
-            succeed = succeed && (AsObjectRefBase::_as_unregRefsCount() - unregRefsCount) == 1;
+            succeed = succeed && (AsObjectRefBase::_as_autoRefsCount() - autoRefsCount) == 1;
         }
 
         succeed = succeed && refsCount == AsObjectRefBase::_as_refsCount();
         succeed = succeed && staticRefsCount == AsObjectRefBase::_as_staticRefsCount();
-        succeed = succeed && unregRefsCount == AsObjectRefBase::_as_unregRefsCount();
+        succeed = succeed && autoRefsCount == AsObjectRefBase::_as_autoRefsCount();
         ensure(succeed);
     }
 
@@ -118,34 +118,34 @@ namespace tut
 
         int refsCount = AsObjectRefBase::_as_refsCount();
         int staticRefsCount = AsObjectRefBase::_as_staticRefsCount();
-        int unregRefsCount = AsObjectRefBase::_as_unregRefsCount();
+        int autoRefsCount = AsObjectRefBase::_as_autoRefsCount();
 
         bool succeed = true;
 
         {
             ClassB_ref classB = AS_NEW(ClassB, ());
             succeed = succeed && (AsObjectRefBase::_as_refsCount() - refsCount) == 1;
-            succeed = succeed && (AsObjectRefBase::_as_unregRefsCount() - unregRefsCount) == 1;
+            succeed = succeed && (AsObjectRefBase::_as_autoRefsCount() - autoRefsCount) == 1;
 
             ClassC_ref classC = AS_NEW(ClassC, ());
             succeed = succeed && (AsObjectRefBase::_as_refsCount() - refsCount) == 2;
-            succeed = succeed && (AsObjectRefBase::_as_unregRefsCount() - unregRefsCount) == 2;
+            succeed = succeed && (AsObjectRefBase::_as_autoRefsCount() - autoRefsCount) == 2;
 
             classB->member = classC;
             classC->member = classB;
 
             succeed = succeed && (AsObjectRefBase::_as_refsCount() - refsCount) == 2;
-            succeed = succeed && (AsObjectRefBase::_as_unregRefsCount() - unregRefsCount) == 2;
+            succeed = succeed && (AsObjectRefBase::_as_autoRefsCount() - autoRefsCount) == 2;
         }
 
         succeed = succeed && (AsObjectRefBase::_as_refsCount() - refsCount) == 2;
-        succeed = succeed && unregRefsCount == AsObjectRefBase::_as_unregRefsCount();
+        succeed = succeed && autoRefsCount == AsObjectRefBase::_as_autoRefsCount();
 
         AsObjectRefBase::gc();
 
         succeed = succeed && refsCount == AsObjectRefBase::_as_refsCount();
         succeed = succeed && staticRefsCount == AsObjectRefBase::_as_staticRefsCount();
-        succeed = succeed && unregRefsCount == AsObjectRefBase::_as_unregRefsCount();
+        succeed = succeed && autoRefsCount == AsObjectRefBase::_as_autoRefsCount();
         ensure(succeed);
     }
 }

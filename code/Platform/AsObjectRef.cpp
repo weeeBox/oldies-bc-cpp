@@ -11,7 +11,7 @@ GcTime AsObjectRefBase::m_gcGlobalTime = 0;
 #ifndef AS_NO_DEBUG
 int AsObjectRefBase::m_refsCount = 0;
 int AsObjectRefBase::m_staticRefsCount = 0;
-int AsObjectRefBase::m_unregRefsCount = 0;
+int AsObjectRefBase::m_autoRefsCount = 0;
 #endif // AS_NO_DEBUG
 
 AsObjectRefBase::AsObjectRefBase() :
@@ -20,7 +20,7 @@ AsObjectRefBase::AsObjectRefBase() :
   m_next(0),
   m_state(MASK_AUTO)
 {
-    AS_DEBUG(++m_unregRefsCount);
+    AS_DEBUG(++m_autoRefsCount);
 }
 
 AsObjectRefBase::AsObjectRefBase(const AsObjectRefBase& other) :
@@ -30,7 +30,7 @@ AsObjectRefBase::AsObjectRefBase(const AsObjectRefBase& other) :
   m_state(MASK_AUTO)
 {
     set(other.m_object); 
-    AS_DEBUG(++m_unregRefsCount);
+    AS_DEBUG(++m_autoRefsCount);
 }
 
 AsObjectRefBase::AsObjectRefBase(AsObject* obj) :
@@ -40,7 +40,7 @@ AsObjectRefBase::AsObjectRefBase(AsObject* obj) :
   m_state(MASK_AUTO)
 {
     set(obj);
-    AS_DEBUG(++m_unregRefsCount);
+    AS_DEBUG(++m_autoRefsCount);
 }
 
 AsObjectRefBase::AsObjectRefBase(bool staticFlag) :
@@ -63,7 +63,7 @@ AsObjectRefBase::~AsObjectRefBase()
     unreg();
 
 #ifndef AS_NO_DEBUG
-    if (m_state == MASK_AUTO) --m_unregRefsCount;
+    if (m_state == MASK_AUTO) --m_autoRefsCount;
     else if (m_state == MASK_MEMBER) --m_refsCount;
     else if (m_state == MASK_STATIC) --m_staticRefsCount;    
 #endif // AS_NO_DEBUG
