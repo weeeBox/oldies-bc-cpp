@@ -28,7 +28,8 @@ protected:
     void set(const AsObjectRefBase& other);
 
 private:
-    bool m_static;     
+    enum { TYPE_UNREGISTERED, TYPE_MEMBER, TYPE_STATIC };
+    char m_type;
 
     AsObjectRefBase* m_prev;
     AsObjectRefBase* m_next;

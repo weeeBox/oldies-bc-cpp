@@ -10,36 +10,33 @@ AsObjectRefBase::AsObjectRefBase() :
   m_object(0),
   m_prev(0),
   m_next(0),
-  m_static(0)
-{
-    reg();
+  m_type(TYPE_UNREGISTERED)
+{    
 }
 
 AsObjectRefBase::AsObjectRefBase(const AsObjectRefBase& other) :
   m_object(0),
   m_prev(0),
   m_next(0),
-  m_static(0)
+  m_type(TYPE_UNREGISTERED)
 {
-    set(other.m_object);
-    reg();
+    set(other.m_object); 
 }
 
 AsObjectRefBase::AsObjectRefBase(AsObject* obj) :
   m_object(0),
   m_prev(0),
   m_next(0),
-  m_static(0)
+  m_type(TYPE_UNREGISTERED)
 {
-    set(obj);
-    reg();
+    set(obj);    
 }
 
 AsObjectRefBase::AsObjectRefBase(bool isStatic) :
   m_object(0),
   m_prev(0),
   m_next(0),
-  m_static(isStatic)
+  m_type(isStatic ? TYPE_STATIC : TYPE_UNREGISTERED)
 {
     reg();
 }
@@ -65,27 +62,27 @@ void AsObjectRefBase::set(const AsObjectRefBase& other)
 }
 
 void AsObjectRefBase::reg()
-{
-    if (m_static)
-    {
-        addToList(&m_refHeadStatic);
-    }
-    else
+{    
+    if (m_type == TYPE_MEMBER)
     {
         addToList(&m_refHead);
+    }
+    else if (m_type == TYPE_STATIC)
+    {
+        addToList(&m_refHeadStatic);
     }
 }
 
 void AsObjectRefBase::unreg()
 {
-    if (m_static)
-    {
-        removeFromList(&m_refHeadStatic);
-    }
-    else
+    if (m_type == TYPE_MEMBER)
     {
         removeFromList(&m_refHead);
     }
+    else if (m_type == TYPE_STATIC)
+    {
+        removeFromList(&m_refHeadStatic);
+    }    
 }
 
 void AsObjectRefBase::addToList(AsObjectRefBase **listHead)
