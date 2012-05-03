@@ -49,9 +49,10 @@
     protected: const char* _as_typename(int depth) { if (depth) return base::_as_typename(depth - 1); else return _as_typename(); }
 
 /* common object code */
-#define AS_OBJ(type, base) AS_TYPENAME(type, base) \
+#define AS_OBJ(type, base) \
+    AS_TYPENAME(type, base) \
     AS_STATIC_INIT_H(type); \
-    AS_FIELDS_H(type)
+    AS_FIELDS_H(type)    
 
 /* type checking */
 #define AS_INSTANCE(obj, typeName) (obj != nil && obj->__internalInstanceOf(typeName::_as_typename()))

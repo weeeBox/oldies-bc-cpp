@@ -18,6 +18,7 @@ namespace tut
     {
     public:
         AS_OBJ(ClassA, AsObject);
+        AS_CONSTRUCTOR_H(ClassA,());
     public:
         ClassA() :
           member(false)
@@ -31,15 +32,29 @@ namespace tut
 
     AsObject_ref ClassA::staticMember(true);
 
+    AS_CONSTRUCTOR_CPP(ClassA,()) {}
+
     template<>
     template<>
     void AsObjectRef_object::test<1>()
     {
         set_test_name("abs test");
 
-        bool succeed = AsObjectRefBase::_as_staticRefsCount() == 0;
-        succeed = succeed && AsObjectRefBase::_as_refsCount() == 0;
-        succeed = succeed && AsObjectRefBase::_as_unregRefsCount() == 0;
+        int refsCount = AsObjectRefBase::_as_refsCount();
+        int staticRefsCount = AsObjectRefBase::_as_staticRefsCount();
+        int unregRefsCount = AsObjectRefBase::_as_unregRefsCount();
+
+        bool succeed = true;
+
+        {
+            ClassA_ref classA = AS_NEW(ClassA, ());
+            succeed = succeed && (AsObjectRefBase::_as_refsCount() - refsCount) == 1;
+            succeed = succeed && (AsObjectRefBase::_as_unregRefsCount() - unregRefsCount) == 1;
+        }
+
+        succeed = succeed && refsCount == AsObjectRefBase::_as_refsCount();
+        succeed = succeed && staticRefsCount == AsObjectRefBase::_as_staticRefsCount();
+        succeed = succeed && unregRefsCount == AsObjectRefBase::_as_unregRefsCount();
         ensure(succeed);
     }
 }

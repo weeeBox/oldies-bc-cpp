@@ -47,7 +47,7 @@ AsObjectRefBase::AsObjectRefBase(bool isStatic) :
   m_object(0),
   m_prev(0),
   m_next(0),
-  m_type(isStatic ? TYPE_STATIC : TYPE_UNREGISTERED)
+  m_type(isStatic ? TYPE_STATIC : TYPE_MEMBER)
 {
     reg();
 }
