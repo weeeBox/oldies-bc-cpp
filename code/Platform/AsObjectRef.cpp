@@ -18,7 +18,7 @@ AsObjectRefBase::AsObjectRefBase() :
   m_object(0),
   m_prev(0),
   m_next(0),
-  m_type(TYPE_UNREGISTERED)
+  m_state(MASK_AUTO)
 {
     AS_DEBUG(++m_unregRefsCount);
 }
@@ -27,7 +27,7 @@ AsObjectRefBase::AsObjectRefBase(const AsObjectRefBase& other) :
   m_object(0),
   m_prev(0),
   m_next(0),
-  m_type(TYPE_UNREGISTERED)
+  m_state(MASK_AUTO)
 {
     set(other.m_object); 
     AS_DEBUG(++m_unregRefsCount);
@@ -37,22 +37,22 @@ AsObjectRefBase::AsObjectRefBase(AsObject* obj) :
   m_object(0),
   m_prev(0),
   m_next(0),
-  m_type(TYPE_UNREGISTERED)
+  m_state(MASK_AUTO)
 {
     set(obj);
     AS_DEBUG(++m_unregRefsCount);
 }
 
-AsObjectRefBase::AsObjectRefBase(bool isStatic) :
+AsObjectRefBase::AsObjectRefBase(bool staticFlag) :
   m_object(0),
   m_prev(0),
   m_next(0),
-  m_type(isStatic ? TYPE_STATIC : TYPE_MEMBER)
+  m_state(staticFlag ? MASK_STATIC : MASK_MEMBER)
 {
     reg();
 
 #ifndef AS_NO_DEBUG
-    if (isStatic) ++m_staticRefsCount;
+    if (staticFlag) ++m_staticRefsCount;
     else ++m_refsCount;
 #endif // AS_NO_DEBUG
 }
@@ -63,9 +63,9 @@ AsObjectRefBase::~AsObjectRefBase()
     unreg();
 
 #ifndef AS_NO_DEBUG
-    if (m_type == TYPE_UNREGISTERED) --m_unregRefsCount;
-    else if (m_type == TYPE_MEMBER) --m_refsCount;
-    else if (m_type == TYPE_STATIC) --m_staticRefsCount;    
+    if (m_state == MASK_AUTO) --m_unregRefsCount;
+    else if (m_state == MASK_MEMBER) --m_refsCount;
+    else if (m_state == MASK_STATIC) --m_staticRefsCount;    
 #endif // AS_NO_DEBUG
 }
 
@@ -85,30 +85,44 @@ void AsObjectRefBase::set(const AsObjectRefBase& other)
 
 void AsObjectRefBase::reg()
 {    
-    if (m_type == TYPE_MEMBER)
+    if (isMember())
     {
         addToList(&m_refHead);        
     }
-    else if (m_type == TYPE_STATIC)
+    else if (isStatic())
     {
         addToList(&m_refHeadStatic);        
+    }
+    else
+    {
+        ASSERT(false);
     }
 }
 
 void AsObjectRefBase::unreg()
 {
-    if (m_type == TYPE_MEMBER)
-    {
-        removeFromList(&m_refHead);        
+    if (isInList())
+    {    
+        if (isMember())
+        {
+            removeFromList(&m_refHead);        
+        }
+        else if (isStatic())
+        {
+            removeFromList(&m_refHeadStatic);        
+        }
+        else
+        {
+            ASSERT(false);
+        }
     }
-    else if (m_type == TYPE_STATIC)
-    {
-        removeFromList(&m_refHeadStatic);        
-    }    
 }
 
 void AsObjectRefBase::addToList(AsObjectRefBase **listHead)
 {    
+    ASSERT(!isInList());
+    markInList();
+
     if (*listHead) (*listHead)->m_prev = this;    
 
     m_prev = NULL;
@@ -119,10 +133,13 @@ void AsObjectRefBase::addToList(AsObjectRefBase **listHead)
 
 void AsObjectRefBase::removeFromList(AsObjectRefBase **listHead)
 {
+    ASSERT(isInList());
+    markNotInList();
+
     if (m_prev) m_prev->m_next = m_next;
     else *listHead = m_next;
 
-    if (m_next) m_next->m_prev = m_prev;
+    if (m_next) m_next->m_prev = m_prev;    
 }
 
 void AsObjectRefBase::gc()

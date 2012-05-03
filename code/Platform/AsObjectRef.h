@@ -13,7 +13,7 @@ public:
     AsObjectRefBase();
     AsObjectRefBase(const AsObjectRefBase& other);
     AsObjectRefBase(AsObject* obj);
-    explicit AsObjectRefBase(bool isStatic);
+    explicit AsObjectRefBase(bool staticFlag);
     virtual ~AsObjectRefBase();
 
 public:
@@ -28,14 +28,26 @@ protected:
     void set(const AsObjectRefBase& other);
 
 private:
-    enum { TYPE_UNREGISTERED, TYPE_MEMBER, TYPE_STATIC };
-    char m_type;
+    enum 
+    { 
+        MASK_AUTO = 0x1, 
+        MASK_MEMBER = 0x2, 
+        MASK_STATIC = 0x4,
+        MASK_IN_LIST = 0xf0,
+    };
+    unsigned char m_state;
 
     AsObjectRefBase* m_prev;
     AsObjectRefBase* m_next;
 
     static AsObjectRefBase* m_refHead;
     static AsObjectRefBase* m_refHeadStatic;
+        
+    inline bool isMember() { return (m_state & MASK_MEMBER) != 0; }
+    inline bool isStatic() { return (m_state & MASK_STATIC) != 0; }    
+    inline bool isInList() { return (m_state & MASK_IN_LIST) != 0; }
+    inline void markInList() { m_state |= MASK_IN_LIST; }
+    inline void markNotInList() { m_state &= ~MASK_IN_LIST; }
 
 #ifndef AS_NO_DEBUG
     static int m_refsCount;
