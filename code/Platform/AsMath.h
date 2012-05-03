@@ -40,7 +40,7 @@ public:
         if (diff < -0.5f)
             return trunc - 1.0f;
 
-        return trunc;
+        return float(trunc);
     }
     inline static float sin(float x) { return ::sin(x); }
     inline static float sqrt(float x) { return ::sqrt(x); }

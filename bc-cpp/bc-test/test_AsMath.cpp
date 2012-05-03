@@ -268,8 +268,8 @@ namespace tut
 
         bool succeed = true;
         succeed = succeed && abs(AsMath::tan(0)) < 0.00001f;
-        succeed = succeed && abs(AsMath::tan(0.25 * AsMath::PI) - 1.0f) < 0.00001f;
-        succeed = succeed && abs(AsMath::tan(0.75 * AsMath::PI) + 1.0f) < 0.00001f;
+        succeed = succeed && abs(AsMath::tan(0.25f * AsMath::PI) - 1.0f) < 0.00001f;
+        succeed = succeed && abs(AsMath::tan(0.75f * AsMath::PI) + 1.0f) < 0.00001f;
         succeed = succeed && abs(AsMath::tan(AsMath::PI)) < 0.00001f;
 
         ensure(succeed);

@@ -3,8 +3,15 @@
 
 #include "AsBc.h"
 
-#define ASSERT(x) if (!(x)) abort()
-#define IMPLEMENT_ME abort();
+#ifdef AS_NO_DEBUG
+    #define ASSERT(x)
+    #define IMPLEMENT_ME
+    #define AS_DEBUG(x)
+#else // AS_NO_DEBUG
+    #define ASSERT(x) if (!(x)) abort()
+    #define IMPLEMENT_ME abort()
+    #define AS_DEBUG(x) x
+#endif // AS_NO_DEBUG
 
 /*class AsDebug : public AsObject
 {

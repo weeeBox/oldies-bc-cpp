@@ -24,6 +24,7 @@
     </ClCompile>
     <ClCompile Include="test_AsDictionary.cpp" />
     <ClCompile Include="test_AsMath.cpp" />
+    <ClCompile Include="test_AsObjectRef.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="tut">

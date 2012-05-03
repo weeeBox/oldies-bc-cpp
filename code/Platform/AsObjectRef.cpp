@@ -1,17 +1,26 @@
 #include "AsObjectRef.h"
 #include "AsObject.h"
 
+#include "AsDebug.h"
+
 AsObjectRefBase* AsObjectRefBase::m_refHead = 0;
 AsObjectRefBase* AsObjectRefBase::m_refHeadStatic = 0;
 
 GcTime AsObjectRefBase::m_gcGlobalTime = 0;
+
+#ifndef AS_NO_DEBUG
+int AsObjectRefBase::m_refsCount = 0;
+int AsObjectRefBase::m_staticRefsCount = 0;
+int AsObjectRefBase::m_unregRefsCount = 0;
+#endif // AS_NO_DEBUG
 
 AsObjectRefBase::AsObjectRefBase() :
   m_object(0),
   m_prev(0),
   m_next(0),
   m_type(TYPE_UNREGISTERED)
-{    
+{
+    AS_DEBUG(++m_unregRefsCount);
 }
 
 AsObjectRefBase::AsObjectRefBase(const AsObjectRefBase& other) :
@@ -21,6 +30,7 @@ AsObjectRefBase::AsObjectRefBase(const AsObjectRefBase& other) :
   m_type(TYPE_UNREGISTERED)
 {
     set(other.m_object); 
+    AS_DEBUG(++m_unregRefsCount);
 }
 
 AsObjectRefBase::AsObjectRefBase(AsObject* obj) :
@@ -29,7 +39,8 @@ AsObjectRefBase::AsObjectRefBase(AsObject* obj) :
   m_next(0),
   m_type(TYPE_UNREGISTERED)
 {
-    set(obj);    
+    set(obj);
+    AS_DEBUG(++m_unregRefsCount);
 }
 
 AsObjectRefBase::AsObjectRefBase(bool isStatic) :
@@ -66,10 +77,12 @@ void AsObjectRefBase::reg()
     if (m_type == TYPE_MEMBER)
     {
         addToList(&m_refHead);
+        AS_DEBUG(++m_refsCount);
     }
     else if (m_type == TYPE_STATIC)
     {
         addToList(&m_refHeadStatic);
+        AS_DEBUG(++m_staticRefsCount);
     }
 }
 
@@ -78,11 +91,17 @@ void AsObjectRefBase::unreg()
     if (m_type == TYPE_MEMBER)
     {
         removeFromList(&m_refHead);
+        AS_DEBUG(--m_refsCount);
     }
     else if (m_type == TYPE_STATIC)
     {
         removeFromList(&m_refHeadStatic);
-    }    
+        AS_DEBUG(--m_staticRefsCount);
+    }
+    else
+    {
+        AS_DEBUG(--m_unregRefsCount);
+    }
 }
 
 void AsObjectRefBase::addToList(AsObjectRefBase **listHead)

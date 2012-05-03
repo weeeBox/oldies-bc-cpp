@@ -36,6 +36,12 @@ private:
 
     static AsObjectRefBase* m_refHead;
     static AsObjectRefBase* m_refHeadStatic;
+
+#ifndef AS_NO_DEBUG
+    static int m_refsCount;
+    static int m_staticRefsCount;
+    static int m_unregRefsCount;
+#endif // AS_NO_DEBUG
     
     void reg();
     void unreg();
@@ -52,6 +58,13 @@ private:
 
 public:
     inline static GcTime gcGlobalTime() { return m_gcGlobalTime; }
+
+#ifndef AS_NO_DEBUG
+    inline static int _as_refsCount() { return m_refsCount; }
+    inline static int _as_staticRefsCount() { return m_staticRefsCount; }
+    inline static int _as_unregRefsCount() { return m_unregRefsCount; }
+    inline static int _as_totalRefsCount() { return _as_refsCount() + _as_staticRefsCount() + _as_unregRefsCount(); }
+#endif // AS_NO_DEBUG
 };
 
 template <class T>

@@ -1,7 +1,7 @@
 #include "AsObject.h"
 #include "AsString.h"
 
-AsObject_ref AsObject::__as_null(true);
+AsObject_ref AsObject::__as_null = AsObject_ref();
 
 AsObject::AsObject() :
   m_refCount(0),
