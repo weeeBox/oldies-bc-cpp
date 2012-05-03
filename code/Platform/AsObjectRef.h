@@ -52,11 +52,9 @@ private:
 private:
     static const GcTime kAsGcGlobalTimeMax = 32767;
     static GcTime m_gcGlobalTime;
-    static void gc();
-    static void mark(AsObjectRefBase *refHead);
-    static void sweep(AsObjectRefBase *refHead);
 
 public:
+    static void gc();
     inline static GcTime gcGlobalTime() { return m_gcGlobalTime; }
 
 #ifndef AS_NO_DEBUG
@@ -79,7 +77,7 @@ public:
 public:
     inline T* operator->() const { ASSERT(m_object); return (T*)m_object; }
     inline T* operator*() const { ASSERT(m_object); return (T*)m_object; }
-    inline AsObjectRef& operator= (const AsObjectRefBase& other) { set(other.m_object); return *this; }
+    inline AsObjectRef& operator= (const AsObjectRef& other) { set(other.m_object); return *this; }
 
 protected:
     inline T* _object() { return (T*)m_object; }

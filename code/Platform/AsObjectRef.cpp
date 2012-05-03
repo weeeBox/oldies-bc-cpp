@@ -50,12 +50,23 @@ AsObjectRefBase::AsObjectRefBase(bool isStatic) :
   m_type(isStatic ? TYPE_STATIC : TYPE_MEMBER)
 {
     reg();
+
+#ifndef AS_NO_DEBUG
+    if (isStatic) ++m_staticRefsCount;
+    else ++m_refsCount;
+#endif // AS_NO_DEBUG
 }
 
 AsObjectRefBase::~AsObjectRefBase()
 {
     set(0);
     unreg();
+
+#ifndef AS_NO_DEBUG
+    if (m_type == TYPE_UNREGISTERED) --m_unregRefsCount;
+    else if (m_type == TYPE_MEMBER) --m_refsCount;
+    else if (m_type == TYPE_STATIC) --m_staticRefsCount;    
+#endif // AS_NO_DEBUG
 }
 
 void AsObjectRefBase::set(AsObject* obj)
@@ -76,13 +87,11 @@ void AsObjectRefBase::reg()
 {    
     if (m_type == TYPE_MEMBER)
     {
-        addToList(&m_refHead);
-        AS_DEBUG(++m_refsCount);
+        addToList(&m_refHead);        
     }
     else if (m_type == TYPE_STATIC)
     {
-        addToList(&m_refHeadStatic);
-        AS_DEBUG(++m_staticRefsCount);
+        addToList(&m_refHeadStatic);        
     }
 }
 
@@ -90,24 +99,21 @@ void AsObjectRefBase::unreg()
 {
     if (m_type == TYPE_MEMBER)
     {
-        removeFromList(&m_refHead);
-        AS_DEBUG(--m_refsCount);
+        removeFromList(&m_refHead);        
     }
     else if (m_type == TYPE_STATIC)
     {
-        removeFromList(&m_refHeadStatic);
-        AS_DEBUG(--m_staticRefsCount);
-    }
-    else
-    {
-        AS_DEBUG(--m_unregRefsCount);
-    }
+        removeFromList(&m_refHeadStatic);        
+    }    
 }
 
 void AsObjectRefBase::addToList(AsObjectRefBase **listHead)
 {    
-    if (*listHead) (*listHead)->m_next = this;
-    m_prev = *listHead;
+    if (*listHead) (*listHead)->m_prev = this;    
+
+    m_prev = NULL;
+    m_next = *listHead;
+    
     *listHead = this;
 }
 
@@ -124,39 +130,46 @@ void AsObjectRefBase::gc()
     // inc gc time    
     m_gcGlobalTime = m_gcGlobalTime == kAsGcGlobalTimeMax ? 1 : (m_gcGlobalTime + 1);
 
-    // mark	all statics
-    mark(m_refHeadStatic);
-
-    // sweep unmarked statics
-    sweep(m_refHeadStatic);
-
-    // sweep unmarked non-statics
-    sweep(m_refHead);   
-}
-
-void AsObjectRefBase::mark(AsObjectRefBase *refHead)
-{
-    for (AsObjectRefBase* ref = refHead; ref; ref = ref->m_next)
+    // mark	all statics    
+    for (AsObjectRefBase* ref = m_refHeadStatic; ref; ref = ref->m_next)
     {       
         AsObject* obj = ref->m_object;
         if (obj) obj->_as_gc_mark();
     }
-}
 
-void AsObjectRefBase::sweep(AsObjectRefBase *refHead)
-{
-    for (AsObjectRefBase* ref = refHead; ref;)
+    // sweep unmarked statics
+    for (AsObjectRefBase* ref = m_refHeadStatic; ref;)
     {
         AsObject* obj = ref->m_object;
         if (obj && obj->_as_gc_mark_needed())
-        {
+        {            
             AsObjectRefBase* prev = ref->m_prev;
 
             ref->unreg();
-            ref->set(0);
+            ref->set(0);			
 
-            if (prev) ref = prev->m_next;
-            else ref = refHead;
+            if (prev) ref = prev->m_prev;
+            else ref = m_refHeadStatic;
+        }
+        else
+        {
+            ref = ref->m_next;
+        }
+    }
+
+    // sweep unmarked non-statics    
+    for (AsObjectRefBase* ref = m_refHead; ref;)
+    {
+        AsObject* obj = ref->m_object;
+        if (obj && obj->_as_gc_mark_needed())
+        {            
+            AsObjectRefBase* prev = ref->m_prev;
+
+            ref->unreg();
+            ref->set(0);			
+
+            if (prev) ref = prev->m_prev;
+            else ref = m_refHead;
         }
         else
         {
