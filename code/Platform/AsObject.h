@@ -50,9 +50,7 @@
 
 /* common object code */
 #define AS_OBJ(type, base) \
-    AS_TYPENAME(type, base) \
-    AS_STATIC_INIT_H(type); \
-    AS_FIELDS_H(type)    
+    AS_TYPENAME(type, base)    
 
 /* type checking */
 #define AS_INSTANCE(obj, typeName) (obj != nil && obj->__internalInstanceOf(typeName::_as_typename()))
@@ -116,10 +114,6 @@ private:
     void retain();
     void release();    
 
-public:
-    static void _as_static_init_AsObject() {}
-    void _as_constructor_AsObject() {}
-
 private:
     GcTime m_gcTime;
 
@@ -149,6 +143,7 @@ public:
 namespace AsGlobal
 {
     void trace(const AsObject& obj);
+    void trace(const AsString_ref& obj);
     void trace(int val);
     void trace(float val);
     void trace(bool val);

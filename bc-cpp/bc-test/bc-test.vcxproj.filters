@@ -25,6 +25,9 @@
     <ClCompile Include="test_AsDictionary.cpp" />
     <ClCompile Include="test_AsMath.cpp" />
     <ClCompile Include="test_AsObjectRef.cpp" />
+    <ClCompile Include="..\..\code\Converted\AsPlayGround.cpp">
+      <Filter>Converted</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="tut">
@@ -35,6 +38,9 @@
     </Filter>
     <Filter Include="Platform">
       <UniqueIdentifier>{82c4de89-a5f8-477b-9802-396a48020537}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Converted">
+      <UniqueIdentifier>{a413bf9f-739a-4b25-9d89-2f8756e3dc56}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -106,6 +112,9 @@
     </ClInclude>
     <ClInclude Include="..\..\code\Platform\AsMath.h">
       <Filter>Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\Converted\AsPlayGround.h">
+      <Filter>Converted</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,5 +1,4 @@
 #include "AsMathHelper.h"
-#include "AsMathHelper.h"
  
  
 float AsMathHelper::toRadians(float degrees)
@@ -22,9 +21,11 @@ bool AsMathHelper::epsilonEquals(float a, float b)
 	return (AsMath::abs((a - b)) < epsilon);
 }
  
-AsMathHelper::AsMathHelper()
+bool AsMathHelper::_as_static_initialized_AsMathHelper = false;
+void AsMathHelper::_as_static_init_AsMathHelper()
 {
+	if (!_as_static_initialized_AsMathHelper)
+	{
+		_as_static_initialized_AsMathHelper = true;
+	}
 }
- 
-AS_STATIC_INIT_BEGIN(AsMathHelper,AsObject)
-AS_STATIC_INIT_END

@@ -47,6 +47,11 @@ void AsObject::_as_gc_mark()
 
 void AsGlobal::trace(const AsObject& obj)
 {
+    
+}
+
+void AsGlobal::trace(const AsString_ref& str)
+{
 
 }
 

@@ -48,6 +48,3 @@ uint AsArray::push(const AsObject_ref& arg)
 AsArray::AsArray()
 {
 }
- 
-AS_STATIC_INIT_BEGIN(AsArray,AsObject)
-AS_STATIC_INIT_END

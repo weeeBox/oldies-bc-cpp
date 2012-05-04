@@ -5,6 +5,8 @@
  
 #include "AsObject.h"
  
+ 
+ 
 AS_CLASS(AsMathHelper);
  
 class AsMathHelper : public AsObject
@@ -25,9 +27,11 @@ public:
 	static bool epsilonEquals(float a, float b);
 	
 	
-	
 protected:
-	AsMathHelper();
+	static void _as_static_init_AsMathHelper();
+	
+private:
+	static bool _as_static_initialized_AsMathHelper;
 };
  
 #endif // AsMathHelper_h__

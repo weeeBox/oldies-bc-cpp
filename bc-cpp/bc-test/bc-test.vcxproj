@@ -75,6 +75,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\code\Converted\AsPlayGround.cpp" />
     <ClCompile Include="..\..\code\Platform\AsArray.cpp" />
     <ClCompile Include="..\..\code\Platform\AsDebug.cpp" />
     <ClCompile Include="..\..\code\Platform\AsDictionary.cpp" />
@@ -89,6 +90,7 @@
     <ClCompile Include="test_AsVector.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\code\Converted\AsPlayGround.h" />
     <ClInclude Include="..\..\code\Platform\AsArray.h" />
     <ClInclude Include="..\..\code\Platform\AsBc.h" />
     <ClInclude Include="..\..\code\Platform\AsDebug.h" />
