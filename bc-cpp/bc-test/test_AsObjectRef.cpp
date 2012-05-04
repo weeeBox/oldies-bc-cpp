@@ -14,6 +14,7 @@ namespace tut
 
     // classA
 
+    /*
     AS_CLASS(ClassA);
 
     class ClassA : public AsObject
@@ -291,4 +292,5 @@ namespace tut
         succeed = succeed && autoRefsCount == AsObjectRefBase::_as_autoRefsCount();
         ensure(succeed);
     }
+    */
 }

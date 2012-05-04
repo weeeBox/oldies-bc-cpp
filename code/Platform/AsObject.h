@@ -19,30 +19,6 @@
 #define AS_NEW_VECTOR(type, capacity) _as_AsRefVector<type>::_as_create(capacity)
 #define AS_NEW_PRIMITIVES_VECTOR(type, capacity) AsVector<type>::_as_create(capacity)
 
-/* constructor */
-#define AS_CONSTRUCTOR_H(type, initializer) \
-    public: inline static type##_ref _as_create_##type initializer { type##_ref __instance(new type()); __instance->_as_constructor_##type initializer; return __instance; } \
-    protected: void _as_constructor_##type initializer
-
-#define AS_CONSTRUCTOR_CPP(type, initializer) \
-    void type::_as_constructor_##type initializer
-
-#define AS_CONSTRUCTOR(type, initializer) _as_constructor_##type initializer
-
-/* fields */
-#define AS_FIELDS_H(type) protected: void _as_init_##type()
-#define AS_FIELDS_CPP(type) void type::_as_init_##type()
-#define AS_FIELDS(type) _as_init_##type()
-
-/* statics */
-#define AS_STATIC_INIT_H(type) \
-    private: static bool _as_static_initialized_##type; \
-    public: static void _as_static_init_##type();
-#define AS_STATIC_INIT_BEGIN(type, base) \
-    bool type::_as_static_initialized_##type = false; \
-    void type::_as_static_init_##type() { if (!_as_static_initialized_##type) { _as_static_initialized_##type = true; _as_static_init_##base();
-#define AS_STATIC_INIT_END }}
-
 /* runtime type info */
 #define AS_TYPENAME(type, base) \
     public: inline static const char* _as_typename() { return #type; } \
@@ -56,10 +32,7 @@
 #define AS_INSTANCE(obj, typeName) (obj != nil && obj->__internalInstanceOf(typeName::_as_typename()))
 
 /* gc */
-#define AS_GC_MARK_H public: void _as_gc_mark()
-#define AS_GC_MARK_BEGIN(type, base) void type::_as_gc_mark() { if (_as_gc_mark_needed()) { base::_as_gc_mark();
 #define AS_GC_MARK(x) if (x != AS_NULL) (x)->_as_gc_mark();
-#define AS_GC_MARK_END }}
 
 /* interface boxing */
 #define AS_INTERFACE_BOX_BEGIN(type,base) \
