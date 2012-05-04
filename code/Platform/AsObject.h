@@ -13,6 +13,8 @@
 
 /* reference type */
 #define AS_CLASS(type) class type; typedef AsObjectRef<type> type##_ref
+#define AS_VECTOR(type) typedef _as_AsRefVector<type##_ref>::Ref _V_##type##_ref
+#define AS_VECTOR_PRIMITIVE(type) typedef AsVector<type>::Ref _V_##type##_ref
 
 /* new */
 #define AS_NEW(type, initializer) type::_as_create_##type initializer
