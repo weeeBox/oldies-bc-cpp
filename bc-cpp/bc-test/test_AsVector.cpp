@@ -27,7 +27,7 @@ namespace tut
         set_test_name("Length test 1");
         
         const int size = 5;
-        AsVector<int>::Ref vector = AS_NEW_PRIMITIVES_VECTOR(int, size) << 1 << 2 << 3 << 4 << 5;
+        AsVector<int>::Ref vector = AS_NEW_PRIMITIVES_VECTOR(int,(size)) << 1 << 2 << 3 << 4 << 5;
 
         ensure(vector->length() == size);
     }
@@ -41,7 +41,7 @@ namespace tut
         const int size = 5;
         int arr[size] = {1, 2, 3, 4, 5};
 
-        AsVector<int>::Ref vector = AS_NEW_PRIMITIVES_VECTOR(int, size) << 1 << 2 << 3 << 4 << 5;
+        AsVector<int>::Ref vector = AS_NEW_PRIMITIVES_VECTOR(int,(size)) << 1 << 2 << 3 << 4 << 5;
         bool succeed = vector->length() == size;
 
         for (int i = 0; i < vector->length(); ++i)
@@ -70,7 +70,7 @@ namespace tut
             str1, str2, str3, str4, str5
         };
 
-        AsVector<AsString_ref>::Ref vector = AS_NEW_VECTOR(AsString, size) << str1 << str2 << str3 << str4 << str5;
+        AsVector<AsString_ref>::Ref vector = AS_NEW_VECTOR(AsString,(size)) << str1 << str2 << str3 << str4 << str5;
         bool succeed = vector->length() == size;
 
         for (int i = 0; i < vector->length(); ++i)
@@ -114,7 +114,7 @@ namespace tut
         succeed = succeed && str4->retainCount() == 1;
         succeed = succeed && str5->retainCount() == 1;
 
-        AsVector<AsString_ref>::Ref vector = AS_NEW_VECTOR(AsString, size) << str1 << str2 << str3 << str4 << str5;
+        AsVector<AsString_ref>::Ref vector = AS_NEW_VECTOR(AsString,(size)) << str1 << str2 << str3 << str4 << str5;
         succeed = succeed && vector->length() == size;
 
         succeed = succeed && str1->retainCount() == 2;
@@ -153,7 +153,7 @@ namespace tut
 
         const int size = 5;       
 
-        AsVector<int>::Ref vector = AS_NEW_PRIMITIVES_VECTOR(int, size) << 1 << 2 << 3 << 4 << 5;
+        AsVector<int>::Ref vector = AS_NEW_PRIMITIVES_VECTOR(int,(size)) << 1 << 2 << 3 << 4 << 5;
         bool succeed = vector->length() == size;
 
         succeed = succeed && vector->indexOf(1) == 0;
@@ -185,7 +185,7 @@ namespace tut
         AsString_ref str6 = ASL("6");
         AsString_ref str7 = ASL("5");
                 
-        AsVector<AsString_ref>::Ref vector = AS_NEW_VECTOR(AsString, size) << str1 << str2 << str3 << str4 << str5;
+        AsVector<AsString_ref>::Ref vector = AS_NEW_VECTOR(AsString,(size)) << str1 << str2 << str3 << str4 << str5;
         bool succeed = vector->length() == size;
 
         succeed = succeed && vector->indexOf(str1) == 0;
@@ -211,7 +211,7 @@ namespace tut
 
         const int size = 5;       
 
-        AsVector<int>::Ref vector = AS_NEW_PRIMITIVES_VECTOR(int, size) << 1 << 2 << 3 << 4 << 5;
+        AsVector<int>::Ref vector = AS_NEW_PRIMITIVES_VECTOR(int,(size)) << 1 << 2 << 3 << 4 << 5;
         bool succeed = vector->length() == size;
 
         succeed = succeed && vector->lastIndexOf(1) == 0;
@@ -243,7 +243,7 @@ namespace tut
         AsString_ref str6 = ASL("6");
         AsString_ref str7 = ASL("5");
 
-        AsVector<AsString_ref>::Ref vector = AS_NEW_VECTOR(AsString, size) << str1 << str2 << str3 << str4 << str5;
+        AsVector<AsString_ref>::Ref vector = AS_NEW_VECTOR(AsString,(size)) << str1 << str2 << str3 << str4 << str5;
         bool succeed = vector->length() == size;
 
         succeed = succeed && vector->lastIndexOf(str1) == 0;
@@ -276,7 +276,7 @@ namespace tut
         AsString_ref str6 = ASL("6");
         AsString_ref str7 = ASL("5");
         
-        AsVector<AsString_ref>::Ref vector = AS_NEW_VECTOR(AsString, size);
+        AsVector<AsString_ref>::Ref vector = AS_NEW_VECTOR(AsString,(size));
         bool succeed = vector->length() == 0;
         succeed = succeed && vector->capacity() == size;
 
@@ -331,7 +331,7 @@ namespace tut
         AsString_ref str6 = ASL("6");
         AsString_ref str7 = ASL("5");
 
-        AsVector<AsString_ref>::Ref vector = AS_NEW_VECTOR(AsString, 0);
+        AsVector<AsString_ref>::Ref vector = AS_NEW_VECTOR(AsString,(0));
         bool succeed = vector->length() == 0;
         succeed = succeed && vector->capacity() == 0;
 
@@ -385,7 +385,7 @@ namespace tut
         AsString_ref str6 = ASL("6");
         AsString_ref str7 = ASL("5");
 
-        AsVector<AsString_ref>::Ref vector = AS_NEW_VECTOR(AsString, 3) << str1 << str2 << str3;
+        AsVector<AsString_ref>::Ref vector = AS_NEW_VECTOR(AsString,(3)) << str1 << str2 << str3;
         bool succeed = vector->length() == 3;        
 
         succeed = succeed && str1->retainCount() == 2;
@@ -433,7 +433,7 @@ namespace tut
         AsString_ref str4 = ASL("4");
         AsString_ref str5 = ASL("5");        
 
-        AsVector<AsString_ref>::Ref vector = AS_NEW_VECTOR(AsString, 3) << str1 << str2 << str3;
+        AsVector<AsString_ref>::Ref vector = AS_NEW_VECTOR(AsString,(3)) << str1 << str2 << str3;
         bool succeed = vector->length() == 3;        
 
         succeed = succeed && str1->retainCount() == 2;
@@ -494,7 +494,7 @@ namespace tut
         AsString_ref str5 = ASL("5");
         
 
-        AsVector<AsString_ref>::Ref vector = AS_NEW_VECTOR(AsString, 0);
+        AsVector<AsString_ref>::Ref vector = AS_NEW_VECTOR(AsString,(0));
         bool succeed = vector->length() == 0;
 
         vector->push(str1);
@@ -553,7 +553,7 @@ namespace tut
         AsString_ref str4 = ASL("4");
         AsString_ref str5 = ASL("5");
 
-        AsVector<AsString_ref>::Ref vector = AS_NEW_VECTOR(AsString, 1);
+        AsVector<AsString_ref>::Ref vector = AS_NEW_VECTOR(AsString,(1));
         bool succeed = vector->length() == 0;
 
         vector->unshift(str1);
@@ -650,7 +650,7 @@ namespace tut
         AsString_ref str4 = ASL("4");
         AsString_ref str5 = ASL("5");
 
-        AsVector<AsString_ref>::Ref vector = AS_NEW_VECTOR(AsString, 1);
+        AsVector<AsString_ref>::Ref vector = AS_NEW_VECTOR(AsString,(1));
         bool succeed = vector->length() == 0;
 
         vector->unshift(str1);
@@ -750,7 +750,7 @@ namespace tut
         AsString_ref str4 = ASL("4");
         AsString_ref str5 = ASL("5");
 
-        AsVector<AsString_ref>::Ref vector = AS_NEW_VECTOR(AsString, 3) << str1 << str2 << str3;
+        AsVector<AsString_ref>::Ref vector = AS_NEW_VECTOR(AsString,(3)) << str1 << str2 << str3;
         bool succeed = vector->length() == 3;
         
         succeed = succeed && str1->retainCount() == 2;
@@ -829,7 +829,7 @@ namespace tut
         int int4 = 4;
         int int5 = 5;
 
-        AsVector<int>::Ref vector = AS_NEW_PRIMITIVES_VECTOR(int, 5) << int1 << int2 << int3 << int4 << int5;
+        AsVector<int>::Ref vector = AS_NEW_PRIMITIVES_VECTOR(int,(5)) << int1 << int2 << int3 << int4 << int5;
         bool succeed = vector->length() == 5;
 
         AsVector<int>::Ref v1 = vector->slice();
@@ -872,7 +872,7 @@ namespace tut
         AsString_ref str4 = ASL("4");
         AsString_ref str5 = ASL("5");
 
-        AsVector<AsString_ref>::Ref vector = AS_NEW_VECTOR(AsString, 5) << str1 << str2 << str3 << str4 << str5;
+        AsVector<AsString_ref>::Ref vector = AS_NEW_VECTOR(AsString,(5)) << str1 << str2 << str3 << str4 << str5;
         bool succeed = vector->length() == 5;
 
         succeed = succeed && str1->retainCount() == 2;
@@ -977,7 +977,7 @@ namespace tut
         AsString_ref str4 = ASL("4");
         AsString_ref str5 = ASL("5");
 
-        AsVector<AsString_ref>::Ref vector = AS_NEW_VECTOR(AsString, 5) << str1 << str2 << str3 << str4 << str5;
+        AsVector<AsString_ref>::Ref vector = AS_NEW_VECTOR(AsString,(5)) << str1 << str2 << str3 << str4 << str5;
         bool succeed = vector->length() == 5;
 
         succeed = succeed && str1->retainCount() == 2;
@@ -1017,7 +1017,7 @@ namespace tut
         AsString_ref str4 = ASL("4");
         AsString_ref str5 = ASL("5");
 
-        AsVector<AsString_ref>::Ref vector = AS_NEW_VECTOR(AsString, 5) << str1 << str2 << str3 << str4 << str5;
+        AsVector<AsString_ref>::Ref vector = AS_NEW_VECTOR(AsString,(5)) << str1 << str2 << str3 << str4 << str5;
         bool succeed = vector->length() == 5;
 
         succeed = succeed && str1->retainCount() == 2;
@@ -1058,7 +1058,7 @@ namespace tut
         AsString_ref str4 = ASL("4");
         AsString_ref str5 = ASL("5");
 
-        AsVector<AsString_ref>::Ref vector = AS_NEW_VECTOR(AsString, 5) << str1 << str2 << str3 << str4 << str5;
+        AsVector<AsString_ref>::Ref vector = AS_NEW_VECTOR(AsString,(5)) << str1 << str2 << str3 << str4 << str5;
         bool succeed = vector->length() == 5;
 
         succeed = succeed && str1->retainCount() == 2;
@@ -1099,7 +1099,7 @@ namespace tut
         AsString_ref str4 = ASL("4");
         AsString_ref str5 = ASL("5");
 
-        AsVector<AsString_ref>::Ref vector = AS_NEW_VECTOR(AsString, 5) << str1 << str2 << str3 << str4 << str5;
+        AsVector<AsString_ref>::Ref vector = AS_NEW_VECTOR(AsString,(5)) << str1 << str2 << str3 << str4 << str5;
         bool succeed = vector->length() == 5;
 
         succeed = succeed && str1->retainCount() == 2;
@@ -1140,7 +1140,7 @@ namespace tut
         AsString_ref str4 = ASL("4");
         AsString_ref str5 = ASL("5");
 
-        AsVector<AsString_ref>::Ref vector = AS_NEW_VECTOR(AsString, 5) << str1 << str2 << str3 << str4 << str5;
+        AsVector<AsString_ref>::Ref vector = AS_NEW_VECTOR(AsString,(5)) << str1 << str2 << str3 << str4 << str5;
         bool succeed = vector->length() == 5;
 
         succeed = succeed && str1->retainCount() == 2;
@@ -1180,7 +1180,7 @@ namespace tut
         AsString_ref str4 = ASL("4");
         AsString_ref str5 = ASL("5");
 
-        AsVector<AsString_ref>::Ref vector = AS_NEW_VECTOR(AsString, 3) << str1 << str2 << str3;
+        AsVector<AsString_ref>::Ref vector = AS_NEW_VECTOR(AsString,(3)) << str1 << str2 << str3;
         bool succeed = vector->length() == 3;
 
         succeed = succeed && str1->retainCount() == 2;
@@ -1287,7 +1287,7 @@ namespace tut
         AsString_ref str4 = ASL("4");
         AsString_ref str5 = ASL("5");
 
-        AsVector<AsString_ref>::Ref vector = AS_NEW_VECTOR(AsString, 5) << str1 << str2 << str3 << str4 << str5;
+        AsVector<AsString_ref>::Ref vector = AS_NEW_VECTOR(AsString,(5)) << str1 << str2 << str3 << str4 << str5;
         bool succeed = vector->length() == 5;
 
         succeed = succeed && str1->retainCount() == 2;
@@ -1326,7 +1326,7 @@ namespace tut
     {
         set_test_name("Reverse test 2");
 
-        AsVector<AsString_ref>::Ref vector = AS_NEW_VECTOR(AsString, 0);
+        AsVector<AsString_ref>::Ref vector = AS_NEW_VECTOR(AsString,(0));
         bool succeed = vector->length() == 0;
 
         vector->reverse();
@@ -1347,10 +1347,10 @@ namespace tut
         AsString_ref str4 = ASL("4");
         AsString_ref str5 = ASL("5");
 
-        AsVector<AsString_ref>::Ref vector = AS_NEW_VECTOR(AsString, 3) << str1 << str2 << str3;
+        AsVector<AsString_ref>::Ref vector = AS_NEW_VECTOR(AsString,(3)) << str1 << str2 << str3;
         bool succeed = vector->length() == 3;
 
-        AsVector<AsString_ref>::Ref v = AS_NEW_VECTOR(AsString, 2) << str4 << str5;
+        AsVector<AsString_ref>::Ref v = AS_NEW_VECTOR(AsString,(2)) << str4 << str5;
         succeed = succeed && v->length() == 2;
 
         succeed = succeed && str1->retainCount() == 2;
@@ -1407,7 +1407,7 @@ namespace tut
         AsString_ref str4 = ASL("4");
         AsString_ref str5 = ASL("5");
 
-        AsVector<AsString_ref>::Ref vector = AS_NEW_VECTOR(AsString, 5) << str1 << str2 << str3 << str4 << str5;
+        AsVector<AsString_ref>::Ref vector = AS_NEW_VECTOR(AsString,(5)) << str1 << str2 << str3 << str4 << str5;
         bool succeed = vector->length() == 5;
 
         succeed = succeed && vector->toString() == ASL("[1,2,3,4,5]");

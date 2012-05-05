@@ -38,6 +38,7 @@ public:
 
 public:
     static inline Ref _as_create(int capacity) { return Ref(new AsVector(capacity)); }
+    static inline Ref _as_create(int capacity, bool fixed) { return Ref(new AsVector(capacity, fixed)); }
 
 protected:
     virtual Ref _as_create_same(int capacity) const { return AsVector::_as_create(capacity); }
@@ -215,7 +216,7 @@ public:
     }   
 
 protected:
-    AsVector(int capacity);
+    AsVector(int capacity, bool fixed = false);
 
 public:
     ~AsVector();
@@ -259,17 +260,18 @@ public:
     AS_TYPENAME(AsVector, AsObject);
 
 protected:
-    _as_AsRefVector(int capacity = DEFAULT_CAPACITY) : AsVector(capacity) {}
+    _as_AsRefVector(int capacity = DEFAULT_CAPACITY, bool fixed = false) : AsVector(capacity, fixed) {}
     Ref _as_create_same(int capacity) const { return _as_AsRefVector::_as_create(capacity); }
     void freeElement(int index);
 
 public:
     static inline Ref _as_create(int size) { return Ref(new _as_AsRefVector(size)); }
+    static inline Ref _as_create(int size, bool fixed) { return Ref(new _as_AsRefVector(size, fixed)); }
     ~_as_AsRefVector();
 };
  
 template <class T>
-AsVector<T>::AsVector(int capacity) : 
+AsVector<T>::AsVector(int capacity, bool fixed) : 
   m_data(0), 
   m_size(0), 
   m_capacity(capacity)      
