@@ -6,6 +6,22 @@
 #include "AsObject.h"
 #include "AsString.h"
 
+#define AS_VECTOR(type) typedef _as_AsRefVector<type##_ref>::Ref _V_##type##_ref
+#define AS_VECTOR_PRIMITIVE(type) typedef AsVector<type>::Ref _V_##type##_ref
+
+#define AS_NEW_VECTOR(type, initializer) _as_AsRefVector<type##_ref>::_as_create initializer
+#define AS_NEW_PRIMITIVES_VECTOR(type, initializer) AsVector<type>::_as_create initializer
+
+#define AS_FOREACH(type, var, collection) \
+    { _V_##type##_ref __##var##s_ = collection; \
+    if (__##var##s_ != AS_NULL) { for(_as_AsRefVector<type##_ref>::Iterator it = (__##var##s_)->iterator(); it.hasNext();) { type##_ref element = it.next();
+
+#define AS_PRIMITIVE_FOREACH(type, var, collection) \
+    { _V_##type##_ref __##var##s_ = collection; \
+    if (__##var##s_ != AS_NULL) { for(AsVector<type>::Iterator it = (__##var##s_)->iterator(); it.hasNext();) { type element = it.next();
+
+#define AS_FOREACH_END }}}
+
 template <class T> 
 class AsVector : public AsObject
 {
@@ -242,12 +258,12 @@ public:
     {
     private:
         int m_index;
-        AsVector* m_vector;
-    public:
-        Iterator(AsVector* vector) : m_index(0), m_vector(vector) {}
+        const AsVector* m_vector;
 
-        inline BOOL hasNext() const { return m_index < m_vector->getLength(); }
-        inline const T& next() const { ASSERT(hasNext()); return m_vector->m_data[m_index++]; }
+    public:
+        Iterator(const AsVector* vector) : m_index(0), m_vector(vector) {}
+        inline BOOL hasNext() const { return m_index < m_vector->length(); }
+        inline const T& next() { ASSERT(hasNext()); return m_vector->m_data[m_index++]; }
     };
 
     inline Iterator iterator() const { return Iterator(this); }
