@@ -33,17 +33,13 @@
 #define AS_GC_MARK(x) if (x != AS_NULL) (x)->_as_gc_mark();
 
 /* interface boxing */
-#define AS_INTERFACE_BOX_BEGIN(type,base) \
-public: \
-    class _as_interface_##base : public base { \
-    private: type *m_target; \
-    public: \
-        AS_TYPENAME(type,base); \
-    public: \
-        _as_interface_##base(type *target) : m_target(target) {}
-#define AS_INTERFACE_CALL(name,initializer) m_target->name initializer
-#define AS_INTERFACE_BOX_END(type,base) }; \
-    inline base##_ref _as_box_##base() { return base##_ref(new _as_interface_##base(this)); }
+#define AS_INTERFACE(type, base) \
+    _as_interface_##base(type *target) : m_target(target) { m_target->retain(); } \
+    ~_as_interface_##base() { m_target->release(); } \
+    void _as_gc_mark() { if (_as_gc_mark_needed()) { AsBcInterface::_as_gc_mark(); AS_GC_MARK(m_target); }} \
+    private: type *m_target;
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 AS_CLASS(AsObject);
 
@@ -81,9 +77,7 @@ private:
 
     int m_refCount;    
 
-    inline int refCount() { return m_refCount; }
-    void retain();
-    void release();    
+    inline int refCount() { return m_refCount; }    
 
 private:
     GcTime m_gcTime;
@@ -92,23 +86,11 @@ public:
     virtual void _as_gc_mark();
     inline bool _as_gc_mark_needed() const { return m_gcTime != AsObjectRefBase::gcGlobalTime(); }
     inline int retainCount() const { return m_refCount; }
+    void retain();
+    void release();
 
 public:
     static AsObject_ref __as_null;
-/*
-private:
-	static StaticInit __internalStaticInitializerAsObject;
-	static BOOL __internalStaticInitializedAsObject;
-	
-public:
-	static void __internalStaticInit();
-	
-protected:
-	AsObject();
-	
-public:
-	void __internalGc();
-*/
 };
 
 namespace AsGlobal
