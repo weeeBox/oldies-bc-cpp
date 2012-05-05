@@ -116,5 +116,8 @@
     <ClInclude Include="..\..\code\Converted\AsPlayGround.h">
       <Filter>Converted</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\code\Converted\AsBcInterface.h">
+      <Filter>Converted</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

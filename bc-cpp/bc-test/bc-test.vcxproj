@@ -90,6 +90,7 @@
     <ClCompile Include="test_AsVector.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\code\Converted\AsBcInterface.h" />
     <ClInclude Include="..\..\code\Converted\AsPlayGround.h" />
     <ClInclude Include="..\..\code\Platform\AsArray.h" />
     <ClInclude Include="..\..\code\Platform\AsBc.h" />
