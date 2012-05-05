@@ -14,11 +14,11 @@
 
 #define AS_FOREACH(type, var, collection) \
     { _V_##type##_ref __##var##s_ = collection; \
-    if (__##var##s_ != AS_NULL) { for(_as_AsRefVector<type##_ref>::Iterator it = (__##var##s_)->iterator(); it.hasNext();) { type##_ref element = it.next();
+    if (__##var##s_ != AS_NULL) { for(_as_AsRefVector<type##_ref>::Iterator it = (__##var##s_)->iterator(); it.hasNext();) { type##_ref var = it.next();
 
 #define AS_PRIMITIVE_FOREACH(type, var, collection) \
     { _V_##type##_ref __##var##s_ = collection; \
-    if (__##var##s_ != AS_NULL) { for(AsVector<type>::Iterator it = (__##var##s_)->iterator(); it.hasNext();) { type element = it.next();
+    if (__##var##s_ != AS_NULL) { for(AsVector<type>::Iterator it = (__##var##s_)->iterator(); it.hasNext();) { type var = it.next();
 
 #define AS_FOREACH_END }}}
 
