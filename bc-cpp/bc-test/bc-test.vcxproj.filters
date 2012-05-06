@@ -28,6 +28,10 @@
     <ClCompile Include="..\..\code\Converted\AsPlayGround.cpp">
       <Filter>Converted</Filter>
     </ClCompile>
+    <ClCompile Include="test_interfaces.cpp" />
+    <ClCompile Include="..\..\code\Converted\AsPlayGround2.cpp">
+      <Filter>Converted</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="tut">
@@ -117,6 +121,9 @@
       <Filter>Converted</Filter>
     </ClInclude>
     <ClInclude Include="..\..\code\Converted\AsBcInterface.h">
+      <Filter>Converted</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\Converted\AsPlayGround2.h">
       <Filter>Converted</Filter>
     </ClInclude>
   </ItemGroup>

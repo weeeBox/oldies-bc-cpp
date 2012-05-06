@@ -39,6 +39,20 @@
     void _as_gc_mark() { if (_as_gc_mark_needed()) { AsBcInterface::_as_gc_mark(); AS_GC_MARK(m_target); }} \
     private: type *m_target;
 
+#define AS_INTERFACE_REF(type) \
+class type##_ref : public AsObjectRef<type> \
+{ \
+public: \
+    type##_ref() : AsObjectRef() {} \
+    template <class T> type##_ref(const AsObjectRef<T>& other) : AsObjectRef(*other->_as_box_##type()) {} \
+    type##_ref(const AsObjectRef<AsObject>& other) : AsObjectRef(other) {} \
+    type##_ref(type* obj) : AsObjectRef(obj) {} \
+    explicit type##_ref(bool isStatic) : AsObjectRef(isStatic) {} \
+    template <class T> inline type##_ref operator= (const T& other) { set(other->_as_box_##type()); return *this; } \
+    inline type##_ref operator= (const type##_ref& other) { set(other); return *this; } \
+    inline type##_ref operator= (const AsObjectRefBase& other) { set(other); return *this; } \
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 AS_CLASS(AsObject);
