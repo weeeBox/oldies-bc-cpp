@@ -6,8 +6,8 @@
 #include "AsObject.h"
 #include "AsString.h"
 
-#define AS_VECTOR(type) typedef _as_AsRefVector<type##_ref>::Ref _V_##type##_ref
-#define AS_VECTOR_PRIMITIVE(type) typedef AsVector<type>::Ref _V_##type##_ref
+#define AS_VECTOR_REF(type) typedef _as_AsRefVector<type##_ref>::Ref _V_##type##_ref
+#define AS_VECTOR_PRIMITIVE_REF(type) typedef AsVector<type>::Ref _V_##type##_ref
 
 #define AS_NEW_VECTOR(type, initializer) _as_AsRefVector<type##_ref>::_as_create initializer
 #define AS_NEW_PRIMITIVES_VECTOR(type, initializer) AsVector<type>::_as_create initializer

@@ -10,8 +10,8 @@
 
 #include "AsVector.h"
 
-AS_VECTOR_PRIMITIVE(int);
-AS_VECTOR(AsString);
+AS_VECTOR_PRIMITIVE_REF(int);
+AS_VECTOR_REF(AsString);
 
 namespace tut 
 {   

@@ -12,6 +12,9 @@
 #define ASL(x) L##x
 
 /* reference type */
+#define AS_REF(type) class type##_ref
+
+/* reference class definition */
 #define AS_CLASS(type) class type; typedef AsObjectRef<type> type##_ref
 
 /* new */
