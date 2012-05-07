@@ -67,8 +67,7 @@ namespace tut
 
         ensure(succeed);
     }
-
-    /*
+        
     template<>
     template<>
     void interfaces_object::test<2>()
@@ -84,18 +83,23 @@ namespace tut
         AsInterface1_ref barIntr1 = bar;
         AsInterface2_ref barIntr2 = bar;
 
+        AsString_ref fooStr1 = foo->string1();
+        AsString_ref fooStr2 = foo->string2();
+
+        AsString_ref barStr1 = bar->string1();
+        AsString_ref barStr2 = bar->string2();
+
         foo = AS_NULL;
         bar = AS_NULL;
 
         bool succeed = true;
 
-        succeed = (succeed && (fooIntr1->string1() == foo->string1()));
-        succeed = (succeed && (fooIntr2->string2() == foo->string2()));
+        succeed = (succeed && (fooIntr1->string1() == fooStr1));
+        succeed = (succeed && (fooIntr2->string2() == fooStr2));
 
-        succeed = (succeed && (barIntr1->string1() == bar->string1()));
-        succeed = (succeed && (barIntr2->string2() == bar->string2()));
+        succeed = (succeed && (barIntr1->string1() == barStr1));
+        succeed = (succeed && (barIntr2->string2() == barStr2));
 
         ensure(succeed);
-    }
-    */
+    }    
 }
