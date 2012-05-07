@@ -45,8 +45,13 @@ namespace tut
         AsPlayGround_ref obj1 = AS_NEW(AsPlayGround,(10));
         AsPlayGround2_ref obj2 = AS_NEW(AsPlayGround2,(20));
 
+        obj1->go();
+
         AsBcInterface_ref interface1 = AS_NULL;
         interface1 = obj1;
+
+        obj1 = interface1;
+        AsPlayGround_ref object1 = interface1;
 
         interface1->foo(AS_NULL, 10);
         interface1->bar(20);
@@ -69,6 +74,6 @@ namespace tut
         AsBcInterface_ref interface4 = bar(obj2);
         interface4->foo(AS_NULL, 10);
         interface4->bar(20);
-        interface4->baz(30);
+        interface4->baz(30);        
     }    
 }

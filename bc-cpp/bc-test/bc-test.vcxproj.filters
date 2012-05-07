@@ -32,6 +32,15 @@
     <ClCompile Include="..\..\code\Converted\AsPlayGround2.cpp">
       <Filter>Converted</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\code\Converted\AsBaseClass.cpp">
+      <Filter>Converted</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\Converted\AsChildClass.cpp">
+      <Filter>Converted</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\Converted\AsFieldClass.cpp">
+      <Filter>Converted</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="tut">
@@ -124,6 +133,15 @@
       <Filter>Converted</Filter>
     </ClInclude>
     <ClInclude Include="..\..\code\Converted\AsPlayGround2.h">
+      <Filter>Converted</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\Converted\AsBaseClass.h">
+      <Filter>Converted</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\Converted\AsChildClass.h">
+      <Filter>Converted</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\Converted\AsFieldClass.h">
       <Filter>Converted</Filter>
     </ClInclude>
   </ItemGroup>

@@ -6,7 +6,6 @@
 #include "AsObject.h"
  
  
- 
 AS_CLASS(AsMathHelper);
  
 class AsMathHelper : public AsObject
