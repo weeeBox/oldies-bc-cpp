@@ -50,7 +50,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir)\tut\tut;$(ProjectDir)\tut;$(ProjectDir)\..\..\code\Platform;$(ProjectDir)\..\..\code\Converted;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\tut\tut;$(ProjectDir)\tut;$(ProjectDir)\..\..\code\Platform;$(ProjectDir)\test_data\interfaces;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -75,11 +75,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\code\Converted\AsBaseClass.cpp" />
-    <ClCompile Include="..\..\code\Converted\AsChildClass.cpp" />
-    <ClCompile Include="..\..\code\Converted\AsFieldClass.cpp" />
-    <ClCompile Include="..\..\code\Converted\AsPlayGround.cpp" />
-    <ClCompile Include="..\..\code\Converted\AsPlayGround2.cpp" />
     <ClCompile Include="..\..\code\Platform\AsArray.cpp" />
     <ClCompile Include="..\..\code\Platform\AsDebug.cpp" />
     <ClCompile Include="..\..\code\Platform\AsDictionary.cpp" />
@@ -92,15 +87,11 @@
     <ClCompile Include="test_AsObjectRef.cpp" />
     <ClCompile Include="test_AsString.cpp" />
     <ClCompile Include="test_AsVector.cpp" />
+    <ClCompile Include="test_data\interfaces\AsBar.cpp" />
+    <ClCompile Include="test_data\interfaces\AsFoo.cpp" />
     <ClCompile Include="test_interfaces.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\code\Converted\AsBaseClass.h" />
-    <ClInclude Include="..\..\code\Converted\AsBcInterface.h" />
-    <ClInclude Include="..\..\code\Converted\AsChildClass.h" />
-    <ClInclude Include="..\..\code\Converted\AsFieldClass.h" />
-    <ClInclude Include="..\..\code\Converted\AsPlayGround.h" />
-    <ClInclude Include="..\..\code\Converted\AsPlayGround2.h" />
     <ClInclude Include="..\..\code\Platform\AsArray.h" />
     <ClInclude Include="..\..\code\Platform\AsBc.h" />
     <ClInclude Include="..\..\code\Platform\AsDebug.h" />
@@ -110,6 +101,10 @@
     <ClInclude Include="..\..\code\Platform\AsObjectRef.h" />
     <ClInclude Include="..\..\code\Platform\AsString.h" />
     <ClInclude Include="..\..\code\Platform\AsVector.h" />
+    <ClInclude Include="test_data\interfaces\AsBar.h" />
+    <ClInclude Include="test_data\interfaces\AsFoo.h" />
+    <ClInclude Include="test_data\interfaces\AsInterface1.h" />
+    <ClInclude Include="test_data\interfaces\AsInterface2.h" />
     <ClInclude Include="tut\tut.h" />
     <ClInclude Include="tut\tut\tut.hpp" />
     <ClInclude Include="tut\tut\tut_assert.hpp" />

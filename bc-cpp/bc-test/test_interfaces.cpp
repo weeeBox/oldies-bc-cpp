@@ -8,31 +8,14 @@
 
 #include "tut.hpp"
 
-#include "AsPlayGround.h"
-#include "AsPlayGround2.h"
+#include "AsFoo.h"
+#include "AsBar.h"
 
 namespace tut 
 {   
     struct interfaces_data
     { 
     };
-
-    void foo(const AsBcInterface_ref& interface)
-    {
-        interface->foo(AS_NULL, 10);
-        interface->bar(20);
-        interface->baz(30);
-    }
-
-    AsBcInterface_ref bar(const AsPlayGround_ref& obj)
-    {
-        return obj;
-    }
-
-    AsBcInterface_ref bar(const AsPlayGround2_ref& obj)
-    {
-        return obj;
-    }
 
     typedef test_group<interfaces_data> interfaces_test_group;
     typedef interfaces_test_group::object interfaces_object;
@@ -42,38 +25,77 @@ namespace tut
     template<>
     void interfaces_object::test<1>()
     {
-        AsPlayGround_ref obj1 = AS_NEW(AsPlayGround,(10));
-        AsPlayGround2_ref obj2 = AS_NEW(AsPlayGround2,(20));
+        set_test_name("References test 1");
 
-        obj1->go();
+        AsFoo_ref foo = AS_NEW(AsFoo,());
+        AsBar_ref bar = AS_NEW(AsBar,());
 
-        AsBcInterface_ref interface1 = AS_NULL;
-        interface1 = obj1;
+        bool succeed = true;
 
-        obj1 = interface1;
-        AsPlayGround_ref object1 = interface1;
+        succeed = succeed && foo->retainCount() == 1;
+        succeed = succeed && bar->retainCount() == 1;
 
-        interface1->foo(AS_NULL, 10);
-        interface1->bar(20);
-        interface1->baz(30);
+        AsInterface1_ref fooIntr1 = foo;
+        AsInterface1_ref barIntr1 = bar;
 
-        interface1 = obj2;
+        succeed = succeed && foo->retainCount() == 2;
+        succeed = succeed && bar->retainCount() == 2;
 
-        interface1->foo(AS_NULL, 10);
-        interface1->bar(20);
-        interface1->baz(30);
+        AsInterface2_ref barIntr2 = bar;
+        AsInterface2_ref fooIntr2 = foo;
 
-        foo(obj1);
-        foo(obj2);
+        succeed = succeed && foo->retainCount() == 3;
+        succeed = succeed && bar->retainCount() == 3;
 
-        AsBcInterface_ref interface3 = bar(obj1);
-        interface3->foo(AS_NULL, 10);
-        interface3->bar(20);
-        interface3->baz(30);
+        succeed = (succeed && (fooIntr1->string1() == foo->string1()));
+        succeed = (succeed && (fooIntr2->string2() == foo->string2()));
 
-        AsBcInterface_ref interface4 = bar(obj2);
-        interface4->foo(AS_NULL, 10);
-        interface4->bar(20);
-        interface4->baz(30);        
-    }    
+        succeed = (succeed && (barIntr1->string1() == bar->string1()));
+        succeed = (succeed && (barIntr2->string2() == bar->string2()));
+
+        fooIntr1 = AS_NULL;
+        barIntr1 = AS_NULL;
+
+        succeed = succeed && foo->retainCount() == 2;
+        succeed = succeed && bar->retainCount() == 2;
+
+        barIntr2 = AS_NULL;
+        fooIntr2 = AS_NULL;
+
+        succeed = succeed && foo->retainCount() == 1;
+        succeed = succeed && bar->retainCount() == 1;
+
+        ensure(succeed);
+    }
+
+    /*
+    template<>
+    template<>
+    void interfaces_object::test<2>()
+    {
+        set_test_name("References test 2");
+
+        AsFoo_ref foo = AS_NEW(AsFoo,());
+        AsBar_ref bar = AS_NEW(AsBar,());
+
+        AsInterface1_ref fooIntr1 = foo;
+        AsInterface2_ref fooIntr2 = foo;
+
+        AsInterface1_ref barIntr1 = bar;
+        AsInterface2_ref barIntr2 = bar;
+
+        foo = AS_NULL;
+        bar = AS_NULL;
+
+        bool succeed = true;
+
+        succeed = (succeed && (fooIntr1->string1() == foo->string1()));
+        succeed = (succeed && (fooIntr2->string2() == foo->string2()));
+
+        succeed = (succeed && (barIntr1->string1() == bar->string1()));
+        succeed = (succeed && (barIntr2->string2() == bar->string2()));
+
+        ensure(succeed);
+    }
+    */
 }

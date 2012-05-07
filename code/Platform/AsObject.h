@@ -37,11 +37,11 @@
 
 /* interface boxing */
 #define AS_INTERFACE(type, base) \
-    _as_interface_##base(type *target) : m_target(target) { m_target->retain(); } \
-    ~_as_interface_##base() { m_target->release(); } \
-    void _as_gc_mark() { if (_as_gc_mark_needed()) { base::_as_gc_mark(); AS_GC_MARK(m_target); }} \
-    private: type *m_target; \
-    friend class type;
+_as_interface_##base(type *target) : m_target(target) { m_target->retain(); } \
+~_as_interface_##base() { m_target->release(); } \
+void _as_gc_mark() { if (_as_gc_mark_needed()) { base::_as_gc_mark(); AS_GC_MARK(m_target); }} \
+private: type *m_target; \
+friend class type;
 
 #define AS_INTERFACE_REF(type) \
 class type##_ref : public AsObjectRef<type> \
@@ -53,8 +53,8 @@ public: \
     type##_ref(type* obj) : AsObjectRef(obj) {} \
     explicit type##_ref(bool isStatic) : AsObjectRef(isStatic) {} \
     template <class T> inline type##_ref operator= (const T& other) { set(other->_as_box_##type()); return *this; } \
+    inline type##_ref operator= (const AsObjectRef<AsObject>& other) { set(other); return *this; } \
     inline type##_ref operator= (const type##_ref& other) { set(other); return *this; } \
-    inline type##_ref operator= (const AsObjectRefBase& other) { set(other); return *this; } \
     template <class T> inline operator AsObjectRef<T> () \
     { \
         type* obj = (type*)m_object; \
