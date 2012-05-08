@@ -32,6 +32,25 @@
     <ClCompile Include="test_data\interfaces\AsFoo.cpp">
       <Filter>test_data\interfaces</Filter>
     </ClCompile>
+    <ClCompile Include="test_data\statics\AsBarBase.cpp">
+      <Filter>test_data\statics</Filter>
+    </ClCompile>
+    <ClCompile Include="test_data\statics\AsFooBase.cpp">
+      <Filter>test_data\statics</Filter>
+    </ClCompile>
+    <ClCompile Include="test_data\statics\AsStaticBar.cpp">
+      <Filter>test_data\statics</Filter>
+    </ClCompile>
+    <ClCompile Include="test_data\statics\AsStaticFieldClass.cpp">
+      <Filter>test_data\statics</Filter>
+    </ClCompile>
+    <ClCompile Include="test_data\statics\AsStaticFoo.cpp">
+      <Filter>test_data\statics</Filter>
+    </ClCompile>
+    <ClCompile Include="test_statics.cpp" />
+    <ClCompile Include="test_data\statics\AsStaticDummy.cpp">
+      <Filter>test_data\statics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="tut">
@@ -48,6 +67,9 @@
     </Filter>
     <Filter Include="test_data\interfaces">
       <UniqueIdentifier>{e7d19402-c2a6-4f15-9334-39be74e10195}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="test_data\statics">
+      <UniqueIdentifier>{20a41704-57d5-4565-9955-3f5b2e7c74b2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -131,6 +153,24 @@
     </ClInclude>
     <ClInclude Include="test_data\interfaces\AsInterface2.h">
       <Filter>test_data\interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="test_data\statics\AsBarBase.h">
+      <Filter>test_data\statics</Filter>
+    </ClInclude>
+    <ClInclude Include="test_data\statics\AsFooBase.h">
+      <Filter>test_data\statics</Filter>
+    </ClInclude>
+    <ClInclude Include="test_data\statics\AsStaticBar.h">
+      <Filter>test_data\statics</Filter>
+    </ClInclude>
+    <ClInclude Include="test_data\statics\AsStaticFieldClass.h">
+      <Filter>test_data\statics</Filter>
+    </ClInclude>
+    <ClInclude Include="test_data\statics\AsStaticFoo.h">
+      <Filter>test_data\statics</Filter>
+    </ClInclude>
+    <ClInclude Include="test_data\statics\AsStaticDummy.h">
+      <Filter>test_data\statics</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -25,12 +25,11 @@ public:
 	static bool epsilonZero(float a);
 	static bool epsilonEquals(float a, float b);
 	
-	
-protected:
 	static void _as_static_init_AsMathHelper();
 	
 private:
 	static bool _as_static_initialized_AsMathHelper;
+	static AsStaticRefInitializer _as_static_initializer_AsMathHelper;
 };
  
 #endif // AsMathHelper_h__

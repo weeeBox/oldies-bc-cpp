@@ -50,7 +50,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir)\tut\tut;$(ProjectDir)\tut;$(ProjectDir)\..\..\code\Platform;$(ProjectDir)\test_data\interfaces;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\tut\tut;$(ProjectDir)\tut;$(ProjectDir)\..\..\code\Platform;$(ProjectDir)\test_data\interfaces;$(ProjectDir)\test_data\statics;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -89,7 +89,14 @@
     <ClCompile Include="test_AsVector.cpp" />
     <ClCompile Include="test_data\interfaces\AsBar.cpp" />
     <ClCompile Include="test_data\interfaces\AsFoo.cpp" />
+    <ClCompile Include="test_data\statics\AsBarBase.cpp" />
+    <ClCompile Include="test_data\statics\AsFooBase.cpp" />
+    <ClCompile Include="test_data\statics\AsStaticBar.cpp" />
+    <ClCompile Include="test_data\statics\AsStaticDummy.cpp" />
+    <ClCompile Include="test_data\statics\AsStaticFieldClass.cpp" />
+    <ClCompile Include="test_data\statics\AsStaticFoo.cpp" />
     <ClCompile Include="test_interfaces.cpp" />
+    <ClCompile Include="test_statics.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\code\Platform\AsArray.h" />
@@ -105,6 +112,12 @@
     <ClInclude Include="test_data\interfaces\AsFoo.h" />
     <ClInclude Include="test_data\interfaces\AsInterface1.h" />
     <ClInclude Include="test_data\interfaces\AsInterface2.h" />
+    <ClInclude Include="test_data\statics\AsBarBase.h" />
+    <ClInclude Include="test_data\statics\AsFooBase.h" />
+    <ClInclude Include="test_data\statics\AsStaticBar.h" />
+    <ClInclude Include="test_data\statics\AsStaticDummy.h" />
+    <ClInclude Include="test_data\statics\AsStaticFieldClass.h" />
+    <ClInclude Include="test_data\statics\AsStaticFoo.h" />
     <ClInclude Include="tut\tut.h" />
     <ClInclude Include="tut\tut\tut.hpp" />
     <ClInclude Include="tut\tut\tut_assert.hpp" />

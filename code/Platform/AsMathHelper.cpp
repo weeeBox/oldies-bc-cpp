@@ -23,6 +23,7 @@ bool AsMathHelper::epsilonEquals(float a, float b)
 }
  
 bool AsMathHelper::_as_static_initialized_AsMathHelper = false;
+AsStaticRefInitializer AsMathHelper::_as_static_initializer_AsMathHelper(_as_static_init_AsMathHelper);
 void AsMathHelper::_as_static_init_AsMathHelper()
 {
 	if (!_as_static_initialized_AsMathHelper)
