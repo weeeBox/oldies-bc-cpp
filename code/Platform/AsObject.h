@@ -65,6 +65,23 @@ public: \
 #define AS_UNBOX(type, obj) type::_as_unbox(*obj)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Static init
+
+typedef void (*_as_static_init_func)(void);
+
+class AsStaticRefInitializer
+{
+public:
+    AsStaticRefInitializer(_as_static_init_func func);
+    static void init();
+
+private:
+    static AsStaticRefInitializer* root;
+    AsStaticRefInitializer* next;
+    _as_static_init_func func;
+};
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 AS_CLASS(AsObject);
 

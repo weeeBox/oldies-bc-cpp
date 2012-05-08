@@ -277,11 +277,11 @@ public:
 
 protected:
     _as_AsRefVector(int capacity = DEFAULT_CAPACITY, bool fixed = false) : AsVector(capacity, fixed) {}
-    Ref _as_create_same(int capacity) const { return _as_AsRefVector::_as_create(capacity); }
+    Ref _as_create_same(int capacity = DEFAULT_CAPACITY) const { return _as_AsRefVector::_as_create(capacity); }
     void freeElement(int index);
 
 public:
-    static inline Ref _as_create(int size) { return Ref(new _as_AsRefVector(size)); }
+    static inline Ref _as_create(int size = DEFAULT_CAPACITY) { return Ref(new _as_AsRefVector(size)); }
     static inline Ref _as_create(int size, bool fixed) { return Ref(new _as_AsRefVector(size, fixed)); }
     ~_as_AsRefVector();
 };

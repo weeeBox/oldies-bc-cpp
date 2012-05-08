@@ -1,6 +1,24 @@
 #include "AsObject.h"
 #include "AsString.h"
 
+AsStaticRefInitializer* AsStaticRefInitializer::root = NULL;
+
+AsStaticRefInitializer::AsStaticRefInitializer(_as_static_init_func f) : func(f), next(root)
+{
+    root = this;
+}
+
+void AsStaticRefInitializer::init()
+{
+    AsStaticRefInitializer* c = root;
+    while (c)
+    {
+        c->func();
+        c = c->next;
+    }
+    root = NULL;
+}
+
 AsObject_ref AsObject::__as_null = AsObject_ref();
 
 AsObject::AsObject() :
