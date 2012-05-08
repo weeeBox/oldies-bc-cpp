@@ -35,7 +35,7 @@ namespace tut
         _V_AsString_ref list = AsStaticFieldClass::list;
 
         succeed = succeed && list != AS_NULL;
-        succeed = succeed && list->length() == 5;
+        succeed = succeed && list->getLength() == 5;
 
         succeed = succeed && list[0] == ASL("Dummy");
         succeed = succeed && list[1] == ASL("FooBase");

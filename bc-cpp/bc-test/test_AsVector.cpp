@@ -32,7 +32,7 @@ namespace tut
         const int size = 5;
         _V_int_ref vector = AS_NEW_PRIMITIVES_VECTOR(int,(size)) << 1 << 2 << 3 << 4 << 5;
 
-        ensure(vector->length() == size);
+        ensure(vector->getLength() == size);
     }
 
     template<>
@@ -45,9 +45,9 @@ namespace tut
         int arr[size] = {1, 2, 3, 4, 5};
 
         _V_int_ref vector = AS_NEW_PRIMITIVES_VECTOR(int,(size)) << 1 << 2 << 3 << 4 << 5;
-        bool succeed = vector->length() == size;
+        bool succeed = vector->getLength() == size;
 
-        for (int i = 0; i < vector->length(); ++i)
+        for (int i = 0; i < vector->getLength(); ++i)
         {
             succeed = succeed && arr[i] == vector[i];
         }
@@ -74,9 +74,9 @@ namespace tut
         };
 
         _V_AsString_ref vector = AS_NEW_VECTOR(AsString,(size)) << str1 << str2 << str3 << str4 << str5;
-        bool succeed = vector->length() == size;
+        bool succeed = vector->getLength() == size;
 
-        for (int i = 0; i < vector->length(); ++i)
+        for (int i = 0; i < vector->getLength(); ++i)
         {
             succeed = succeed && arr[i] == vector[i];
         }
@@ -118,7 +118,7 @@ namespace tut
         succeed = succeed && str5->retainCount() == 1;
 
         _V_AsString_ref vector = AS_NEW_VECTOR(AsString,(size)) << str1 << str2 << str3 << str4 << str5;
-        succeed = succeed && vector->length() == size;
+        succeed = succeed && vector->getLength() == size;
 
         succeed = succeed && str1->retainCount() == 2;
         succeed = succeed && str2->retainCount() == 2;
@@ -126,7 +126,7 @@ namespace tut
         succeed = succeed && str4->retainCount() == 2;
         succeed = succeed && str5->retainCount() == 2;
 
-        for (int i = 0; i < vector->length(); ++i)
+        for (int i = 0; i < vector->getLength(); ++i)
         {
             succeed = succeed && *arr[i] == vector[i];
         }
@@ -157,7 +157,7 @@ namespace tut
         const int size = 5;       
 
         _V_int_ref vector = AS_NEW_PRIMITIVES_VECTOR(int,(size)) << 1 << 2 << 3 << 4 << 5;
-        bool succeed = vector->length() == size;
+        bool succeed = vector->getLength() == size;
 
         succeed = succeed && vector->indexOf(1) == 0;
         succeed = succeed && vector->indexOf(2) == 1;
@@ -189,7 +189,7 @@ namespace tut
         AsString_ref str7 = ASL("5");
                 
         _V_AsString_ref vector = AS_NEW_VECTOR(AsString,(size)) << str1 << str2 << str3 << str4 << str5;
-        bool succeed = vector->length() == size;
+        bool succeed = vector->getLength() == size;
 
         succeed = succeed && vector->indexOf(str1) == 0;
         succeed = succeed && vector->indexOf(str2) == 1;
@@ -215,7 +215,7 @@ namespace tut
         const int size = 5;       
 
         _V_int_ref vector = AS_NEW_PRIMITIVES_VECTOR(int,(size)) << 1 << 2 << 3 << 4 << 5;
-        bool succeed = vector->length() == size;
+        bool succeed = vector->getLength() == size;
 
         succeed = succeed && vector->lastIndexOf(1) == 0;
         succeed = succeed && vector->lastIndexOf(2) == 1;
@@ -247,7 +247,7 @@ namespace tut
         AsString_ref str7 = ASL("5");
 
         _V_AsString_ref vector = AS_NEW_VECTOR(AsString,(size)) << str1 << str2 << str3 << str4 << str5;
-        bool succeed = vector->length() == size;
+        bool succeed = vector->getLength() == size;
 
         succeed = succeed && vector->lastIndexOf(str1) == 0;
         succeed = succeed && vector->lastIndexOf(str2) == 1;
@@ -280,7 +280,7 @@ namespace tut
         AsString_ref str7 = ASL("5");
         
         _V_AsString_ref vector = AS_NEW_VECTOR(AsString,(size));
-        bool succeed = vector->length() == 0;
+        bool succeed = vector->getLength() == 0;
         succeed = succeed && vector->capacity() == size;
 
         succeed = succeed && str1->retainCount() == 1;
@@ -301,7 +301,7 @@ namespace tut
         succeed = succeed && str4->retainCount() == 2;
         succeed = succeed && str5->retainCount() == 2;
 
-        succeed = succeed && vector->length() == size;
+        succeed = succeed && vector->getLength() == size;
         succeed = succeed && vector[0] == str1;
         succeed = succeed && vector[1] == str2;
         succeed = succeed && vector[2] == str3;
@@ -335,7 +335,7 @@ namespace tut
         AsString_ref str7 = ASL("5");
 
         _V_AsString_ref vector = AS_NEW_VECTOR(AsString,(0));
-        bool succeed = vector->length() == 0;
+        bool succeed = vector->getLength() == 0;
         succeed = succeed && vector->capacity() == 0;
 
         succeed = succeed && str1->retainCount() == 1;
@@ -356,7 +356,7 @@ namespace tut
         succeed = succeed && str4->retainCount() == 2;
         succeed = succeed && str5->retainCount() == 2;
 
-        succeed = succeed && vector->length() == size;        
+        succeed = succeed && vector->getLength() == size;        
         succeed = succeed && vector[0] == str1;
         succeed = succeed && vector[1] == str2;
         succeed = succeed && vector[2] == str3;
@@ -389,7 +389,7 @@ namespace tut
         AsString_ref str7 = ASL("5");
 
         _V_AsString_ref vector = AS_NEW_VECTOR(AsString,(3)) << str1 << str2 << str3;
-        bool succeed = vector->length() == 3;        
+        bool succeed = vector->getLength() == 3;        
 
         succeed = succeed && str1->retainCount() == 2;
         succeed = succeed && str2->retainCount() == 2;
@@ -406,7 +406,7 @@ namespace tut
         succeed = succeed && str4->retainCount() == 2;
         succeed = succeed && str5->retainCount() == 2;
 
-        succeed = succeed && vector->length() == 5;        
+        succeed = succeed && vector->getLength() == 5;        
         succeed = succeed && vector[0] == str1;
         succeed = succeed && vector[1] == str2;
         succeed = succeed && vector[2] == str3;
@@ -437,7 +437,7 @@ namespace tut
         AsString_ref str5 = ASL("5");        
 
         _V_AsString_ref vector = AS_NEW_VECTOR(AsString,(3)) << str1 << str2 << str3;
-        bool succeed = vector->length() == 3;        
+        bool succeed = vector->getLength() == 3;        
 
         succeed = succeed && str1->retainCount() == 2;
         succeed = succeed && str2->retainCount() == 2;
@@ -454,7 +454,7 @@ namespace tut
         succeed = succeed && str4->retainCount() == 2;
         succeed = succeed && str5->retainCount() == 2;
 
-        succeed = succeed && vector->length() == 5;        
+        succeed = succeed && vector->getLength() == 5;        
         succeed = succeed && vector[0] == str1;
         succeed = succeed && vector[1] == str2;
         succeed = succeed && vector[2] == str3;
@@ -462,13 +462,13 @@ namespace tut
         succeed = succeed && vector[4] == str5;        
 
         AsString_ref popStr = vector->pop();
-        succeed = succeed && vector->length() == 4;
+        succeed = succeed && vector->getLength() == 4;
         succeed = succeed && popStr == str5;
         popStr = AS_NULL;
         succeed = succeed && str5->retainCount() == 1;
         
         popStr = vector->pop();
-        succeed = succeed && vector->length() == 3;
+        succeed = succeed && vector->getLength() == 3;
         succeed = succeed && popStr == str4;
         popStr = AS_NULL;
         succeed = succeed && str4->retainCount() == 1;
@@ -498,7 +498,7 @@ namespace tut
         
 
         _V_AsString_ref vector = AS_NEW_VECTOR(AsString,(0));
-        bool succeed = vector->length() == 0;
+        bool succeed = vector->getLength() == 0;
 
         vector->push(str1);
         vector->push(str2);
@@ -515,7 +515,7 @@ namespace tut
         vector->pop();
         vector->pop();        
 
-        succeed = succeed && vector->length() == 3;
+        succeed = succeed && vector->getLength() == 3;
         succeed = succeed && str1->retainCount() == 2;
         succeed = succeed && str2->retainCount() == 2;
         succeed = succeed && str3->retainCount() == 2;
@@ -526,7 +526,7 @@ namespace tut
         vector->push(str1);
         vector->push(str2);
 
-        succeed = succeed && vector->length() == 6;
+        succeed = succeed && vector->getLength() == 6;
         succeed = succeed && str1->retainCount() == 4;
         succeed = succeed && str2->retainCount() == 3;
         succeed = succeed && str3->retainCount() == 2;
@@ -557,33 +557,33 @@ namespace tut
         AsString_ref str5 = ASL("5");
 
         _V_AsString_ref vector = AS_NEW_VECTOR(AsString,(1));
-        bool succeed = vector->length() == 0;
+        bool succeed = vector->getLength() == 0;
 
         vector->unshift(str1);
-        succeed = succeed && vector->length() == 1;
+        succeed = succeed && vector->getLength() == 1;
         succeed = succeed && vector[0] == str1;        
 
         vector->unshift(str2);
-        succeed = succeed && vector->length() == 2;
+        succeed = succeed && vector->getLength() == 2;
         succeed = succeed && vector[0] == str2;
         succeed = succeed && vector[1] == str1;
         
 
         vector->unshift(str3);
-        succeed = succeed && vector->length() == 3;
+        succeed = succeed && vector->getLength() == 3;
         succeed = succeed && vector[0] == str3;
         succeed = succeed && vector[1] == str2;
         succeed = succeed && vector[2] == str1;        
 
         vector->unshift(str4);
-        succeed = succeed && vector->length() == 4;
+        succeed = succeed && vector->getLength() == 4;
         succeed = succeed && vector[0] == str4;
         succeed = succeed && vector[1] == str3;
         succeed = succeed && vector[2] == str2;
         succeed = succeed && vector[3] == str1;        
 
         vector->unshift(str5);
-        succeed = succeed && vector->length() == 5;
+        succeed = succeed && vector->getLength() == 5;
         succeed = succeed && vector[0] == str5;
         succeed = succeed && vector[1] == str4;
         succeed = succeed && vector[2] == str3;
@@ -599,7 +599,7 @@ namespace tut
         vector->pop();
         vector->pop();        
         
-        succeed = succeed && vector->length() == 3;
+        succeed = succeed && vector->getLength() == 3;
 
         succeed = succeed && vector[0] == str5;
         succeed = succeed && vector[1] == str4;
@@ -615,7 +615,7 @@ namespace tut
         vector->unshift(str1);
         vector->unshift(str2);
         
-        succeed = succeed && vector->length() == 6;
+        succeed = succeed && vector->getLength() == 6;
 
         succeed = succeed && vector[0] == str2;
         succeed = succeed && vector[1] == str1;
@@ -654,7 +654,7 @@ namespace tut
         AsString_ref str5 = ASL("5");
 
         _V_AsString_ref vector = AS_NEW_VECTOR(AsString,(1));
-        bool succeed = vector->length() == 0;
+        bool succeed = vector->getLength() == 0;
 
         vector->unshift(str1);
         vector->unshift(str2);
@@ -662,7 +662,7 @@ namespace tut
         vector->unshift(str4);
         vector->unshift(str5);
 
-        succeed = succeed && vector->length() == 5;
+        succeed = succeed && vector->getLength() == 5;
         succeed = succeed && vector[0] == str5;
         succeed = succeed && vector[1] == str4;
         succeed = succeed && vector[2] == str3;
@@ -678,7 +678,7 @@ namespace tut
         vector->shift();
         vector->shift();
 
-        succeed = succeed && vector->length() == 3;
+        succeed = succeed && vector->getLength() == 3;
 
         succeed = succeed && vector[0] == str3;
         succeed = succeed && vector[1] == str2;
@@ -694,7 +694,7 @@ namespace tut
         vector->unshift(str1);
         vector->unshift(str2);
 
-        succeed = succeed && vector->length() == 6;
+        succeed = succeed && vector->getLength() == 6;
 
         succeed = succeed && vector[0] == str2;
         succeed = succeed && vector[1] == str1;
@@ -715,7 +715,7 @@ namespace tut
         vector->push(str4);
         vector->push(str5);        
 
-        succeed = succeed && vector->length() == 5;
+        succeed = succeed && vector->getLength() == 5;
 
         succeed = succeed && vector[0] == str3;
         succeed = succeed && vector[1] == str2;
@@ -754,7 +754,7 @@ namespace tut
         AsString_ref str5 = ASL("5");
 
         _V_AsString_ref vector = AS_NEW_VECTOR(AsString,(3)) << str1 << str2 << str3;
-        bool succeed = vector->length() == 3;
+        bool succeed = vector->getLength() == 3;
         
         succeed = succeed && str1->retainCount() == 2;
         succeed = succeed && str2->retainCount() == 2;
@@ -762,7 +762,7 @@ namespace tut
         succeed = succeed && str4->retainCount() == 1;
         succeed = succeed && str5->retainCount() == 1;
 
-        vector->length(5);
+        vector->setLength(5);
 
         succeed = succeed && str1->retainCount() == 2;
         succeed = succeed && str2->retainCount() == 2;
@@ -770,7 +770,7 @@ namespace tut
         succeed = succeed && str4->retainCount() == 1;
         succeed = succeed && str5->retainCount() == 1;
 
-        succeed = succeed && vector->length() == 5;
+        succeed = succeed && vector->getLength() == 5;
 
         succeed = succeed && vector[0] == str1;
         succeed = succeed && vector[1] == str2;
@@ -795,7 +795,7 @@ namespace tut
         succeed = succeed && str4->retainCount() == 2;
         succeed = succeed && str5->retainCount() == 2;
 
-        vector->length(3);
+        vector->setLength(3);
 
         succeed = succeed && str1->retainCount() == 2;
         succeed = succeed && str2->retainCount() == 2;
@@ -803,7 +803,7 @@ namespace tut
         succeed = succeed && str4->retainCount() == 1;
         succeed = succeed && str5->retainCount() == 1;
 
-        succeed = succeed && vector->length() == 3;
+        succeed = succeed && vector->getLength() == 3;
 
         succeed = succeed && vector[0] == str1;
         succeed = succeed && vector[1] == str2;
@@ -833,10 +833,10 @@ namespace tut
         int int5 = 5;
 
         _V_int_ref vector = AS_NEW_PRIMITIVES_VECTOR(int,(5)) << int1 << int2 << int3 << int4 << int5;
-        bool succeed = vector->length() == 5;
+        bool succeed = vector->getLength() == 5;
 
         _V_int_ref v1 = vector->slice();
-        succeed = succeed && v1->length() == 5;
+        succeed = succeed && v1->getLength() == 5;
         
         succeed = succeed && v1[0] == int1;
         succeed = succeed && v1[1] == int2;
@@ -845,20 +845,20 @@ namespace tut
         succeed = succeed && v1[4] == int5;               
 
         v1 = vector->slice(2);
-        succeed = succeed && v1->length() == 3;        
+        succeed = succeed && v1->getLength() == 3;        
 
         succeed = succeed && v1[0] == int3;
         succeed = succeed && v1[1] == int4;
         succeed = succeed && v1[2] == int5;        
 
         v1 = vector->slice(1, 3);
-        succeed = succeed && v1->length() == 2;        
+        succeed = succeed && v1->getLength() == 2;        
 
         succeed = succeed && v1[0] == int2;
         succeed = succeed && v1[1] == int3;        
 
         v1 = vector->slice(1, 1);
-        succeed = succeed && v1->length() == 0;        
+        succeed = succeed && v1->getLength() == 0;        
 
         ensure(succeed);
     }
@@ -876,7 +876,7 @@ namespace tut
         AsString_ref str5 = ASL("5");
 
         _V_AsString_ref vector = AS_NEW_VECTOR(AsString,(5)) << str1 << str2 << str3 << str4 << str5;
-        bool succeed = vector->length() == 5;
+        bool succeed = vector->getLength() == 5;
 
         succeed = succeed && str1->retainCount() == 2;
         succeed = succeed && str2->retainCount() == 2;
@@ -885,7 +885,7 @@ namespace tut
         succeed = succeed && str5->retainCount() == 2;
 
         _V_AsString_ref v1 = vector->slice();
-        succeed = succeed && v1->length() == 5;
+        succeed = succeed && v1->getLength() == 5;
 
         succeed = succeed && str1->retainCount() == 3;
         succeed = succeed && str2->retainCount() == 3;
@@ -908,7 +908,7 @@ namespace tut
         succeed = succeed && str5->retainCount() == 2;
 
         v1 = vector->slice(2);
-        succeed = succeed && v1->length() == 3;
+        succeed = succeed && v1->getLength() == 3;
 
         succeed = succeed && str1->retainCount() == 2;
         succeed = succeed && str2->retainCount() == 2;
@@ -929,7 +929,7 @@ namespace tut
         succeed = succeed && str5->retainCount() == 2;
 
         v1 = vector->slice(1, 3);
-        succeed = succeed && v1->length() == 2;
+        succeed = succeed && v1->getLength() == 2;
 
         succeed = succeed && str1->retainCount() == 2;
         succeed = succeed && str2->retainCount() == 3;
@@ -949,7 +949,7 @@ namespace tut
         succeed = succeed && str5->retainCount() == 2;
 
         v1 = vector->slice(1, 1);
-        succeed = succeed && v1->length() == 0;
+        succeed = succeed && v1->getLength() == 0;
 
         succeed = succeed && str1->retainCount() == 2;
         succeed = succeed && str2->retainCount() == 2;
@@ -981,7 +981,7 @@ namespace tut
         AsString_ref str5 = ASL("5");
 
         _V_AsString_ref vector = AS_NEW_VECTOR(AsString,(5)) << str1 << str2 << str3 << str4 << str5;
-        bool succeed = vector->length() == 5;
+        bool succeed = vector->getLength() == 5;
 
         succeed = succeed && str1->retainCount() == 2;
         succeed = succeed && str2->retainCount() == 2;
@@ -990,8 +990,8 @@ namespace tut
         succeed = succeed && str5->retainCount() == 2;
 
         _V_AsString_ref deleted = vector->splice(0);
-        succeed = succeed && vector->length() == 0;
-        succeed = succeed && deleted->length() == 5;
+        succeed = succeed && vector->getLength() == 0;
+        succeed = succeed && deleted->getLength() == 5;
 
         succeed = succeed && deleted[0] == str1;
         succeed = succeed && deleted[1] == str2;
@@ -1021,7 +1021,7 @@ namespace tut
         AsString_ref str5 = ASL("5");
 
         _V_AsString_ref vector = AS_NEW_VECTOR(AsString,(5)) << str1 << str2 << str3 << str4 << str5;
-        bool succeed = vector->length() == 5;
+        bool succeed = vector->getLength() == 5;
 
         succeed = succeed && str1->retainCount() == 2;
         succeed = succeed && str2->retainCount() == 2;
@@ -1030,8 +1030,8 @@ namespace tut
         succeed = succeed && str5->retainCount() == 2;
 
         _V_AsString_ref deleted = vector->splice(0, 2);
-        succeed = succeed && vector->length() == 3;
-        succeed = succeed && deleted->length() == 2;
+        succeed = succeed && vector->getLength() == 3;
+        succeed = succeed && deleted->getLength() == 2;
 
         succeed = succeed && deleted[0] == str1;
         succeed = succeed && deleted[1] == str2;
@@ -1062,7 +1062,7 @@ namespace tut
         AsString_ref str5 = ASL("5");
 
         _V_AsString_ref vector = AS_NEW_VECTOR(AsString,(5)) << str1 << str2 << str3 << str4 << str5;
-        bool succeed = vector->length() == 5;
+        bool succeed = vector->getLength() == 5;
 
         succeed = succeed && str1->retainCount() == 2;
         succeed = succeed && str2->retainCount() == 2;
@@ -1071,8 +1071,8 @@ namespace tut
         succeed = succeed && str5->retainCount() == 2;
 
         _V_AsString_ref deleted = vector->splice(2, 2);
-        succeed = succeed && vector->length() == 3;
-        succeed = succeed && deleted->length() == 2;
+        succeed = succeed && vector->getLength() == 3;
+        succeed = succeed && deleted->getLength() == 2;
 
         succeed = succeed && deleted[0] == str3;
         succeed = succeed && deleted[1] == str4;
@@ -1103,7 +1103,7 @@ namespace tut
         AsString_ref str5 = ASL("5");
 
         _V_AsString_ref vector = AS_NEW_VECTOR(AsString,(5)) << str1 << str2 << str3 << str4 << str5;
-        bool succeed = vector->length() == 5;
+        bool succeed = vector->getLength() == 5;
 
         succeed = succeed && str1->retainCount() == 2;
         succeed = succeed && str2->retainCount() == 2;
@@ -1112,8 +1112,8 @@ namespace tut
         succeed = succeed && str5->retainCount() == 2;
 
         _V_AsString_ref deleted = vector->splice(2);
-        succeed = succeed && vector->length() == 2;
-        succeed = succeed && deleted->length() == 3;
+        succeed = succeed && vector->getLength() == 2;
+        succeed = succeed && deleted->getLength() == 3;
 
         succeed = succeed && deleted[0] == str3;
         succeed = succeed && deleted[1] == str4;
@@ -1144,7 +1144,7 @@ namespace tut
         AsString_ref str5 = ASL("5");
 
         _V_AsString_ref vector = AS_NEW_VECTOR(AsString,(5)) << str1 << str2 << str3 << str4 << str5;
-        bool succeed = vector->length() == 5;
+        bool succeed = vector->getLength() == 5;
 
         succeed = succeed && str1->retainCount() == 2;
         succeed = succeed && str2->retainCount() == 2;
@@ -1153,8 +1153,8 @@ namespace tut
         succeed = succeed && str5->retainCount() == 2;
 
         _V_AsString_ref deleted = vector->splice(2, 0);
-        succeed = succeed && vector->length() == 5;
-        succeed = succeed && deleted->length() == 0;
+        succeed = succeed && vector->getLength() == 5;
+        succeed = succeed && deleted->getLength() == 0;
 
         succeed = succeed && vector[0] == str1;
         succeed = succeed && vector[1] == str2;
@@ -1184,7 +1184,7 @@ namespace tut
         AsString_ref str5 = ASL("5");
 
         _V_AsString_ref vector = AS_NEW_VECTOR(AsString,(3)) << str1 << str2 << str3;
-        bool succeed = vector->length() == 3;
+        bool succeed = vector->getLength() == 3;
 
         succeed = succeed && str1->retainCount() == 2;
         succeed = succeed && str2->retainCount() == 2;
@@ -1193,8 +1193,8 @@ namespace tut
         succeed = succeed && str5->retainCount() == 1;
 
         _V_AsString_ref deleted = vector->splice(2, 0, str4);
-        succeed = succeed && vector->length() == 4;
-        succeed = succeed && deleted->length() == 0;
+        succeed = succeed && vector->getLength() == 4;
+        succeed = succeed && deleted->getLength() == 0;
 
         succeed = succeed && vector[0] == str1;
         succeed = succeed && vector[1] == str2;
@@ -1209,8 +1209,8 @@ namespace tut
 
         deleted = vector->splice(2, 1, str5);
 
-        succeed = succeed && vector->length() == 4;
-        succeed = succeed && deleted->length() == 1;
+        succeed = succeed && vector->getLength() == 4;
+        succeed = succeed && deleted->getLength() == 1;
 
         succeed = succeed && vector[0] == str1;
         succeed = succeed && vector[1] == str2;
@@ -1227,8 +1227,8 @@ namespace tut
 
         deleted = vector->splice(2, 1);
 
-        succeed = succeed && vector->length() == 3;
-        succeed = succeed && deleted->length() == 1;
+        succeed = succeed && vector->getLength() == 3;
+        succeed = succeed && deleted->getLength() == 1;
 
         succeed = succeed && vector[0] == str1;
         succeed = succeed && vector[1] == str2;        
@@ -1244,8 +1244,8 @@ namespace tut
 
         deleted = vector->splice(0, 0, str4);
 
-        succeed = succeed && vector->length() == 4;
-        succeed = succeed && deleted->length() == 0;
+        succeed = succeed && vector->getLength() == 4;
+        succeed = succeed && deleted->getLength() == 0;
 
         succeed = succeed && vector[0] == str4;
         succeed = succeed && vector[1] == str1;
@@ -1258,10 +1258,10 @@ namespace tut
         succeed = succeed && str4->retainCount() == 2;
         succeed = succeed && str5->retainCount() == 1;
 
-        deleted = vector->splice(vector->length() - 1, 0, str5);
+        deleted = vector->splice(vector->getLength() - 1, 0, str5);
 
-        succeed = succeed && vector->length() == 5;
-        succeed = succeed && deleted->length() == 0;
+        succeed = succeed && vector->getLength() == 5;
+        succeed = succeed && deleted->getLength() == 0;
 
         succeed = succeed && vector[0] == str4;
         succeed = succeed && vector[1] == str1;
@@ -1291,7 +1291,7 @@ namespace tut
         AsString_ref str5 = ASL("5");
 
         _V_AsString_ref vector = AS_NEW_VECTOR(AsString,(5)) << str1 << str2 << str3 << str4 << str5;
-        bool succeed = vector->length() == 5;
+        bool succeed = vector->getLength() == 5;
 
         succeed = succeed && str1->retainCount() == 2;
         succeed = succeed && str2->retainCount() == 2;
@@ -1307,7 +1307,7 @@ namespace tut
 
         vector->splice(2, 1);
 
-        succeed = succeed && vector->length() == 4;
+        succeed = succeed && vector->getLength() == 4;
 
         succeed = succeed && str1->retainCount() == 2;
         succeed = succeed && str2->retainCount() == 2;
@@ -1330,10 +1330,10 @@ namespace tut
         set_test_name("Reverse test 2");
 
         _V_AsString_ref vector = AS_NEW_VECTOR(AsString,(0));
-        bool succeed = vector->length() == 0;
+        bool succeed = vector->getLength() == 0;
 
         vector->reverse();
-        succeed = succeed && vector->length() == 0;
+        succeed = succeed && vector->getLength() == 0;
 
         ensure(succeed);
     }
@@ -1351,10 +1351,10 @@ namespace tut
         AsString_ref str5 = ASL("5");
 
         _V_AsString_ref vector = AS_NEW_VECTOR(AsString,(3)) << str1 << str2 << str3;
-        bool succeed = vector->length() == 3;
+        bool succeed = vector->getLength() == 3;
 
         _V_AsString_ref v = AS_NEW_VECTOR(AsString,(2)) << str4 << str5;
-        succeed = succeed && v->length() == 2;
+        succeed = succeed && v->getLength() == 2;
 
         succeed = succeed && str1->retainCount() == 2;
         succeed = succeed && str2->retainCount() == 2;
@@ -1363,7 +1363,7 @@ namespace tut
         succeed = succeed && str5->retainCount() == 2;
 
         _V_AsString_ref concat = vector->concat(v);
-        succeed = succeed && concat->length() == 5;
+        succeed = succeed && concat->getLength() == 5;
 
         succeed = succeed && str1->retainCount() == 3;
         succeed = succeed && str2->retainCount() == 3;
@@ -1411,7 +1411,7 @@ namespace tut
         AsString_ref str5 = ASL("5");
 
         _V_AsString_ref vector = AS_NEW_VECTOR(AsString,(5)) << str1 << str2 << str3 << str4 << str5;
-        bool succeed = vector->length() == 5;
+        bool succeed = vector->getLength() == 5;
 
         succeed = succeed && vector->toString() == ASL("[1,2,3,4,5]");
 
@@ -1434,7 +1434,7 @@ namespace tut
         int arr[size] = {1, 2, 3, 4, 5};
 
         _V_int_ref vector = AS_NEW_PRIMITIVES_VECTOR(int,(size)) << 1 << 2 << 3 << 4 << 5;
-        bool succeed = vector->length() == size;
+        bool succeed = vector->getLength() == size;
 
         int i = 0;
         AS_PRIMITIVE_FOREACH(int, element, vector)
@@ -1465,7 +1465,7 @@ namespace tut
         };
 
         _V_AsString_ref vector = AS_NEW_VECTOR(AsString,(size)) << str1 << str2 << str3 << str4 << str5;
-        bool succeed = vector->length() == size;
+        bool succeed = vector->getLength() == size;
 
         int i = 0;
         AS_FOREACH(AsString, element, vector)

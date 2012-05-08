@@ -41,7 +41,7 @@ public:
 
         inline T& operator[] (int index) 
         {   
-            ASSERT(index >= 0 && index < _object()->length());
+            ASSERT(index >= 0 && index < _object()->getLength());
             return _object()->m_data[index];
         }
 
@@ -62,8 +62,8 @@ protected:
 public:
     int indexOf(const T& searchElement, int fromIndex = 0);
     int lastIndexOf(const T& searchElement, int fromIndex = INDEX_MAX);
-    inline int length() const { return m_size; }
-    void length(int newLenght);
+    inline int getLength() const { return m_size; }
+    void setLength(int newLenght);
     inline int capacity() const { return m_capacity; }    
     AsString_ref _join(const AsString_ref& sep);
     AsString_ref _join();
@@ -76,7 +76,7 @@ public:
 
     Ref concat(const Ref& other) const
     {
-        int len = m_size + other->length();
+        int len = m_size + other->getLength();
         
         Ref result = _as_create_same(len);        
         result->m_size = len;
@@ -86,7 +86,7 @@ public:
             result[i] = m_data[i];
         }
 
-        for (int i = m_size, j = 0; j < other->length(); ++i, ++j)
+        for (int i = m_size, j = 0; j < other->getLength(); ++i, ++j)
         {
             result[i] = other->m_data[j];
         }
@@ -96,8 +96,8 @@ public:
     
     Ref reverse() 
     {
-        int toIndex = length() / 2;
-        for (int i = 0, j = length() - 1; i < toIndex; ++i, --j)
+        int toIndex = getLength() / 2;
+        for (int i = 0, j = getLength() - 1; i < toIndex; ++i, --j)
         {
             T temp = m_data[i];
             m_data[i] = m_data[j];
@@ -110,10 +110,10 @@ public:
     Ref slice(int startIndex = 0, int endIndex = INDEX_MAX) 
     { 
         if (endIndex == INDEX_MAX)
-            endIndex = length();
+            endIndex = getLength();
 
-        ASSERT(startIndex >= 0 && startIndex < length());
-        ASSERT(endIndex >= 0 && endIndex <= length());
+        ASSERT(startIndex >= 0 && startIndex < getLength());
+        ASSERT(endIndex >= 0 && endIndex <= getLength());
         ASSERT(startIndex <= endIndex);        
 
         int len = endIndex - startIndex;
@@ -130,12 +130,12 @@ public:
 
     Ref splice(int startIndex, int deleteCount = INDEX_MAX)
     {
-        ASSERT(startIndex >= 0 && startIndex < length());
+        ASSERT(startIndex >= 0 && startIndex < getLength());
 
         if (deleteCount == INDEX_MAX)
-            deleteCount = length() - startIndex;
+            deleteCount = getLength() - startIndex;
 
-        ASSERT(startIndex + deleteCount <= length());
+        ASSERT(startIndex + deleteCount <= getLength());
 
         /* copy deleted elements to a separate vector */
         Ref result = _as_create_same(deleteCount);
@@ -149,7 +149,7 @@ public:
         /* remove elements */        
         if (deleteCount > 0)
         {
-            for (int i = startIndex + deleteCount, j = startIndex; i < length(); ++i, ++j)
+            for (int i = startIndex + deleteCount, j = startIndex; i < getLength(); ++i, ++j)
             {
                 m_data[j] = m_data[i];
                 freeElement(i);
@@ -162,8 +162,8 @@ public:
 
     Ref splice(int startIndex, int deleteCount, const T& item)
     {
-        ASSERT(startIndex >= 0 && startIndex < length());
-        ASSERT(startIndex + deleteCount <= length());
+        ASSERT(startIndex >= 0 && startIndex < getLength());
+        ASSERT(startIndex + deleteCount <= getLength());
 
         /* copy deleted elements to a separate vector */
         Ref result = _as_create_same(deleteCount);
@@ -179,7 +179,7 @@ public:
         {            
             if (deleteCount > 1)
             {            
-                for (int i = startIndex + deleteCount, j = startIndex + 1; i < length(); ++i, ++j)
+                for (int i = startIndex + deleteCount, j = startIndex + 1; i < getLength(); ++i, ++j)
                 {
                     m_data[j] = m_data[i];
                     freeElement(i);
@@ -205,7 +205,7 @@ public:
 
                 data[startIndex] = item;
 
-                for (int i = startIndex; i < length(); ++i)
+                for (int i = startIndex; i < getLength(); ++i)
                 {
                     data[i+1] = m_data[i];
                     freeElement(i);
@@ -219,7 +219,7 @@ public:
             else
             {
                 ASSERT(m_size < m_capacity);
-                for (int i = length(); i > startIndex; --i)
+                for (int i = getLength(); i > startIndex; --i)
                 {
                     m_data[i] = m_data[i-1];
                 }
@@ -262,7 +262,7 @@ public:
 
     public:
         Iterator(const AsVector* vector) : m_index(0), m_vector(vector) {}
-        inline BOOL hasNext() const { return m_index < m_vector->length(); }
+        inline BOOL hasNext() const { return m_index < m_vector->getLength(); }
         inline const T& next() { ASSERT(hasNext()); return m_vector->m_data[m_index++]; }
     };
 
@@ -330,7 +330,7 @@ void AsVector<T>::expand(int capacity)
     T* data = allocData(capacity);
 
     // memcpy(data, m_data, newSize); - we can't use memcpy because it makes some pointers invalid
-    for (int i = 0; i < length(); ++i)
+    for (int i = 0; i < getLength(); ++i)
     {
         data[i] = m_data[i];
         freeElement(i);
@@ -351,15 +351,15 @@ void AsVector<T>::addElement(const T& element)
 template <class T>
 void AsVector<T>::freeElement(int index)
 {
-    ASSERT(index >= 0 && index < length());
+    ASSERT(index >= 0 && index < getLength());
     // nothing
 }
 
 template <class T>
 int AsVector<T>::indexOf(const T& searchElement, int fromIndex)
 {
-    ASSERT(fromIndex >= 0 && fromIndex < length());
-    for (int i = fromIndex; i < length(); ++i)
+    ASSERT(fromIndex >= 0 && fromIndex < getLength());
+    for (int i = fromIndex; i < getLength(); ++i)
     {
         if (m_data[i] == searchElement)
         {
@@ -374,9 +374,9 @@ template <class T>
 int AsVector<T>::lastIndexOf(const T& searchElement, int fromIndex)
 {
     if (fromIndex == INDEX_MAX)
-        fromIndex = length() - 1;
+        fromIndex = getLength() - 1;
 
-    ASSERT(fromIndex >= 0 && fromIndex < length());
+    ASSERT(fromIndex >= 0 && fromIndex < getLength());
     for (int i = fromIndex; i >= 0; --i)
     {
         if (m_data[i] == searchElement)
@@ -389,7 +389,7 @@ int AsVector<T>::lastIndexOf(const T& searchElement, int fromIndex)
 }
 
 template <class T>
-void AsVector<T>::length(int newLenght)
+void AsVector<T>::setLength(int newLenght)
 {
     ASSERT(newLenght >= 0);
     if (newLenght > m_size)
@@ -436,7 +436,7 @@ T AsVector<T>::pop()
 template <class T>
 int AsVector<T>::push(const T& arg)
 {
-    if (length() == capacity())
+    if (getLength() == capacity())
     {
         int newCapacity = capacity() > 0 ? 2 * capacity() : DEFAULT_CAPACITY;
         expand(newCapacity);
@@ -458,11 +458,11 @@ T AsVector<T>::shift()
     ASSERT(m_size > 0);
         
     T element = m_data[0];    
-    for (int i = 1; i < length(); ++i)
+    for (int i = 1; i < getLength(); ++i)
     {
         m_data[i - 1] = m_data[i];
     }
-    freeElement(length()-1);
+    freeElement(getLength()-1);
     m_size--;
 
     return element;
@@ -471,13 +471,13 @@ T AsVector<T>::shift()
 template <class T>
 int AsVector<T>::unshift(const T& arg)
 {
-    if (length() == capacity())
+    if (getLength() == capacity())
     {
         int newCapacity = capacity() > 0 ? 2 * capacity() : DEFAULT_CAPACITY;
         T* data = allocData(newCapacity);
 
         // memcpy(data, m_data, newSize); - we can't use memcpy because it makes some pointers invalid        
-        for (int i = 0; i < length(); ++i)
+        for (int i = 0; i < getLength(); ++i)
         {
             data[i + 1] = m_data[i];
             freeElement(i);
@@ -491,9 +491,9 @@ int AsVector<T>::unshift(const T& arg)
     }
     else
     {
-        ASSERT(length() < capacity());
+        ASSERT(getLength() < capacity());
         
-        for (int i = length(); i > 0; --i)
+        for (int i = getLength(); i > 0; --i)
         {
             m_data[i] = m_data[i - 1];
         }
@@ -507,7 +507,7 @@ int AsVector<T>::unshift(const T& arg)
 template <class T>
 _as_AsRefVector<T>::~_as_AsRefVector()
 {
-    for (int i = 0; i < length(); ++i)
+    for (int i = 0; i < getLength(); ++i)
     {
         m_data[i] = AS_NULL;
     }
@@ -516,7 +516,7 @@ _as_AsRefVector<T>::~_as_AsRefVector()
 template <class T>
 void _as_AsRefVector<T>::freeElement(int index)
 {
-    ASSERT(index >= 0 && index < length());
+    ASSERT(index >= 0 && index < getLength());
     m_data[index] = AS_NULL;
 }
 
