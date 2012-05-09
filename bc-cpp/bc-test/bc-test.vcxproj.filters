@@ -51,6 +51,16 @@
     <ClCompile Include="test_data\statics\AsStaticDummy.cpp">
       <Filter>test_data\statics</Filter>
     </ClCompile>
+    <ClCompile Include="test_inheritance.cpp" />
+    <ClCompile Include="test_data\inheritance\AsBaseClass.cpp">
+      <Filter>test_data\inheritance</Filter>
+    </ClCompile>
+    <ClCompile Include="test_data\inheritance\AsChildClass.cpp">
+      <Filter>test_data\inheritance</Filter>
+    </ClCompile>
+    <ClCompile Include="test_data\inheritance\AsFieldClass.cpp">
+      <Filter>test_data\inheritance</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="tut">
@@ -70,6 +80,12 @@
     </Filter>
     <Filter Include="test_data\statics">
       <UniqueIdentifier>{20a41704-57d5-4565-9955-3f5b2e7c74b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Converted">
+      <UniqueIdentifier>{bc5f2836-6fe3-48b6-8598-4f334460f4c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="test_data\inheritance">
+      <UniqueIdentifier>{60479e21-4370-4066-8a70-3e2128d2b925}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -171,6 +187,15 @@
     </ClInclude>
     <ClInclude Include="test_data\statics\AsStaticDummy.h">
       <Filter>test_data\statics</Filter>
+    </ClInclude>
+    <ClInclude Include="test_data\inheritance\AsBaseClass.h">
+      <Filter>test_data\inheritance</Filter>
+    </ClInclude>
+    <ClInclude Include="test_data\inheritance\AsChildClass.h">
+      <Filter>test_data\inheritance</Filter>
+    </ClInclude>
+    <ClInclude Include="test_data\inheritance\AsFieldClass.h">
+      <Filter>test_data\inheritance</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
