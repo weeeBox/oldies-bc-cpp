@@ -1,52 +1,37 @@
 #include "AsAbstractMethodError.h"
-#include "AsAbstractMethodError.h"
-#include "AsString.h"
 #include "AsString.h"
  
- 
-AsAbstractMethodError_ref AsAbstractMethodError::__createAsAbstractMethodError(const AsString_ref& message)
+AsAbstractMethodError_ref AsAbstractMethodError::_as_create_AsAbstractMethodError(const AsString_ref& message)
 {
-	AsAbstractMethodError_ref __reference(new AsAbstractMethodError());
-	__reference->__internalConstructAsAbstractMethodError(message);
-	return __reference;
+	AsAbstractMethodError* __instance = new AsAbstractMethodError();
+	__instance->_as_construct_AsAbstractMethodError(message);
+	return __instance;
 }
  
-AsAbstractMethodError_ref AsAbstractMethodError::__createAsAbstractMethodError()
+AsAbstractMethodError_ref AsAbstractMethodError::_as_create_AsAbstractMethodError()
 {
-	AsAbstractMethodError_ref __reference(new AsAbstractMethodError());
-	__reference->__internalConstructAsAbstractMethodError();
-	return __reference;
+	AsAbstractMethodError* __instance = new AsAbstractMethodError();
+	__instance->_as_construct_AsAbstractMethodError();
+	return __instance;
 }
  
-void AsAbstractMethodError::__internalConstructAsAbstractMethodError(const AsString_ref& message)
+void AsAbstractMethodError::_as_construct_AsAbstractMethodError(const AsString_ref& message)
 {
-	__internalConstructAsError(message);
-	__internalInitialiseAsAbstractMethodError();
+	_as_construct_AsError(message);
 }
  
-void AsAbstractMethodError::__internalConstructAsAbstractMethodError()
+inline void AsAbstractMethodError::_as_construct_AsAbstractMethodError()
 {
-	__internalConstructAsError();
-	__$base$__("");
+	_as_construct_AsAbstractMethodError(ASL(""));
 }
  
-void AsAbstractMethodError::__internalInitialiseAsAbstractMethodError()
+bool AsAbstractMethodError::_as_static_initialized_AsAbstractMethodError = false;
+AsStaticRefInitializer AsAbstractMethodError::_as_static_initializer_AsAbstractMethodError(_as_static_init_AsAbstractMethodError);
+void AsAbstractMethodError::_as_static_init_AsAbstractMethodError()
 {
-}
- 
-StaticInit AsAbstractMethodError::__internalStaticInitializerAsAbstractMethodError(&AsAbstractMethodError::__internalStaticInit);
-BOOL AsAbstractMethodError::__internalStaticInitializedAsAbstractMethodError = false;
- 
-void AsAbstractMethodError::__internalStaticInit()
-{
-	if (!__internalStaticInitializedAsAbstractMethodError)
+	if (!_as_static_initialized_AsAbstractMethodError)
 	{
-		__internalStaticInitializedAsAbstractMethodError = true;
-		AsError::__internalStaticInit();
+		_as_static_initialized_AsAbstractMethodError = true;
+		_as_static_init_AsError();
 	}
 }
- 
-AsAbstractMethodError::AsAbstractMethodError()
-{
-}
- 

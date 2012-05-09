@@ -1,52 +1,37 @@
 #include "AsRangeError.h"
-#include "AsRangeError.h"
-#include "AsString.h"
 #include "AsString.h"
  
- 
-AsRangeError_ref AsRangeError::__createAsRangeError(const AsString_ref& message)
+AsRangeError_ref AsRangeError::_as_create_AsRangeError(const AsString_ref& message)
 {
-	AsRangeError_ref __reference(new AsRangeError());
-	__reference->__internalConstructAsRangeError(message);
-	return __reference;
+	AsRangeError* __instance = new AsRangeError();
+	__instance->_as_construct_AsRangeError(message);
+	return __instance;
 }
  
-AsRangeError_ref AsRangeError::__createAsRangeError()
+AsRangeError_ref AsRangeError::_as_create_AsRangeError()
 {
-	AsRangeError_ref __reference(new AsRangeError());
-	__reference->__internalConstructAsRangeError();
-	return __reference;
+	AsRangeError* __instance = new AsRangeError();
+	__instance->_as_construct_AsRangeError();
+	return __instance;
 }
  
-void AsRangeError::__internalConstructAsRangeError(const AsString_ref& message)
+void AsRangeError::_as_construct_AsRangeError(const AsString_ref& message)
 {
-	__internalConstructAsError(message);
-	__internalInitialiseAsRangeError();
+	_as_construct_AsError(message);
 }
  
-void AsRangeError::__internalConstructAsRangeError()
+inline void AsRangeError::_as_construct_AsRangeError()
 {
-	__internalConstructAsError();
-	__$base$__("");
+	_as_construct_AsRangeError(ASL(""));
 }
  
-void AsRangeError::__internalInitialiseAsRangeError()
+bool AsRangeError::_as_static_initialized_AsRangeError = false;
+AsStaticRefInitializer AsRangeError::_as_static_initializer_AsRangeError(_as_static_init_AsRangeError);
+void AsRangeError::_as_static_init_AsRangeError()
 {
-}
- 
-StaticInit AsRangeError::__internalStaticInitializerAsRangeError(&AsRangeError::__internalStaticInit);
-BOOL AsRangeError::__internalStaticInitializedAsRangeError = false;
- 
-void AsRangeError::__internalStaticInit()
-{
-	if (!__internalStaticInitializedAsRangeError)
+	if (!_as_static_initialized_AsRangeError)
 	{
-		__internalStaticInitializedAsRangeError = true;
-		AsError::__internalStaticInit();
+		_as_static_initialized_AsRangeError = true;
+		_as_static_init_AsError();
 	}
 }
- 
-AsRangeError::AsRangeError()
-{
-}
- 

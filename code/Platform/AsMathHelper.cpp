@@ -1,6 +1,8 @@
 #include "AsMathHelper.h"
 #include "AsMath.h"
  
+const float AsMathHelper::epsilon = 0.00001f;
+const float AsMathHelper::MAX_NUMBER = 0x7fffffff;
  
 float AsMathHelper::toRadians(float degrees)
 {

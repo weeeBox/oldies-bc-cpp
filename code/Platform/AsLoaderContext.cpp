@@ -1,30 +1,11 @@
 #include "AsLoaderContext.h"
-#include "AsLoaderContext.h"
  
- 
-AsLoaderContext_ref AsLoaderContext::__createAsLoaderContext()
+bool AsLoaderContext::_as_static_initialized_AsLoaderContext = false;
+AsStaticRefInitializer AsLoaderContext::_as_static_initializer_AsLoaderContext(_as_static_init_AsLoaderContext);
+void AsLoaderContext::_as_static_init_AsLoaderContext()
 {
-	AsLoaderContext_ref __reference(new AsLoaderContext());
-	return __reference;
-}
- 
-void AsLoaderContext::__internalInitialiseAsLoaderContext()
-{
-}
- 
-StaticInit AsLoaderContext::__internalStaticInitializerAsLoaderContext(&AsLoaderContext::__internalStaticInit);
-BOOL AsLoaderContext::__internalStaticInitializedAsLoaderContext = false;
- 
-void AsLoaderContext::__internalStaticInit()
-{
-	if (!__internalStaticInitializedAsLoaderContext)
+	if (!_as_static_initialized_AsLoaderContext)
 	{
-		__internalStaticInitializedAsLoaderContext = true;
-		AsObject::__internalStaticInit();
+		_as_static_initialized_AsLoaderContext = true;
 	}
 }
- 
-AsLoaderContext::AsLoaderContext()
-{
-}
- 

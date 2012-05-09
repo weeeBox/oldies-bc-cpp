@@ -1,38 +1,35 @@
 #ifndef AsAbstractMethodError_h__
 #define AsAbstractMethodError_h__
  
-#include "AsBase.h"
+#include "AsBc.h"
  
 #include "AsError.h"
  
-ASTYPEREF(AsAbstractMethodError)
-ASTYPEREF(AsString)
+#include "AsString.h"
+ 
+ 
+AS_CLASS(AsAbstractMethodError);
  
 class AsAbstractMethodError : public AsError
 {
 public:
-	ASOBJ(AsAbstractMethodError, AsError);
+	AS_OBJ(AsAbstractMethodError, AsError);
+	
 	
 public:
-	static AsAbstractMethodError_ref __createAsAbstractMethodError(const AsString_ref& message);
-	static AsAbstractMethodError_ref __createAsAbstractMethodError();
-	
-private:
-	void __internalConstructAsAbstractMethodError(const AsString_ref& message);
-	void __internalConstructAsAbstractMethodError();
-	
-public:
-	void __internalInitialiseAsAbstractMethodError();
-	
-private:
-	static StaticInit __internalStaticInitializerAsAbstractMethodError;
-	static BOOL __internalStaticInitializedAsAbstractMethodError;
-	
-public:
-	static void __internalStaticInit();
+	static AsAbstractMethodError_ref _as_create_AsAbstractMethodError(const AsString_ref& message);
+	static AsAbstractMethodError_ref _as_create_AsAbstractMethodError();
 	
 protected:
-	AsAbstractMethodError();
+	void _as_construct_AsAbstractMethodError(const AsString_ref& message);
+	void _as_construct_AsAbstractMethodError();
+	
+public:
+	static void _as_static_init_AsAbstractMethodError();
+	
+private:
+	static bool _as_static_initialized_AsAbstractMethodError;
+	static AsStaticRefInitializer _as_static_initializer_AsAbstractMethodError;
 };
  
 #endif // AsAbstractMethodError_h__

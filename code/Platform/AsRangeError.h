@@ -1,38 +1,35 @@
 #ifndef AsRangeError_h__
 #define AsRangeError_h__
  
-#include "AsBase.h"
+#include "AsBc.h"
  
 #include "AsError.h"
  
-ASTYPEREF(AsRangeError)
-ASTYPEREF(AsString)
+#include "AsString.h"
+ 
+ 
+AS_CLASS(AsRangeError);
  
 class AsRangeError : public AsError
 {
 public:
-	ASOBJ(AsRangeError, AsError);
+	AS_OBJ(AsRangeError, AsError);
+	
 	
 public:
-	static AsRangeError_ref __createAsRangeError(const AsString_ref& message);
-	static AsRangeError_ref __createAsRangeError();
-	
-private:
-	void __internalConstructAsRangeError(const AsString_ref& message);
-	void __internalConstructAsRangeError();
-	
-public:
-	void __internalInitialiseAsRangeError();
-	
-private:
-	static StaticInit __internalStaticInitializerAsRangeError;
-	static BOOL __internalStaticInitializedAsRangeError;
-	
-public:
-	static void __internalStaticInit();
+	static AsRangeError_ref _as_create_AsRangeError(const AsString_ref& message);
+	static AsRangeError_ref _as_create_AsRangeError();
 	
 protected:
-	AsRangeError();
+	void _as_construct_AsRangeError(const AsString_ref& message);
+	void _as_construct_AsRangeError();
+	
+public:
+	static void _as_static_init_AsRangeError();
+	
+private:
+	static bool _as_static_initialized_AsRangeError;
+	static AsStaticRefInitializer _as_static_initializer_AsRangeError;
 };
  
 #endif // AsRangeError_h__

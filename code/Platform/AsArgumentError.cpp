@@ -1,52 +1,37 @@
 #include "AsArgumentError.h"
-#include "AsArgumentError.h"
-#include "AsString.h"
 #include "AsString.h"
  
- 
-AsArgumentError_ref AsArgumentError::__createAsArgumentError(const AsString_ref& message)
+AsArgumentError_ref AsArgumentError::_as_create_AsArgumentError(const AsString_ref& message)
 {
-	AsArgumentError_ref __reference(new AsArgumentError());
-	__reference->__internalConstructAsArgumentError(message);
-	return __reference;
+	AsArgumentError* __instance = new AsArgumentError();
+	__instance->_as_construct_AsArgumentError(message);
+	return __instance;
 }
  
-AsArgumentError_ref AsArgumentError::__createAsArgumentError()
+AsArgumentError_ref AsArgumentError::_as_create_AsArgumentError()
 {
-	AsArgumentError_ref __reference(new AsArgumentError());
-	__reference->__internalConstructAsArgumentError();
-	return __reference;
+	AsArgumentError* __instance = new AsArgumentError();
+	__instance->_as_construct_AsArgumentError();
+	return __instance;
 }
  
-void AsArgumentError::__internalConstructAsArgumentError(const AsString_ref& message)
+void AsArgumentError::_as_construct_AsArgumentError(const AsString_ref& message)
 {
-	__internalConstructAsError(message);
-	__internalInitialiseAsArgumentError();
+	_as_construct_AsError(message);
 }
  
-void AsArgumentError::__internalConstructAsArgumentError()
+inline void AsArgumentError::_as_construct_AsArgumentError()
 {
-	__internalConstructAsError();
-	__$base$__("");
+	_as_construct_AsArgumentError(ASL(""));
 }
  
-void AsArgumentError::__internalInitialiseAsArgumentError()
+bool AsArgumentError::_as_static_initialized_AsArgumentError = false;
+AsStaticRefInitializer AsArgumentError::_as_static_initializer_AsArgumentError(_as_static_init_AsArgumentError);
+void AsArgumentError::_as_static_init_AsArgumentError()
 {
-}
- 
-StaticInit AsArgumentError::__internalStaticInitializerAsArgumentError(&AsArgumentError::__internalStaticInit);
-BOOL AsArgumentError::__internalStaticInitializedAsArgumentError = false;
- 
-void AsArgumentError::__internalStaticInit()
-{
-	if (!__internalStaticInitializedAsArgumentError)
+	if (!_as_static_initialized_AsArgumentError)
 	{
-		__internalStaticInitializedAsArgumentError = true;
-		AsError::__internalStaticInit();
+		_as_static_initialized_AsArgumentError = true;
+		_as_static_init_AsError();
 	}
 }
- 
-AsArgumentError::AsArgumentError()
-{
-}
- 

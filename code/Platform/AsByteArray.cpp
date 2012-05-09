@@ -1,88 +1,85 @@
 #include "AsByteArray.h"
-#include "AsByteArray.h"
-#include "AsString.h"
-#include "AsObject.h"
 #include "AsString.h"
 #include "AsByteArray.h"
 #include "AsObject.h"
+#include "AsNotImplementedError.h"
  
- 
-int AsByteArray::bytesAvailable()
+uint AsByteArray::getBytesAvailable()
 {
-	throw new AsNotImplementedError();
+	throw AS_NEW(AsNotImplementedError,());
 }
  
 void AsByteArray::clear()
 {
-	throw new AsNotImplementedError();
+	throw AS_NEW(AsNotImplementedError,());
 }
  
-int AsByteArray::defaultObjectEncoding()
+uint AsByteArray::getDefaultObjectEncoding()
 {
-	throw new AsNotImplementedError();
+	throw AS_NEW(AsNotImplementedError,());
 }
  
-void AsByteArray::defaultObjectEncoding(int version)
+void AsByteArray::setDefaultObjectEncoding(uint version)
 {
-	throw new AsNotImplementedError();
+	throw AS_NEW(AsNotImplementedError,());
 }
  
-AsString_ref AsByteArray::endian()
+AsString_ref AsByteArray::getEndian()
 {
-	throw new AsNotImplementedError();
+	throw AS_NEW(AsNotImplementedError,());
 }
  
-void AsByteArray::endian(const AsString_ref& type)
+void AsByteArray::setEndian(const AsString_ref& type)
 {
-	throw new AsNotImplementedError();
+	throw AS_NEW(AsNotImplementedError,());
 }
  
-int AsByteArray::length()
+uint AsByteArray::getLength()
 {
-	throw new AsNotImplementedError();
+	throw AS_NEW(AsNotImplementedError,());
 }
  
-void AsByteArray::length(int _value)
+void AsByteArray::setLength(uint _value)
 {
-	throw new AsNotImplementedError();
+	throw AS_NEW(AsNotImplementedError,());
 }
  
-int AsByteArray::objectEncoding()
+uint AsByteArray::getObjectEncoding()
 {
-	throw new AsNotImplementedError();
+	throw AS_NEW(AsNotImplementedError,());
 }
  
-void AsByteArray::objectEncoding(int version)
+void AsByteArray::setObjectEncoding(uint version)
 {
-	throw new AsNotImplementedError();
+	throw AS_NEW(AsNotImplementedError,());
 }
  
-int AsByteArray::position()
+uint AsByteArray::getPosition()
 {
-	throw new AsNotImplementedError();
+	throw AS_NEW(AsNotImplementedError,());
 }
  
-void AsByteArray::position(int offset)
+void AsByteArray::setPosition(uint offset)
 {
-	throw new AsNotImplementedError();
+	throw AS_NEW(AsNotImplementedError,());
 }
  
-BOOL AsByteArray::readBoolean()
+bool AsByteArray::readBoolean()
 {
-	throw new AsNotImplementedError();
+	throw AS_NEW(AsNotImplementedError,());
 }
  
 int AsByteArray::readByte()
 {
-	throw new AsNotImplementedError();
+	throw AS_NEW(AsNotImplementedError,());
 }
  
-void AsByteArray::readBytes(const AsByteArray_ref& bytes, int offset, int length)
+void AsByteArray::readBytes(const AsByteArray_ref& bytes, uint offset, uint length)
 {
-	throw new AsNotImplementedError();
+	throw AS_NEW(AsNotImplementedError,());
 }
  
-void AsByteArray::readBytes(const AsByteArray_ref& bytes, int offset)
+void AsByteArray::readBytes(const AsByteArray_ref& bytes, uint offset)
 {
 	readBytes(bytes, offset, (uint)(0));
 }
@@ -94,80 +91,80 @@ void AsByteArray::readBytes(const AsByteArray_ref& bytes)
  
 float AsByteArray::readDouble()
 {
-	throw new AsNotImplementedError();
+	throw AS_NEW(AsNotImplementedError,());
 }
  
 float AsByteArray::readFloat()
 {
-	throw new AsNotImplementedError();
+	throw AS_NEW(AsNotImplementedError,());
 }
  
 int AsByteArray::readInt()
 {
-	throw new AsNotImplementedError();
+	throw AS_NEW(AsNotImplementedError,());
 }
  
-AsString_ref AsByteArray::readMultiByte(int length, const AsString_ref& charSet)
+AsString_ref AsByteArray::readMultiByte(uint length, const AsString_ref& charSet)
 {
-	throw new AsNotImplementedError();
+	throw AS_NEW(AsNotImplementedError,());
 }
  
 AsObject_ref AsByteArray::readObject()
 {
-	throw new AsNotImplementedError();
+	throw AS_NEW(AsNotImplementedError,());
 }
  
 int AsByteArray::readShort()
 {
-	throw new AsNotImplementedError();
+	throw AS_NEW(AsNotImplementedError,());
 }
  
 AsString_ref AsByteArray::readUTF()
 {
-	throw new AsNotImplementedError();
+	throw AS_NEW(AsNotImplementedError,());
 }
  
-AsString_ref AsByteArray::readUTFBytes(int length)
+AsString_ref AsByteArray::readUTFBytes(uint length)
 {
-	throw new AsNotImplementedError();
+	throw AS_NEW(AsNotImplementedError,());
 }
  
-int AsByteArray::readUnsignedByte()
+uint AsByteArray::readUnsignedByte()
 {
-	throw new AsNotImplementedError();
+	throw AS_NEW(AsNotImplementedError,());
 }
  
-int AsByteArray::readUnsignedInt()
+uint AsByteArray::readUnsignedInt()
 {
-	throw new AsNotImplementedError();
+	throw AS_NEW(AsNotImplementedError,());
 }
  
-int AsByteArray::readUnsignedShort()
+uint AsByteArray::readUnsignedShort()
 {
-	throw new AsNotImplementedError();
+	throw AS_NEW(AsNotImplementedError,());
 }
  
 AsString_ref AsByteArray::toString()
 {
-	throw new AsNotImplementedError();
+	throw AS_NEW(AsNotImplementedError,());
 }
  
-void AsByteArray::writeBoolean(BOOL _value)
+void AsByteArray::writeBoolean(bool _value)
 {
-	throw new AsNotImplementedError();
+	throw AS_NEW(AsNotImplementedError,());
 }
  
 void AsByteArray::writeByte(int _value)
 {
-	throw new AsNotImplementedError();
+	throw AS_NEW(AsNotImplementedError,());
 }
  
-void AsByteArray::writeBytes(const AsByteArray_ref& bytes, int offset, int length)
+void AsByteArray::writeBytes(const AsByteArray_ref& bytes, uint offset, uint length)
 {
-	throw new AsNotImplementedError();
+	throw AS_NEW(AsNotImplementedError,());
 }
  
-void AsByteArray::writeBytes(const AsByteArray_ref& bytes, int offset)
+void AsByteArray::writeBytes(const AsByteArray_ref& bytes, uint offset)
 {
 	writeBytes(bytes, offset, (uint)(0));
 }
@@ -179,72 +176,55 @@ void AsByteArray::writeBytes(const AsByteArray_ref& bytes)
  
 void AsByteArray::writeDouble(float _value)
 {
-	throw new AsNotImplementedError();
+	throw AS_NEW(AsNotImplementedError,());
 }
  
 void AsByteArray::writeFloat(float _value)
 {
-	throw new AsNotImplementedError();
+	throw AS_NEW(AsNotImplementedError,());
 }
  
 void AsByteArray::writeInt(int _value)
 {
-	throw new AsNotImplementedError();
+	throw AS_NEW(AsNotImplementedError,());
 }
  
 void AsByteArray::writeMultiByte(const AsString_ref& _value, const AsString_ref& charSet)
 {
-	throw new AsNotImplementedError();
+	throw AS_NEW(AsNotImplementedError,());
 }
  
 void AsByteArray::writeObject(const AsObject_ref& _object)
 {
-	throw new AsNotImplementedError();
+	throw AS_NEW(AsNotImplementedError,());
 }
  
 void AsByteArray::writeShort(int _value)
 {
-	throw new AsNotImplementedError();
+	throw AS_NEW(AsNotImplementedError,());
 }
  
 void AsByteArray::writeUTF(const AsString_ref& _value)
 {
-	throw new AsNotImplementedError();
+	throw AS_NEW(AsNotImplementedError,());
 }
  
 void AsByteArray::writeUTFBytes(const AsString_ref& _value)
 {
-	throw new AsNotImplementedError();
+	throw AS_NEW(AsNotImplementedError,());
 }
  
-void AsByteArray::writeUnsignedInt(int _value)
+void AsByteArray::writeUnsignedInt(uint _value)
 {
-	throw new AsNotImplementedError();
+	throw AS_NEW(AsNotImplementedError,());
 }
  
-AsByteArray_ref AsByteArray::__createAsByteArray()
+bool AsByteArray::_as_static_initialized_AsByteArray = false;
+AsStaticRefInitializer AsByteArray::_as_static_initializer_AsByteArray(_as_static_init_AsByteArray);
+void AsByteArray::_as_static_init_AsByteArray()
 {
-	AsByteArray_ref __reference(new AsByteArray());
-	return __reference;
-}
- 
-void AsByteArray::__internalInitialiseAsByteArray()
-{
-}
- 
-StaticInit AsByteArray::__internalStaticInitializerAsByteArray(&AsByteArray::__internalStaticInit);
-BOOL AsByteArray::__internalStaticInitializedAsByteArray = false;
- 
-void AsByteArray::__internalStaticInit()
-{
-	if (!__internalStaticInitializedAsByteArray)
+	if (!_as_static_initialized_AsByteArray)
 	{
-		__internalStaticInitializedAsByteArray = true;
-		AsObject::__internalStaticInit();
+		_as_static_initialized_AsByteArray = true;
 	}
 }
- 
-AsByteArray::AsByteArray()
-{
-}
- 

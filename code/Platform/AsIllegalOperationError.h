@@ -1,38 +1,35 @@
 #ifndef AsIllegalOperationError_h__
 #define AsIllegalOperationError_h__
  
-#include "AsBase.h"
+#include "AsBc.h"
  
 #include "AsError.h"
  
-ASTYPEREF(AsIllegalOperationError)
-ASTYPEREF(AsString)
+#include "AsString.h"
+ 
+ 
+AS_CLASS(AsIllegalOperationError);
  
 class AsIllegalOperationError : public AsError
 {
 public:
-	ASOBJ(AsIllegalOperationError, AsError);
+	AS_OBJ(AsIllegalOperationError, AsError);
+	
 	
 public:
-	static AsIllegalOperationError_ref __createAsIllegalOperationError(const AsString_ref& message);
-	static AsIllegalOperationError_ref __createAsIllegalOperationError();
-	
-private:
-	void __internalConstructAsIllegalOperationError(const AsString_ref& message);
-	void __internalConstructAsIllegalOperationError();
-	
-public:
-	void __internalInitialiseAsIllegalOperationError();
-	
-private:
-	static StaticInit __internalStaticInitializerAsIllegalOperationError;
-	static BOOL __internalStaticInitializedAsIllegalOperationError;
-	
-public:
-	static void __internalStaticInit();
+	static AsIllegalOperationError_ref _as_create_AsIllegalOperationError(const AsString_ref& message);
+	static AsIllegalOperationError_ref _as_create_AsIllegalOperationError();
 	
 protected:
-	AsIllegalOperationError();
+	void _as_construct_AsIllegalOperationError(const AsString_ref& message);
+	void _as_construct_AsIllegalOperationError();
+	
+public:
+	static void _as_static_init_AsIllegalOperationError();
+	
+private:
+	static bool _as_static_initialized_AsIllegalOperationError;
+	static AsStaticRefInitializer _as_static_initializer_AsIllegalOperationError;
 };
  
 #endif // AsIllegalOperationError_h__

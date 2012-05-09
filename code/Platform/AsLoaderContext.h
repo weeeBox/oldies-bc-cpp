@@ -1,30 +1,23 @@
 #ifndef AsLoaderContext_h__
 #define AsLoaderContext_h__
  
-#include "AsBase.h"
+#include "AsBc.h"
  
 #include "AsObject.h"
  
-ASTYPEREF(AsLoaderContext)
+ 
+AS_CLASS(AsLoaderContext);
  
 class AsLoaderContext : public AsObject
 {
 public:
-	ASOBJ(AsLoaderContext, AsObject);
+	AS_OBJ(AsLoaderContext, AsObject);
 	
-public:
-	static AsLoaderContext_ref __createAsLoaderContext();
-	void __internalInitialiseAsLoaderContext();
+	static void _as_static_init_AsLoaderContext();
 	
 private:
-	static StaticInit __internalStaticInitializerAsLoaderContext;
-	static BOOL __internalStaticInitializedAsLoaderContext;
-	
-public:
-	static void __internalStaticInit();
-	
-protected:
-	AsLoaderContext();
+	static bool _as_static_initialized_AsLoaderContext;
+	static AsStaticRefInitializer _as_static_initializer_AsLoaderContext;
 };
  
 #endif // AsLoaderContext_h__

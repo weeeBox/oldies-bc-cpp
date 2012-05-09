@@ -1,52 +1,37 @@
 #include "AsIllegalOperationError.h"
-#include "AsIllegalOperationError.h"
-#include "AsString.h"
 #include "AsString.h"
  
- 
-AsIllegalOperationError_ref AsIllegalOperationError::__createAsIllegalOperationError(const AsString_ref& message)
+AsIllegalOperationError_ref AsIllegalOperationError::_as_create_AsIllegalOperationError(const AsString_ref& message)
 {
-	AsIllegalOperationError_ref __reference(new AsIllegalOperationError());
-	__reference->__internalConstructAsIllegalOperationError(message);
-	return __reference;
+	AsIllegalOperationError* __instance = new AsIllegalOperationError();
+	__instance->_as_construct_AsIllegalOperationError(message);
+	return __instance;
 }
  
-AsIllegalOperationError_ref AsIllegalOperationError::__createAsIllegalOperationError()
+AsIllegalOperationError_ref AsIllegalOperationError::_as_create_AsIllegalOperationError()
 {
-	AsIllegalOperationError_ref __reference(new AsIllegalOperationError());
-	__reference->__internalConstructAsIllegalOperationError();
-	return __reference;
+	AsIllegalOperationError* __instance = new AsIllegalOperationError();
+	__instance->_as_construct_AsIllegalOperationError();
+	return __instance;
 }
  
-void AsIllegalOperationError::__internalConstructAsIllegalOperationError(const AsString_ref& message)
+void AsIllegalOperationError::_as_construct_AsIllegalOperationError(const AsString_ref& message)
 {
-	__internalConstructAsError(message);
-	__internalInitialiseAsIllegalOperationError();
+	_as_construct_AsError(message);
 }
  
-void AsIllegalOperationError::__internalConstructAsIllegalOperationError()
+inline void AsIllegalOperationError::_as_construct_AsIllegalOperationError()
 {
-	__internalConstructAsError();
-	__$base$__(null);
+	_as_construct_AsIllegalOperationError(AS_NULL);
 }
  
-void AsIllegalOperationError::__internalInitialiseAsIllegalOperationError()
+bool AsIllegalOperationError::_as_static_initialized_AsIllegalOperationError = false;
+AsStaticRefInitializer AsIllegalOperationError::_as_static_initializer_AsIllegalOperationError(_as_static_init_AsIllegalOperationError);
+void AsIllegalOperationError::_as_static_init_AsIllegalOperationError()
 {
-}
- 
-StaticInit AsIllegalOperationError::__internalStaticInitializerAsIllegalOperationError(&AsIllegalOperationError::__internalStaticInit);
-BOOL AsIllegalOperationError::__internalStaticInitializedAsIllegalOperationError = false;
- 
-void AsIllegalOperationError::__internalStaticInit()
-{
-	if (!__internalStaticInitializedAsIllegalOperationError)
+	if (!_as_static_initialized_AsIllegalOperationError)
 	{
-		__internalStaticInitializedAsIllegalOperationError = true;
-		AsError::__internalStaticInit();
+		_as_static_initialized_AsIllegalOperationError = true;
+		_as_static_init_AsError();
 	}
 }
- 
-AsIllegalOperationError::AsIllegalOperationError()
-{
-}
- 

@@ -14,10 +14,10 @@ public:
 	AS_OBJ(AsMathHelper, AsObject);
 	
 private:
-	static const float epsilon = 0.00001f;
+	static const float epsilon;
 	
 public:
-	static const float MAX_NUMBER = 0x7fffffff;
+	static const float MAX_NUMBER;
 	
 public:
 	static float toRadians(float degrees);

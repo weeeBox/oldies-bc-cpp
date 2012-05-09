@@ -1,65 +1,53 @@
 #include "AsError.h"
-#include "AsError.h"
-#include "AsString.h"
 #include "AsString.h"
  
  
-AsError_ref AsError::__createAsError(const AsString_ref& message)
+AsError_ref AsError::_as_create_AsError(const AsString_ref& message)
 {
-	AsError_ref __reference(new AsError());
-	__reference->__internalConstructAsError(message);
-	return __reference;
+	AsError* __instance = new AsError();
+	__instance->_as_construct_AsError(message);
+	return __instance;
 }
  
-AsError_ref AsError::__createAsError()
+AsError_ref AsError::_as_create_AsError()
 {
-	AsError_ref __reference(new AsError());
-	__reference->__internalConstructAsError();
-	return __reference;
+	AsError* __instance = new AsError();
+	__instance->_as_construct_AsError();
+	return __instance;
 }
  
-void AsError::__internalConstructAsError(const AsString_ref& message)
+void AsError::_as_construct_AsError(const AsString_ref& message)
 {
-	__internalConstructAsObject();
-	__internalInitialiseAsError();
-	this.message = message;
+	this->message = message;
 }
  
-void AsError::__internalConstructAsError()
+inline void AsError::_as_construct_AsError()
 {
-	__internalConstructAsObject();
-	__$base$__("");
+	_as_construct_AsError(ASL(""));
 }
  
-void AsError::__internalInitialiseAsError()
+bool AsError::_as_static_initialized_AsError = false;
+AsStaticRefInitializer AsError::_as_static_initializer_AsError(_as_static_init_AsError);
+void AsError::_as_static_init_AsError()
 {
-}
- 
-StaticInit AsError::__internalStaticInitializerAsError(&AsError::__internalStaticInit);
-BOOL AsError::__internalStaticInitializedAsError = false;
- 
-void AsError::__internalStaticInit()
-{
-	if (!__internalStaticInitializedAsError)
+	if (!_as_static_initialized_AsError)
 	{
-		__internalStaticInitializedAsError = true;
-		AsObject::__internalStaticInit();
+		_as_static_initialized_AsError = true;
 	}
 }
  
-AsError::AsError() :
+void AsError::_as_gc_mark()
+{
+	if (_as_gc_mark_needed())
+	{
+		AsObject::_as_gc_mark();
+		AS_GC_MARK(message)
+		AS_GC_MARK(name)
+	}
+}
+ 
+AsError::AsError() : 
   message(false),
   name(false)
 {
 }
- 
-void AsError::__internalGc()
-{
-	if(__internalGcNeeded())
-	{
-		AsObject::__internalGc();
-		if (message != __NULL) message->__internalGc();
-		if (name != __NULL) name->__internalGc();
-	}
-}
- 

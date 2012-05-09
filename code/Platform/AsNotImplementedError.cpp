@@ -1,52 +1,37 @@
 #include "AsNotImplementedError.h"
-#include "AsNotImplementedError.h"
-#include "AsString.h"
 #include "AsString.h"
  
- 
-AsNotImplementedError_ref AsNotImplementedError::__createAsNotImplementedError(const AsString_ref& message)
+AsNotImplementedError_ref AsNotImplementedError::_as_create_AsNotImplementedError(const AsString_ref& message)
 {
-	AsNotImplementedError_ref __reference(new AsNotImplementedError());
-	__reference->__internalConstructAsNotImplementedError(message);
-	return __reference;
+	AsNotImplementedError* __instance = new AsNotImplementedError();
+	__instance->_as_construct_AsNotImplementedError(message);
+	return __instance;
 }
  
-AsNotImplementedError_ref AsNotImplementedError::__createAsNotImplementedError()
+AsNotImplementedError_ref AsNotImplementedError::_as_create_AsNotImplementedError()
 {
-	AsNotImplementedError_ref __reference(new AsNotImplementedError());
-	__reference->__internalConstructAsNotImplementedError();
-	return __reference;
+	AsNotImplementedError* __instance = new AsNotImplementedError();
+	__instance->_as_construct_AsNotImplementedError();
+	return __instance;
 }
  
-void AsNotImplementedError::__internalConstructAsNotImplementedError(const AsString_ref& message)
+void AsNotImplementedError::_as_construct_AsNotImplementedError(const AsString_ref& message)
 {
-	__internalConstructAsError(message);
-	__internalInitialiseAsNotImplementedError();
+	_as_construct_AsError(message);
 }
  
-void AsNotImplementedError::__internalConstructAsNotImplementedError()
+inline void AsNotImplementedError::_as_construct_AsNotImplementedError()
 {
-	__internalConstructAsError();
-	__$base$__("");
+	_as_construct_AsNotImplementedError(ASL(""));
 }
  
-void AsNotImplementedError::__internalInitialiseAsNotImplementedError()
+bool AsNotImplementedError::_as_static_initialized_AsNotImplementedError = false;
+AsStaticRefInitializer AsNotImplementedError::_as_static_initializer_AsNotImplementedError(_as_static_init_AsNotImplementedError);
+void AsNotImplementedError::_as_static_init_AsNotImplementedError()
 {
-}
- 
-StaticInit AsNotImplementedError::__internalStaticInitializerAsNotImplementedError(&AsNotImplementedError::__internalStaticInit);
-BOOL AsNotImplementedError::__internalStaticInitializedAsNotImplementedError = false;
- 
-void AsNotImplementedError::__internalStaticInit()
-{
-	if (!__internalStaticInitializedAsNotImplementedError)
+	if (!_as_static_initialized_AsNotImplementedError)
 	{
-		__internalStaticInitializedAsNotImplementedError = true;
-		AsError::__internalStaticInit();
+		_as_static_initialized_AsNotImplementedError = true;
+		_as_static_init_AsError();
 	}
 }
- 
-AsNotImplementedError::AsNotImplementedError()
-{
-}
- 

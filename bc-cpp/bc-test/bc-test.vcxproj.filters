@@ -61,6 +61,39 @@
     <ClCompile Include="test_data\inheritance\AsFieldClass.cpp">
       <Filter>test_data\inheritance</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\code\Platform\AsAbstractClassError.cpp">
+      <Filter>Platform</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\Platform\AsAbstractMethodError.cpp">
+      <Filter>Platform</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\Platform\AsArgumentError.cpp">
+      <Filter>Platform</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\Platform\AsByteArray.cpp">
+      <Filter>Platform</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\Platform\AsError.cpp">
+      <Filter>Platform</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\Platform\AsIllegalOperationError.cpp">
+      <Filter>Platform</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\Platform\AsLoaderContext.cpp">
+      <Filter>Platform</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\Platform\AsMathHelper.cpp">
+      <Filter>Platform</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\Platform\AsNotImplementedError.cpp">
+      <Filter>Platform</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\Platform\AsRangeError.cpp">
+      <Filter>Platform</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\Platform\AsMath.cpp">
+      <Filter>Platform</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="tut">
@@ -86,6 +119,9 @@
     </Filter>
     <Filter Include="test_data\inheritance">
       <UniqueIdentifier>{60479e21-4370-4066-8a70-3e2128d2b925}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Api">
+      <UniqueIdentifier>{1137117a-24a4-4ad9-b8cd-a3c26d956e70}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -196,6 +232,36 @@
     </ClInclude>
     <ClInclude Include="test_data\inheritance\AsFieldClass.h">
       <Filter>test_data\inheritance</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\Platform\AsAbstractClassError.h">
+      <Filter>Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\Platform\AsAbstractMethodError.h">
+      <Filter>Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\Platform\AsArgumentError.h">
+      <Filter>Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\Platform\AsByteArray.h">
+      <Filter>Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\Platform\AsError.h">
+      <Filter>Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\Platform\AsIllegalOperationError.h">
+      <Filter>Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\Platform\AsLoaderContext.h">
+      <Filter>Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\Platform\AsMathHelper.h">
+      <Filter>Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\Platform\AsNotImplementedError.h">
+      <Filter>Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\Platform\AsRangeError.h">
+      <Filter>Platform</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

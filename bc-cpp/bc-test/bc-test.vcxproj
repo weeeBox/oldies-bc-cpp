@@ -50,7 +50,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir)\tut\tut;$(ProjectDir)\tut;$(ProjectDir)\..\..\code\Platform;$(ProjectDir)\test_data\interfaces;$(ProjectDir)\test_data\statics;$(ProjectDir)\test_data\inheritance;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\tut\tut;$(ProjectDir)\tut;$(ProjectDir)\..\..\code\Platform;$(ProjectDir)\test_data\interfaces;$(ProjectDir)\test_data\statics;$(ProjectDir)\test_data\inheritance;$(ProjectDir)\test_data\Api;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -75,11 +75,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\code\Platform\AsAbstractClassError.cpp" />
+    <ClCompile Include="..\..\code\Platform\AsAbstractMethodError.cpp" />
+    <ClCompile Include="..\..\code\Platform\AsArgumentError.cpp" />
     <ClCompile Include="..\..\code\Platform\AsArray.cpp" />
+    <ClCompile Include="..\..\code\Platform\AsByteArray.cpp" />
     <ClCompile Include="..\..\code\Platform\AsDebug.cpp" />
     <ClCompile Include="..\..\code\Platform\AsDictionary.cpp" />
+    <ClCompile Include="..\..\code\Platform\AsError.cpp" />
+    <ClCompile Include="..\..\code\Platform\AsIllegalOperationError.cpp" />
+    <ClCompile Include="..\..\code\Platform\AsLoaderContext.cpp" />
+    <ClCompile Include="..\..\code\Platform\AsMath.cpp" />
+    <ClCompile Include="..\..\code\Platform\AsMathHelper.cpp" />
+    <ClCompile Include="..\..\code\Platform\AsNotImplementedError.cpp" />
     <ClCompile Include="..\..\code\Platform\AsObject.cpp" />
     <ClCompile Include="..\..\code\Platform\AsObjectRef.cpp" />
+    <ClCompile Include="..\..\code\Platform\AsRangeError.cpp" />
     <ClCompile Include="..\..\code\Platform\AsString.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="test_AsDictionary.cpp" />
@@ -103,13 +114,23 @@
     <ClCompile Include="test_statics.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\code\Platform\AsAbstractClassError.h" />
+    <ClInclude Include="..\..\code\Platform\AsAbstractMethodError.h" />
+    <ClInclude Include="..\..\code\Platform\AsArgumentError.h" />
     <ClInclude Include="..\..\code\Platform\AsArray.h" />
     <ClInclude Include="..\..\code\Platform\AsBc.h" />
+    <ClInclude Include="..\..\code\Platform\AsByteArray.h" />
     <ClInclude Include="..\..\code\Platform\AsDebug.h" />
     <ClInclude Include="..\..\code\Platform\AsDictionary.h" />
+    <ClInclude Include="..\..\code\Platform\AsError.h" />
+    <ClInclude Include="..\..\code\Platform\AsIllegalOperationError.h" />
+    <ClInclude Include="..\..\code\Platform\AsLoaderContext.h" />
     <ClInclude Include="..\..\code\Platform\AsMath.h" />
+    <ClInclude Include="..\..\code\Platform\AsMathHelper.h" />
+    <ClInclude Include="..\..\code\Platform\AsNotImplementedError.h" />
     <ClInclude Include="..\..\code\Platform\AsObject.h" />
     <ClInclude Include="..\..\code\Platform\AsObjectRef.h" />
+    <ClInclude Include="..\..\code\Platform\AsRangeError.h" />
     <ClInclude Include="..\..\code\Platform\AsString.h" />
     <ClInclude Include="..\..\code\Platform\AsVector.h" />
     <ClInclude Include="test_data\inheritance\AsBaseClass.h" />

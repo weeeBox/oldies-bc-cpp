@@ -1,38 +1,35 @@
 #ifndef AsNotImplementedError_h__
 #define AsNotImplementedError_h__
  
-#include "AsBase.h"
+#include "AsBc.h"
  
 #include "AsError.h"
  
-ASTYPEREF(AsNotImplementedError)
-ASTYPEREF(AsString)
+#include "AsString.h"
+ 
+ 
+AS_CLASS(AsNotImplementedError);
  
 class AsNotImplementedError : public AsError
 {
 public:
-	ASOBJ(AsNotImplementedError, AsError);
+	AS_OBJ(AsNotImplementedError, AsError);
+	
 	
 public:
-	static AsNotImplementedError_ref __createAsNotImplementedError(const AsString_ref& message);
-	static AsNotImplementedError_ref __createAsNotImplementedError();
-	
-private:
-	void __internalConstructAsNotImplementedError(const AsString_ref& message);
-	void __internalConstructAsNotImplementedError();
-	
-public:
-	void __internalInitialiseAsNotImplementedError();
-	
-private:
-	static StaticInit __internalStaticInitializerAsNotImplementedError;
-	static BOOL __internalStaticInitializedAsNotImplementedError;
-	
-public:
-	static void __internalStaticInit();
+	static AsNotImplementedError_ref _as_create_AsNotImplementedError(const AsString_ref& message);
+	static AsNotImplementedError_ref _as_create_AsNotImplementedError();
 	
 protected:
-	AsNotImplementedError();
+	void _as_construct_AsNotImplementedError(const AsString_ref& message);
+	void _as_construct_AsNotImplementedError();
+	
+public:
+	static void _as_static_init_AsNotImplementedError();
+	
+private:
+	static bool _as_static_initialized_AsNotImplementedError;
+	static AsStaticRefInitializer _as_static_initializer_AsNotImplementedError;
 };
  
 #endif // AsNotImplementedError_h__

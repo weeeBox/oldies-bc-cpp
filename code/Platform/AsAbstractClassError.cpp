@@ -1,52 +1,37 @@
 #include "AsAbstractClassError.h"
-#include "AsAbstractClassError.h"
-#include "AsString.h"
 #include "AsString.h"
  
- 
-AsAbstractClassError_ref AsAbstractClassError::__createAsAbstractClassError(const AsString_ref& message)
+AsAbstractClassError_ref AsAbstractClassError::_as_create_AsAbstractClassError(const AsString_ref& message)
 {
-	AsAbstractClassError_ref __reference(new AsAbstractClassError());
-	__reference->__internalConstructAsAbstractClassError(message);
-	return __reference;
+	AsAbstractClassError* __instance = new AsAbstractClassError();
+	__instance->_as_construct_AsAbstractClassError(message);
+	return __instance;
 }
  
-AsAbstractClassError_ref AsAbstractClassError::__createAsAbstractClassError()
+AsAbstractClassError_ref AsAbstractClassError::_as_create_AsAbstractClassError()
 {
-	AsAbstractClassError_ref __reference(new AsAbstractClassError());
-	__reference->__internalConstructAsAbstractClassError();
-	return __reference;
+	AsAbstractClassError* __instance = new AsAbstractClassError();
+	__instance->_as_construct_AsAbstractClassError();
+	return __instance;
 }
  
-void AsAbstractClassError::__internalConstructAsAbstractClassError(const AsString_ref& message)
+void AsAbstractClassError::_as_construct_AsAbstractClassError(const AsString_ref& message)
 {
-	__internalConstructAsError(message);
-	__internalInitialiseAsAbstractClassError();
+	_as_construct_AsError(message);
 }
  
-void AsAbstractClassError::__internalConstructAsAbstractClassError()
+inline void AsAbstractClassError::_as_construct_AsAbstractClassError()
 {
-	__internalConstructAsError();
-	__$base$__("");
+	_as_construct_AsAbstractClassError(ASL(""));
 }
  
-void AsAbstractClassError::__internalInitialiseAsAbstractClassError()
+bool AsAbstractClassError::_as_static_initialized_AsAbstractClassError = false;
+AsStaticRefInitializer AsAbstractClassError::_as_static_initializer_AsAbstractClassError(_as_static_init_AsAbstractClassError);
+void AsAbstractClassError::_as_static_init_AsAbstractClassError()
 {
-}
- 
-StaticInit AsAbstractClassError::__internalStaticInitializerAsAbstractClassError(&AsAbstractClassError::__internalStaticInit);
-BOOL AsAbstractClassError::__internalStaticInitializedAsAbstractClassError = false;
- 
-void AsAbstractClassError::__internalStaticInit()
-{
-	if (!__internalStaticInitializedAsAbstractClassError)
+	if (!_as_static_initialized_AsAbstractClassError)
 	{
-		__internalStaticInitializedAsAbstractClassError = true;
-		AsError::__internalStaticInit();
+		_as_static_initialized_AsAbstractClassError = true;
+		_as_static_init_AsError();
 	}
 }
- 
-AsAbstractClassError::AsAbstractClassError()
-{
-}
- 

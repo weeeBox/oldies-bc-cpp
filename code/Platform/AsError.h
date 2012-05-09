@@ -1,45 +1,46 @@
 #ifndef AsError_h__
 #define AsError_h__
  
-#include "AsBase.h"
+#include "AsBc.h"
  
 #include "AsObject.h"
  
-ASTYPEREF(AsError)
-ASTYPEREF(AsString)
+#include "AsString.h"
+ 
+ 
+AS_CLASS(AsError);
  
 class AsError : public AsObject
 {
 public:
-	ASOBJ(AsError, AsObject);
+	AS_OBJ(AsError, AsObject);
 	
 public:
 	AsString_ref message;
 	AsString_ref name;
 	
+	
 public:
-	static AsError_ref __createAsError(const AsString_ref& message);
-	static AsError_ref __createAsError();
+	static AsError_ref _as_create_AsError(const AsString_ref& message);
+	static AsError_ref _as_create_AsError();
+	
+protected:
+	void _as_construct_AsError(const AsString_ref& message);
+	void _as_construct_AsError();
+	
+public:
+	static void _as_static_init_AsError();
 	
 private:
-	void __internalConstructAsError(const AsString_ref& message);
-	void __internalConstructAsError();
+	static bool _as_static_initialized_AsError;
+	static AsStaticRefInitializer _as_static_initializer_AsError;
 	
 public:
-	void __internalInitialiseAsError();
+	void _as_gc_mark();
 	
-private:
-	static StaticInit __internalStaticInitializerAsError;
-	static BOOL __internalStaticInitializedAsError;
-	
-public:
-	static void __internalStaticInit();
 	
 protected:
 	AsError();
-	
-public:
-	void __internalGc();
 };
  
 #endif // AsError_h__
