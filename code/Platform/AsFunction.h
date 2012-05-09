@@ -1,30 +1,23 @@
 #ifndef AsFunction_h__
 #define AsFunction_h__
  
-#include "AsBase.h"
+#include "AsBc.h"
  
 #include "AsObject.h"
  
-ASTYPEREF(AsFunction)
+ 
+AS_CLASS(AsFunction);
  
 class AsFunction : public AsObject
 {
 public:
-	ASOBJ(AsFunction, AsObject);
+	AS_OBJ(AsFunction, AsObject);
 	
-public:
-	static AsFunction_ref __createAsFunction();
-	void __internalInitialiseAsFunction();
+	static void _as_static_init_AsFunction();
 	
 private:
-	static StaticInit __internalStaticInitializerAsFunction;
-	static BOOL __internalStaticInitializedAsFunction;
-	
-public:
-	static void __internalStaticInit();
-	
-protected:
-	AsFunction();
+	static bool _as_static_initialized_AsFunction;
+	static AsStaticRefInitializer _as_static_initializer_AsFunction;
 };
  
 #endif // AsFunction_h__

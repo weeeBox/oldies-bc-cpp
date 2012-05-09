@@ -80,9 +80,11 @@
     <ClCompile Include="..\..\code\Platform\AsArgumentError.cpp" />
     <ClCompile Include="..\..\code\Platform\AsArray.cpp" />
     <ClCompile Include="..\..\code\Platform\AsByteArray.cpp" />
+    <ClCompile Include="..\..\code\Platform\AsClass.cpp" />
     <ClCompile Include="..\..\code\Platform\AsDebug.cpp" />
     <ClCompile Include="..\..\code\Platform\AsDictionary.cpp" />
     <ClCompile Include="..\..\code\Platform\AsError.cpp" />
+    <ClCompile Include="..\..\code\Platform\AsFunction.cpp" />
     <ClCompile Include="..\..\code\Platform\AsIllegalOperationError.cpp" />
     <ClCompile Include="..\..\code\Platform\AsLoaderContext.cpp" />
     <ClCompile Include="..\..\code\Platform\AsMath.cpp" />
@@ -120,9 +122,11 @@
     <ClInclude Include="..\..\code\Platform\AsArray.h" />
     <ClInclude Include="..\..\code\Platform\AsBc.h" />
     <ClInclude Include="..\..\code\Platform\AsByteArray.h" />
+    <ClInclude Include="..\..\code\Platform\AsClass.h" />
     <ClInclude Include="..\..\code\Platform\AsDebug.h" />
     <ClInclude Include="..\..\code\Platform\AsDictionary.h" />
     <ClInclude Include="..\..\code\Platform\AsError.h" />
+    <ClInclude Include="..\..\code\Platform\AsFunction.h" />
     <ClInclude Include="..\..\code\Platform\AsIllegalOperationError.h" />
     <ClInclude Include="..\..\code\Platform\AsLoaderContext.h" />
     <ClInclude Include="..\..\code\Platform\AsMath.h" />

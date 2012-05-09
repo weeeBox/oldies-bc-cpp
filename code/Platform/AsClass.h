@@ -1,34 +1,28 @@
 #ifndef AsClass_h__
 #define AsClass_h__
  
-#include "AsBase.h"
+#include "AsBc.h"
  
 #include "AsObject.h"
  
-ASTYPEREF(AsClass)
-ASTYPEREF(AsObject)
+#include "AsObject.h"
+ 
+ 
+AS_CLASS(AsClass);
  
 class AsClass : public AsObject
 {
 public:
-	ASOBJ(AsClass, AsObject);
+	AS_OBJ(AsClass, AsObject);
 	
 public:
-	virtual AsObject_ref prototype();
+	virtual AsObject_ref getPrototype();
 	
-public:
-	static AsClass_ref __createAsClass();
-	void __internalInitialiseAsClass();
+	static void _as_static_init_AsClass();
 	
 private:
-	static StaticInit __internalStaticInitializerAsClass;
-	static BOOL __internalStaticInitializedAsClass;
-	
-public:
-	static void __internalStaticInit();
-	
-protected:
-	AsClass();
+	static bool _as_static_initialized_AsClass;
+	static AsStaticRefInitializer _as_static_initializer_AsClass;
 };
  
 #endif // AsClass_h__

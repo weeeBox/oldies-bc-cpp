@@ -1,36 +1,17 @@
 #include "AsClass.h"
-#include "AsClass.h"
-#include "AsObject.h"
+#include "AsNotImplementedError.h"
  
- 
-AsObject_ref AsClass::prototype()
+AsObject_ref AsClass::getPrototype()
 {
-	throw new AsNotImplementedError();
+	throw AS_NEW(AsNotImplementedError,());
 }
  
-AsClass_ref AsClass::__createAsClass()
+bool AsClass::_as_static_initialized_AsClass = false;
+AsStaticRefInitializer AsClass::_as_static_initializer_AsClass(_as_static_init_AsClass);
+void AsClass::_as_static_init_AsClass()
 {
-	AsClass_ref __reference(new AsClass());
-	return __reference;
-}
- 
-void AsClass::__internalInitialiseAsClass()
-{
-}
- 
-StaticInit AsClass::__internalStaticInitializerAsClass(&AsClass::__internalStaticInit);
-BOOL AsClass::__internalStaticInitializedAsClass = false;
- 
-void AsClass::__internalStaticInit()
-{
-	if (!__internalStaticInitializedAsClass)
+	if (!_as_static_initialized_AsClass)
 	{
-		__internalStaticInitializedAsClass = true;
-		AsObject::__internalStaticInit();
+		_as_static_initialized_AsClass = true;
 	}
 }
- 
-AsClass::AsClass()
-{
-}
- 

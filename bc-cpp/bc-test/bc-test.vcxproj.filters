@@ -94,6 +94,12 @@
     <ClCompile Include="..\..\code\Platform\AsMath.cpp">
       <Filter>Platform</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\code\Platform\AsClass.cpp">
+      <Filter>Platform</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\code\Platform\AsFunction.cpp">
+      <Filter>Platform</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="tut">
@@ -261,6 +267,12 @@
       <Filter>Platform</Filter>
     </ClInclude>
     <ClInclude Include="..\..\code\Platform\AsRangeError.h">
+      <Filter>Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\Platform\AsClass.h">
+      <Filter>Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\Platform\AsFunction.h">
       <Filter>Platform</Filter>
     </ClInclude>
   </ItemGroup>

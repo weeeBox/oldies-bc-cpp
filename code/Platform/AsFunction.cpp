@@ -1,30 +1,11 @@
 #include "AsFunction.h"
-#include "AsFunction.h"
  
- 
-AsFunction_ref AsFunction::__createAsFunction()
+bool AsFunction::_as_static_initialized_AsFunction = false;
+AsStaticRefInitializer AsFunction::_as_static_initializer_AsFunction(_as_static_init_AsFunction);
+void AsFunction::_as_static_init_AsFunction()
 {
-	AsFunction_ref __reference(new AsFunction());
-	return __reference;
-}
- 
-void AsFunction::__internalInitialiseAsFunction()
-{
-}
- 
-StaticInit AsFunction::__internalStaticInitializerAsFunction(&AsFunction::__internalStaticInit);
-BOOL AsFunction::__internalStaticInitializedAsFunction = false;
- 
-void AsFunction::__internalStaticInit()
-{
-	if (!__internalStaticInitializedAsFunction)
+	if (!_as_static_initialized_AsFunction)
 	{
-		__internalStaticInitializedAsFunction = true;
-		AsObject::__internalStaticInit();
+		_as_static_initialized_AsFunction = true;
 	}
 }
- 
-AsFunction::AsFunction()
-{
-}
- 
