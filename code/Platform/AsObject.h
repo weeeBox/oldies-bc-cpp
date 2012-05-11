@@ -64,6 +64,12 @@ public: \
 
 #define AS_UNBOX(type, obj) type::_as_unbox(*obj)
 
+/* selector */
+#define AS_SELECTOR(type, func) AsFunction_ref(this, &type::_as_selector_##func)
+
+/* call function with return type */
+#define AS_CALL(func, type, args) func->call<type> args
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Static init
 
