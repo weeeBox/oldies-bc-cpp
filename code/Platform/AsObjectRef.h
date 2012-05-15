@@ -92,7 +92,7 @@ public:
     inline AsObjectRef& operator= (const AsObjectRef& other) { set(other.m_object); return *this; }
 
 protected:
-    inline T* _object() { return (T*)m_object; }
+    inline T* object() { return (T*)m_object; }
 };
 
 #endif // AsObjectRef_h__

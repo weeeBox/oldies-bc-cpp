@@ -41,13 +41,13 @@ public:
 
         inline T& operator[] (int index) 
         {   
-            ASSERT(index >= 0 && index < _object()->getLength());
-            return _object()->m_data[index];
+            ASSERT(index >= 0 && index < object()->getLength());
+            return object()->m_data[index];
         }
 
         inline Ref& operator<< (const T& element)
         {
-            _object()->addElement(element);
+            object()->addElement(element);
             return *this;
         }
     };
