@@ -27,7 +27,7 @@ namespace tut
         set_test_name("Length test 1");
         
         AsString_ref str = ASL("1234567890");
-        int len = str->length();
+        int len = str->getLength();
 
         ensure(len == 10);
     }
@@ -39,7 +39,7 @@ namespace tut
         set_test_name("Length test 2");
         
         AsString_ref str = ASL("");
-        int len = str->length();
+        int len = str->getLength();
 
         ensure(len == 0);
     }

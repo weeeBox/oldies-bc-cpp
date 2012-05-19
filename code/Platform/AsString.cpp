@@ -93,7 +93,7 @@ static int wide_hash(const wchar_t* str)
 
 AsString_ref AsString::charAt(int index)
 {
-    if (index >= 0 && index < length())
+    if (index >= 0 && index < getLength())
     {
         achar chr = m_buffer[index];
         return AsString_ref(new AsString(&chr, 1));
@@ -104,7 +104,7 @@ AsString_ref AsString::charAt(int index)
  
 int AsString::indexOf(const AsString_ref& s, int startIndex)
 {
-    ASSERT(startIndex >= 0 && startIndex < length());
+    ASSERT(startIndex >= 0 && startIndex < getLength());
     const achar* ptr = wide_find(m_buffer + startIndex, s->m_buffer);
 
     return ptr ? (ptr - m_buffer) : -1;
@@ -113,14 +113,14 @@ int AsString::indexOf(const AsString_ref& s, int startIndex)
 int AsString::lastIndexOf(const AsString_ref& s, int startIndex)
 {   
     if (startIndex == INDEX_MAX)
-        startIndex = length()-1;
+        startIndex = getLength()-1;
 
     const achar* ptr = wide_find_last(m_buffer + startIndex, m_buffer, s->m_buffer);
 
     return ptr ? (ptr - m_buffer) : -1;
 }
  
-int AsString::length() const
+int AsString::getLength() const
 {
     return m_size;
 }
@@ -133,23 +133,23 @@ AsString_ref AsString::replace(const AsString_ref& p, const AsString_ref& repl)
         return AsString_ref(this);
     }
 
-    int diff = repl->length() - p->length();    
-    size_t newLen = length() + diff;
+    int diff = repl->getLength() - p->getLength();    
+    size_t newLen = getLength() + diff;
 
     achar* newBuf = (achar*)malloc(newLen * sizeof(achar));
     achar* from = m_buffer;
     achar* to = newBuf;
 
     size_t lenA = pStart - m_buffer;
-    size_t lenB = length() - (lenA + p->length());
+    size_t lenB = getLength() - (lenA + p->getLength());
 
     memcpy(to, from, lenA * sizeof(achar));
     from += lenA;
     to += lenA;    
 
-    memcpy(to, repl->m_buffer, repl->length() * sizeof(achar));
-    from += p->length();
-    to += repl->length();    
+    memcpy(to, repl->m_buffer, repl->getLength() * sizeof(achar));
+    from += p->getLength();
+    to += repl->getLength();    
 
     memcpy(to, from, lenB * sizeof(achar));
 
@@ -162,10 +162,10 @@ AsString_ref AsString::replace(const AsString_ref& p, const AsString_ref& repl)
 AsString_ref AsString::slice(int start, int end)
 {
     if (end == INDEX_MAX)
-        end = length();
+        end = getLength();
 
-    ASSERT(start >= 0 && start < length());
-    ASSERT(end >= 0 && end <= length());
+    ASSERT(start >= 0 && start < getLength());
+    ASSERT(end >= 0 && end <= getLength());
 
     int count = end - start;
     if (count > 0)
@@ -185,10 +185,10 @@ AsArray_ref AsString::split(const AsString_ref& delim)
 AsString_ref AsString::substr(int start, int len)
 {
     if (len == INDEX_MAX)
-        len = length() - start;
+        len = getLength() - start;
 
-    ASSERT(start >= 0 && start < length());
-    ASSERT(len >= 0 && len <= length());
+    ASSERT(start >= 0 && start < getLength());
+    ASSERT(len >= 0 && len <= getLength());
 
     return AsString_ref(new AsString(m_buffer + start, len));
 }
@@ -196,10 +196,10 @@ AsString_ref AsString::substr(int start, int len)
 AsString_ref AsString::substring(int start, int end)
 {
     if (end == INDEX_MAX)
-        end = length();
+        end = getLength();
 
-    ASSERT(start >= 0 && start < length());
-    ASSERT(end >= 0 && end <= length());
+    ASSERT(start >= 0 && start < getLength());
+    ASSERT(end >= 0 && end <= getLength());
 
     int count = end - start;
     if (count < 0)
@@ -315,8 +315,8 @@ AsString::AsString(const AsString& other) :
   m_buffer(0),
   m_hashCode(0)
 {
-    init(other.length());
-    memcpy(m_buffer, other.m_buffer, other.length() * sizeof(achar));
+    init(other.getLength());
+    memcpy(m_buffer, other.m_buffer, other.getLength() * sizeof(achar));
 }
 
 AsString::~AsString()
@@ -359,13 +359,13 @@ void AsString::append(const achar* str, size_t len)
     if (len == -1)
         len = wide_len(str);
 
-    size_t newLen = length() + len;
+    size_t newLen = getLength() + len;
     if (newLen + 1 > m_capacity)
     {
         resize(newLen + 1);
     }    
 
-    memcpy(m_buffer + length(), str, len * sizeof(achar));
+    memcpy(m_buffer + getLength(), str, len * sizeof(achar));
     m_buffer[m_size = newLen] = '\0';    
 }
 
@@ -374,17 +374,17 @@ void AsString::append(const char* str, size_t len)
     if (len == -1)
         len = strlen(str);
 
-    size_t newLen = length() + len;
+    size_t newLen = getLength() + len;
     if (newLen + 1 > m_capacity)
     {
         resize(newLen + 1);
     }    
         
-    wide_copy(m_buffer + length(), str);
+    wide_copy(m_buffer + getLength(), str);
     m_buffer[m_size = newLen] = '\0';    
 }
 
 void AsString::append(const AsString& other)
 {
-    append(other.m_buffer, other.length());
+    append(other.m_buffer, other.getLength());
 }

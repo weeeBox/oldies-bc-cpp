@@ -31,7 +31,7 @@ public:
     AsString_ref charAt(int i);
     int indexOf(const AsString_ref& s, int i = 0);	
     int lastIndexOf(const AsString_ref& s, int i = INDEX_MAX);	
-    int length() const;
+    int getLength() const;
     AsString_ref replace(const AsString_ref& p, const AsString_ref& repl);
     AsString_ref slice(int start, int end = INDEX_MAX);	
     AsArray_ref split(const AsString_ref& delim);
