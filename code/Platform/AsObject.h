@@ -159,6 +159,13 @@ namespace AsGlobal
     void trace(int val);
     void trace(float val);
     void trace(bool val);
+
+    AsString_ref getQualifiedClassName(const AsObject_ref& obj);
+
+    float getTimer();
+
+    inline float parseFloat(const AsString_ref& value) { return AsString::parseFloat(value); }
+    inline int parseInt(const AsString_ref& value) { return AsString::parseInt(value); }    
 }
 
 #endif // AsObject_h__

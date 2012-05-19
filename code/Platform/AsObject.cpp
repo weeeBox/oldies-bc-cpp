@@ -66,31 +66,6 @@ void AsObject::_as_gc_mark()
     m_gcTime = AsObjectRefBase::gcGlobalTime();
     AS_GC_MARK(m_properties);
 }
-
-void AsGlobal::trace(const AsObject& obj)
-{
-    
-}
-
-void AsGlobal::trace(const AsString_ref& str)
-{
-
-}
-
-void AsGlobal::trace(int val)
-{
-
-}
-
-void AsGlobal::trace(float val)
-{
-
-}
-
-void AsGlobal::trace(bool val)
-{
-
-}
  
 BOOL AsObject::hasOwnProperty(const AsString_ref& name)
 {
@@ -125,4 +100,45 @@ void AsObject::deleteOwnProperty(const AsString_ref& name)
 	{
 		m_properties->remove(name);
 	}
+}
+
+// global functions
+
+void AsGlobal::trace(const AsObject& obj)
+{
+
+}
+
+void AsGlobal::trace(const AsString_ref& str)
+{
+
+}
+
+void AsGlobal::trace(int val)
+{
+
+}
+
+void AsGlobal::trace(float val)
+{
+
+}
+
+void AsGlobal::trace(bool val)
+{
+
+}
+
+AsString_ref AsGlobal::getQualifiedClassName(const AsObject_ref& obj)
+{
+    if (obj == AS_NULL)
+        return AS_NULL;
+
+    return obj->_as_typename();
+}
+
+float AsGlobal::getTimer()
+{
+    IMPLEMENT_ME;
+    return 0;
 }
