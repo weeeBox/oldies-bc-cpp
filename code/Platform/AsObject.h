@@ -90,20 +90,31 @@ private:
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 AS_CLASS(AsObject);
+AS_CLASS(AsDictionary);
 
 class AsString_ref;
 
 class AsObject
 {
-/*private:
-	AsDictionary_ref mProperties;
+private:
+	AsDictionary_ref m_properties;
 	
 public:
-	virtual BOOL hasOwnProperty(const AsString_ref& name);
-	virtual AsObject_ref getOwnProperty(const AsString_ref& name);
-	virtual void setOwnProperty(const AsString_ref& name, const AsObject_ref& _value);
-	virtual void deleteOwnProperty(const AsString_ref& name);	
-*/
+    virtual BOOL hasOwnProperty(const AsString_ref& name);
+    virtual BOOL hasOwnProperty(const char* name);
+    virtual BOOL hasOwnProperty(const wchar_t* name);
+
+    virtual AsObject_ref getOwnProperty(const AsString_ref& name);
+    virtual AsObject_ref getOwnProperty(const char* name);
+    virtual AsObject_ref getOwnProperty(const wchar_t* name);
+
+    virtual void setOwnProperty(const AsString_ref& name, const AsObject_ref& _value);
+    virtual void setOwnProperty(const char* name, const AsObject_ref& _value);
+    virtual void setOwnProperty(const wchar_t* name, const AsObject_ref& _value);
+
+    virtual void deleteOwnProperty(const AsString_ref& name);
+    virtual void deleteOwnProperty(const char* name);
+    virtual void deleteOwnProperty(const wchar_t* name);
 
 public:
     virtual AsString_ref toString();

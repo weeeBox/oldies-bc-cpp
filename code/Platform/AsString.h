@@ -44,6 +44,8 @@ public:
     AsString_ref toUpperCase();
     AsString_ref valueOf();
 
+    static float parseFloat(const AsString_ref& value);
+
     const achar* data() const { return m_buffer; }
     bool isEqualToString(const AsString& other) const;
     bool isEqualToString(const AsString_ref& other) const;

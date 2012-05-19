@@ -245,6 +245,12 @@ AsString_ref AsString::valueOf()
     return AsString_ref(this);
 }
 
+float AsString::parseFloat(const AsString_ref& value)
+{
+    IMPLEMENT_ME;
+    return 0;
+}
+
 bool AsString::isEqualToString(const AsString& other) const
 {
     return wide_equals(m_buffer, other.m_buffer);

@@ -1,5 +1,7 @@
 #include "AsObject.h"
+
 #include "AsString.h"
+#include "AsDictionary.h"
 
 AsStaticRefInitializer* AsStaticRefInitializer::root = NULL;
 
@@ -23,7 +25,8 @@ AsObject_ref AsObject::__as_null = AsObject_ref();
 
 AsObject::AsObject() :
   m_refCount(0),
-  m_gcTime(0)
+  m_gcTime(0),
+  m_properties(false)
 {
 }
 
@@ -61,6 +64,7 @@ void AsObject::release()
 void AsObject::_as_gc_mark()
 {
     m_gcTime = AsObjectRefBase::gcGlobalTime();
+    AS_GC_MARK(m_properties);
 }
 
 void AsGlobal::trace(const AsObject& obj)
@@ -87,20 +91,12 @@ void AsGlobal::trace(bool val)
 {
 
 }
-
-/*
-#include "AsObject.h"
-#include "AsDictionary.h"
-#include "AsString.h"
-#include "AsString.h"
-#include "AsObject.h"
- 
  
 BOOL AsObject::hasOwnProperty(const AsString_ref& name)
 {
-	if((mProperties != null))
+	if(m_properties != AS_NULL)
 	{
-		return (mProperties[name] != null);
+		return m_properties->_as_get(name) != AS_NULL;
 	}
 	return false;
 }
@@ -109,61 +105,24 @@ AsObject_ref AsObject::getOwnProperty(const AsString_ref& name)
 {
 	if(hasOwnProperty(name))
 	{
-		return (AsObject)(mProperties[name]);
+		return m_properties->_as_get(name);
 	}
-	return null;
+	return AS_NULL;
 }
  
-void AsObject::setOwnProperty(const AsString_ref& name, const AsObject_ref& _value)
+void AsObject::setOwnProperty(const AsString_ref& name, const AsObject_ref& value)
 {
-	if((mProperties == null))
+	if(m_properties == AS_NULL)
 	{
-		mProperties = new AsDictionary();
+		m_properties = AS_NEW(AsDictionary,());
 	}
-	mProperties[name] = (AsObject)(_value);
+	m_properties->_as_put(name, value);
 }
  
 void AsObject::deleteOwnProperty(const AsString_ref& name)
 {
-	if((mProperties != null))
+	if(m_properties != AS_NULL)
 	{
-		mProperties.remove(name);
+		m_properties->remove(name);
 	}
 }
- 
-AsString_ref AsObject::toString()
-{
-	return "Object";
-}
- 
-void AsObject::__internalInitialiseAsObject()
-{
-}
- 
-StaticInit AsObject::__internalStaticInitializerAsObject(&AsObject::__internalStaticInit);
-BOOL AsObject::__internalStaticInitializedAsObject = false;
- 
-void AsObject::__internalStaticInit()
-{
-	if (!__internalStaticInitializedAsObject)
-	{
-		__internalStaticInitializedAsObject = true;
-		AsObject::__internalStaticInit();
-	}
-}
- 
-AsObject::AsObject() :
-  mProperties(false)
-{
-}
- 
-void AsObject::__internalGc()
-{
-	if(__internalGcNeeded())
-	{
-		AsObject::__internalGc();
-		if (mProperties != __NULL) mProperties->__internalGc();
-	}
-}
- 
- */
