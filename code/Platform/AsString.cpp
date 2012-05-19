@@ -251,6 +251,24 @@ float AsString::parseFloat(const AsString_ref& value)
     return 0;
 }
 
+int AsString::parseInt(const AsString_ref& value)
+{
+    IMPLEMENT_ME;
+    return 0;
+}
+
+uint AsString::parseUint(const AsString_ref& value)
+{
+    IMPLEMENT_ME;
+    return 0;
+}
+
+bool AsString::parseBool(const AsString_ref& value)
+{
+    IMPLEMENT_ME;
+    return false;
+}
+
 bool AsString::isEqualToString(const AsString& other) const
 {
     return wide_equals(m_buffer, other.m_buffer);

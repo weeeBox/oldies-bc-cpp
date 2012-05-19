@@ -45,6 +45,9 @@ public:
     AsString_ref valueOf();
 
     static float parseFloat(const AsString_ref& value);
+    static int parseInt(const AsString_ref& value);
+    static uint parseUint(const AsString_ref& value);
+    static bool parseBool(const AsString_ref& value);
 
     const achar* data() const { return m_buffer; }
     bool isEqualToString(const AsString& other) const;
