@@ -97,7 +97,7 @@ public:
     inline const AsObjectRef<AsObject> operator[] (const AsString_ref& key) { ASSERT(m_object); return m_object->getOwnProperty(key); }
 
 protected:
-    inline T* object() { return (T*)m_object; }
+    inline T* object() const { return (T*)m_object; }
 };
 
 #endif // AsObjectRef_h__

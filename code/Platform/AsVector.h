@@ -29,7 +29,7 @@ public:
 
         inline Ref& operator= (const AsObjectRefBase& other) { set(other); return *this; }
 
-        inline T& operator[] (int index) 
+        inline T& operator[] (int index) const
         {   
             ASSERT(index >= 0 && index < object()->getLength());
             return object()->m_data[index];
