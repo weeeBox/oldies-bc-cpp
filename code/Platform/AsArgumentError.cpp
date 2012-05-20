@@ -3,14 +3,14 @@
  
 AsArgumentError_ref AsArgumentError::_as_create_AsArgumentError(const AsString_ref& message)
 {
-	AsArgumentError* __instance = new AsArgumentError();
+	AsArgumentError_ref __instance = new AsArgumentError();
 	__instance->_as_construct_AsArgumentError(message);
 	return __instance;
 }
  
 AsArgumentError_ref AsArgumentError::_as_create_AsArgumentError()
 {
-	AsArgumentError* __instance = new AsArgumentError();
+	AsArgumentError_ref __instance = new AsArgumentError();
 	__instance->_as_construct_AsArgumentError();
 	return __instance;
 }

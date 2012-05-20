@@ -5,6 +5,9 @@
  
 #include "AsObject.h"
  
+#include "AsObject.h"
+ 
+ 
 AS_CLASS(AsArray);
  
 class AsArray : public AsObject
@@ -24,13 +27,16 @@ public:
 	virtual int indexOf(const AsObject_ref& searchElement);
 	virtual int lastIndexOf(const AsObject_ref& searchElement, uint fromIndex);
 	virtual int lastIndexOf(const AsObject_ref& searchElement);
-	virtual uint length();
-	virtual void length(uint newLength);
+	virtual uint getLength();
+	virtual void setLength(uint newLength);
 	virtual AsObject_ref pop();
 	virtual uint push(const AsObject_ref& arg);
 	
-protected:
-	AsArray();
+	static void _as_static_init_AsArray();
+	
+private:
+	static bool _as_static_initialized_AsArray;
+	static AsStaticRefInitializer _as_static_initializer_AsArray;
 };
  
 #endif // AsArray_h__

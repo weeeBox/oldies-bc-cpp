@@ -3,14 +3,14 @@
  
 AsRangeError_ref AsRangeError::_as_create_AsRangeError(const AsString_ref& message)
 {
-	AsRangeError* __instance = new AsRangeError();
+	AsRangeError_ref __instance = new AsRangeError();
 	__instance->_as_construct_AsRangeError(message);
 	return __instance;
 }
  
 AsRangeError_ref AsRangeError::_as_create_AsRangeError()
 {
-	AsRangeError* __instance = new AsRangeError();
+	AsRangeError_ref __instance = new AsRangeError();
 	__instance->_as_construct_AsRangeError();
 	return __instance;
 }

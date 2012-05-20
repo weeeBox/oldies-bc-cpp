@@ -3,14 +3,14 @@
  
 AsIllegalOperationError_ref AsIllegalOperationError::_as_create_AsIllegalOperationError(const AsString_ref& message)
 {
-	AsIllegalOperationError* __instance = new AsIllegalOperationError();
+	AsIllegalOperationError_ref __instance = new AsIllegalOperationError();
 	__instance->_as_construct_AsIllegalOperationError(message);
 	return __instance;
 }
  
 AsIllegalOperationError_ref AsIllegalOperationError::_as_create_AsIllegalOperationError()
 {
-	AsIllegalOperationError* __instance = new AsIllegalOperationError();
+	AsIllegalOperationError_ref __instance = new AsIllegalOperationError();
 	__instance->_as_construct_AsIllegalOperationError();
 	return __instance;
 }

@@ -3,14 +3,14 @@
  
 AsAbstractMethodError_ref AsAbstractMethodError::_as_create_AsAbstractMethodError(const AsString_ref& message)
 {
-	AsAbstractMethodError* __instance = new AsAbstractMethodError();
+	AsAbstractMethodError_ref __instance = new AsAbstractMethodError();
 	__instance->_as_construct_AsAbstractMethodError(message);
 	return __instance;
 }
  
 AsAbstractMethodError_ref AsAbstractMethodError::_as_create_AsAbstractMethodError()
 {
-	AsAbstractMethodError* __instance = new AsAbstractMethodError();
+	AsAbstractMethodError_ref __instance = new AsAbstractMethodError();
 	__instance->_as_construct_AsAbstractMethodError();
 	return __instance;
 }

@@ -3,14 +3,14 @@
  
 AsNotImplementedError_ref AsNotImplementedError::_as_create_AsNotImplementedError(const AsString_ref& message)
 {
-	AsNotImplementedError* __instance = new AsNotImplementedError();
+	AsNotImplementedError_ref __instance = new AsNotImplementedError();
 	__instance->_as_construct_AsNotImplementedError(message);
 	return __instance;
 }
  
 AsNotImplementedError_ref AsNotImplementedError::_as_create_AsNotImplementedError()
 {
-	AsNotImplementedError* __instance = new AsNotImplementedError();
+	AsNotImplementedError_ref __instance = new AsNotImplementedError();
 	__instance->_as_construct_AsNotImplementedError();
 	return __instance;
 }

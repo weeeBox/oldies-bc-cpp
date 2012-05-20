@@ -4,14 +4,14 @@
  
 AsError_ref AsError::_as_create_AsError(const AsString_ref& message)
 {
-	AsError* __instance = new AsError();
+	AsError_ref __instance = new AsError();
 	__instance->_as_construct_AsError(message);
 	return __instance;
 }
  
 AsError_ref AsError::_as_create_AsError()
 {
-	AsError* __instance = new AsError();
+	AsError_ref __instance = new AsError();
 	__instance->_as_construct_AsError();
 	return __instance;
 }

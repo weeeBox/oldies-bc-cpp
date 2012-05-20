@@ -6,9 +6,9 @@
 #include "AsObject.h"
  
 #include "AsString.h"
+#include "AsByteArray.h"
 #include "AsObject.h"
  
-AS_CLASS(AsByteArray);
  
 AS_CLASS(AsByteArray);
  
@@ -25,7 +25,7 @@ public:
 	virtual AsString_ref getEndian();
 	virtual void setEndian(const AsString_ref& type);
 	virtual uint getLength();
-	virtual void setLength(uint _value);
+	virtual void setLength(uint value);
 	virtual uint getObjectEncoding();
 	virtual void setObjectEncoding(uint version);
 	virtual uint getPosition();
@@ -47,20 +47,20 @@ public:
 	virtual uint readUnsignedInt();
 	virtual uint readUnsignedShort();
 	virtual AsString_ref toString();
-	virtual void writeBoolean(bool _value);
-	virtual void writeByte(int _value);
+	virtual void writeBoolean(bool value);
+	virtual void writeByte(int value);
 	virtual void writeBytes(const AsByteArray_ref& bytes, uint offset, uint length);
 	virtual void writeBytes(const AsByteArray_ref& bytes, uint offset);
 	virtual void writeBytes(const AsByteArray_ref& bytes);
-	virtual void writeDouble(float _value);
-	virtual void writeFloat(float _value);
-	virtual void writeInt(int _value);
-	virtual void writeMultiByte(const AsString_ref& _value, const AsString_ref& charSet);
-	virtual void writeObject(const AsObject_ref& _object);
-	virtual void writeShort(int _value);
-	virtual void writeUTF(const AsString_ref& _value);
-	virtual void writeUTFBytes(const AsString_ref& _value);
-	virtual void writeUnsignedInt(uint _value);
+	virtual void writeDouble(float value);
+	virtual void writeFloat(float value);
+	virtual void writeInt(int value);
+	virtual void writeMultiByte(const AsString_ref& value, const AsString_ref& charSet);
+	virtual void writeObject(const AsObject_ref& object);
+	virtual void writeShort(int value);
+	virtual void writeUTF(const AsString_ref& value);
+	virtual void writeUTFBytes(const AsString_ref& value);
+	virtual void writeUnsignedInt(uint value);
 	
 	static void _as_static_init_AsByteArray();
 	
