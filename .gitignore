@@ -4,7 +4,6 @@
 *.ipch
 *.user
 
-/code/Api
 /code/Converted
 /bc-cpp/Debug
 /bc-cpp/bc-cpp/Debug
