@@ -20,7 +20,7 @@ public:
     inline AsObjectRefBase& operator= (const AsObjectRefBase& other) { set(other.m_object); return *this; }
 
     inline bool operator== (const AsObjectRefBase& other) const { return m_object == other.m_object; }
-    inline bool operator!= (const AsObjectRefBase& other) const { return m_object != other.m_object; }
+    inline bool operator!= (const AsObjectRefBase& other) const { return m_object != other.m_object; }    
 
 protected:
     AsObject* m_object;
@@ -77,6 +77,8 @@ public:
 #endif // AS_NO_DEBUG
 };
 
+class AsString_ref;
+
 template <class T>
 class AsObjectRef : public AsObjectRefBase
 {
@@ -90,6 +92,9 @@ public:
     inline T* operator->() const { ASSERT(m_object); return (T*)m_object; }
     inline T* operator*() const { ASSERT(m_object); return (T*)m_object; }
     inline AsObjectRef& operator= (const AsObjectRef& other) { set(other.m_object); return *this; }
+
+    /* Important: we use indexer only for accessing the properties, not setting them */
+    inline const AsObjectRef<AsObject> operator[] (const AsString_ref& key) { ASSERT(m_object); return m_object->getOwnProperty(key); }
 
 protected:
     inline T* object() { return (T*)m_object; }
