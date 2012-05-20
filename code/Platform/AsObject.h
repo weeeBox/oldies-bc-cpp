@@ -70,6 +70,22 @@ public: \
 /* call function with return type */
 #define AS_CALL(func, type, args) func->call<type> args
 
+/* foreach */
+
+#define AS_FOREACH(type, var, collection) \
+    { _V_##type##_ref __##var##s_ = collection; \
+    if (__##var##s_ != AS_NULL) { for(_as_AsRefVector<type##_ref>::Iterator it = (__##var##s_)->iterator(); it.hasNext();) { type##_ref var = it.next();
+
+#define AS_PRIMITIVE_FOREACH(type, var, collection) \
+    { _V_##type##_ref __##var##s_ = collection; \
+    if (__##var##s_ != AS_NULL) { for(AsVector<type>::Iterator it = (__##var##s_)->iterator(); it.hasNext();) { type var = it.next();
+
+#define AS_XML_FOREACH(var, collection) \
+    { AsXMLList_ref __##var##s_ = collection; \
+    if (__##var##s_ != AS_NULL) { for(_as_AsRefVector<type>::Iterator it = (__##var##s_)->list()->iterator(); it.hasNext();) { type var = it.next();
+
+#define AS_FOREACH_END }}}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Static init
 
@@ -151,6 +167,10 @@ public:
 public:
     static AsObject_ref __as_null;
 };
+
+#ifndef AsString_h__
+#include "AsString.h"
+#endif // AsString_h__
 
 namespace AsGlobal
 {

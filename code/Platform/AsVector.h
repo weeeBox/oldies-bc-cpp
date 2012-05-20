@@ -12,16 +12,6 @@
 #define AS_NEW_VECTOR(type, initializer) _as_AsRefVector<type##_ref>::_as_create initializer
 #define AS_NEW_PRIMITIVES_VECTOR(type, initializer) AsVector<type>::_as_create initializer
 
-#define AS_FOREACH(type, var, collection) \
-    { _V_##type##_ref __##var##s_ = collection; \
-    if (__##var##s_ != AS_NULL) { for(_as_AsRefVector<type##_ref>::Iterator it = (__##var##s_)->iterator(); it.hasNext();) { type##_ref var = it.next();
-
-#define AS_PRIMITIVE_FOREACH(type, var, collection) \
-    { _V_##type##_ref __##var##s_ = collection; \
-    if (__##var##s_ != AS_NULL) { for(AsVector<type>::Iterator it = (__##var##s_)->iterator(); it.hasNext();) { type var = it.next();
-
-#define AS_FOREACH_END }}}
-
 template <class T> 
 class AsVector : public AsObject
 {
